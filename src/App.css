@@ -1,38 +1,863 @@
-.App {
-  text-align: center;
+/*For everyone*/
+body {
+    background-color: #FFFBFA;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row {
+    margin: 0 -5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.column {
+    text-align: left;
+    padding: 0;
+    float: left;
 }
 
-.App-link {
-  color: #61dafb;
+/*End of For everyone*/
+
+/*Sign In*/
+.signIn {
+    margin: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signIn .column:first-child {
+    width: 65%;
+    color: black;
+    float: left;
+
 }
+
+.signIn .column:not(:first-child) {
+    width: 35%;
+    position: fixed;
+    right: 0;
+}
+
+.signIn #bg {
+    background-image: url("./Assets/Images/bg.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.signIn nav {
+    padding: 0 40px;
+}
+
+.signIn nav a {
+    margin-right: 30px;
+    font-size: 18px;
+    padding: 10px;
+
+}
+
+.signIn nav .active {
+
+    border-bottom: 2px solid #543322;
+
+}
+
+
+.signIn .wrapper {
+    margin-left: 5%;
+    margin-top: 10%;
+
+}
+
+.signIn h1 {
+    color: #543322;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.signIn p {
+    color: #4F4E4E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.signIn table {
+    width: 100%;
+}
+
+.signIn td:first-child {
+    width: 10%;
+}
+
+.signIn table h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #543322;
+    font-size: 18px;
+}
+
+.signIn table td {
+    padding: 0;
+
+}
+
+.signIn table img {
+    width: 52px;
+    margin: 10px 10px 0 0;
+}
+
+.signIn table input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+
+.signIn .email,
+.signIn .password {
+    background-color: #fff;
+    width: 500px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 18px 1px #FFF5F0;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.signIn .tempStyle {
+    background-color: #fff;
+    width: 500px;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 18px 1px #FFF5F0;
+    margin-bottom: 20px;
+    position: relative;
+
+    background: #FFF;
+    box-shadow: 0px 0px 18px 1px #543322;
+    border-left: 3px solid #543322;
+}
+
+/* 
+.signIn .email input:focus {
+ border-left: 3px solid #543322;
+  } */
+
+
+.signIn .show {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    right: 15px;
+    top: 25px;
+}
+
+.signIn-form p {
+    cursor: pointer;
+    width: 490px;
+    text-align: right;
+}
+
+.signIn-form button {
+    width: 500px;
+    padding: 10px;
+    flex-shrink: 0;
+    background: #543322;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.signIn-form button:hover {
+    background: #85736b;
+}
+
+/*End of Sign In*/
+
+/*Admin Dashboard*/
+.dashboard nav {
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard .sign-out {
+    width: 45%;
+    color: black;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard .sign-out button {
+    width: 150px;
+    background: #543322;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+}
+
+.dashboard .sign-out button:hover {
+    background: #ff8585;
+    border: 1px solid #543322;
+    color: #000;
+    box-shadow: 0px 0px 18px 1px #b40202;
+}
+
+.dashboard .date {
+    width: 50%;
+    color: black;
+    float: left;
+}
+
+.dashboard .date h3 {
+    color: #4F4E4E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+
+#top-nav {
+    padding: 30px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 6px #575757;
+
+    padding-left: 22%;
+}
+
+#top-nav .sign-out {
+    text-align: right;
+}
+
+.sideNav {
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20%;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 6px #575757;
+    flex-shrink: 0;
+}
+
+main {
+    margin-left: 21%;
+    padding: 0 50px 30px 0;
+}
+
+#dashboard {
+    display: block;
+}
+
+#addRoom {
+    display: none;
+}
+
+#viewRooms {
+    display: none;
+}
+
+
+/*Grid */
+
+.card1 {
+    grid-area: header;
+    position: relative;
+}
+
+.card2 {
+    grid-area: menu;
+}
+
+.card3 {
+    grid-area: main;
+
+}
+
+.card4 {
+    grid-area: right;
+}
+
+.card5 {
+    grid-area: footer;
+}
+
+.card6 {
+    grid-area: bottom;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header menu main'
+        'right right footer main'
+        'bottom bottom bottom bottom';
+    gap: 20px;
+    background-color: transparent;
+    padding: 10px;
+}
+
+.grid-container .card1,
+.grid-container .card2,
+.grid-container .card3,
+.grid-container .card4,
+.grid-container .card5,
+.grid-container .card6 {
+    background: #FFF;
+    box-shadow: 0px 0px 10px 6px #575757;
+    text-align: center;
+
+    padding: 5px 10px;
+    height: 200px;
+}
+
+.grid-container .card3 {
+    height: 450px;
+    background-image: url("./Assets/Images/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card1 .column:first-child {
+    padding: 0;
+    margin: 0;
+    width: 30%;
+}
+
+
+.card1 .column:not(:first-child) {
+    padding: 0;
+    margin: 0;
+    width: 60%;
+}
+
+.card1 img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card1 h2 {
+    color: #543322;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.states {
+    color: #4D4744;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.card4 .column {
+    width: 50%;
+}
+
+.card6 {
+    padding: 5px;
+}
+
+.card6 .column:first-child {
+    padding: 0;
+    margin: 0;
+    width: 70%;
+}
+
+
+.card6 .column:not(:first-child) {
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    text-align: right;
+}
+
+.card6 iframe {
+    height: 200px;
+    width: 250px;
+}
+
+/*Grid*/
+/*Admin Dashboard*/
+
+
+/*New room*/
+.new-room {
+    margin: 0px;
+    padding: 0 30px;
+}
+
+.new-room h1 {
+    padding: 0;
+    margin: 0;
+    color: #543322;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.new-room .intro {
+    margin: 0;
+    padding: 0;
+}
+
+#room-imgs {
+    display: block;
+}
+
+#room-dtls {
+    display: none;
+}
+
+#room-dtls .column {
+    width: 50%;
+}
+
+.images-form button {
+    width: 200px;
+    background: #543322;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.input-images {
+    width: 400px;
+    border: 1px solid #85736b;
+    background-color: #FFF5F0;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.images-form p {
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.room-form {
+    padding: 30px;
+}
+
+.room-form .check {
+    margin: 10px;
+}
+
+.room-form input,
+.room-form select,
+.room-form textarea {
+
+    margin-bottom: 20px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #85736b;
+    background-color: #FFF5F0;
+}
+
+.room-form .small {
+    width: 42%;
+    margin-right: 10px;
+}
+
+.room-form select {
+    width: 93% !important;
+
+}
+
+.room-form label {
+    color: #543322;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* .room-form textarea {
+margin-top: 20px;
+} */
+
+.room-form .long {
+    width: 90%;
+}
+
+.room-form input:focus,
+.room-form select:focus,
+.room-form textarea:focus {
+    box-shadow: 0px 0px 18px 1px #574a44;
+    border: 2px solid #85736b;
+}
+
+.room-form span {
+    font-size: 14px;
+}
+
+.room-form button {
+    width: 94%;
+    background: #543322;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+}
+
+.room-form button:hover,
+.images-form button:hover {
+    background: #f0c5b0;
+    border: 1px solid #543322;
+    color: #543322;
+    box-shadow: 0px 0px 18px 1px #574a44;
+}
+
+#displayImg {
+    text-align: center;
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#addImgs .column {
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    text-align: center;
+}
+
+
+#addImgs .column {
+    padding: 20px 0;
+    width: 30%;
+}
+
+#displayImg .main {
+    width: 450px;
+    height: 390px;
+    object-fit: cover;
+    box-shadow: 0px 0px 18px 1px #574a44;
+}
+
+#addImgs .sub {
+    width: 150px;
+    height: 130px;
+    object-fit: cover;
+    box-shadow: 0px 0px 18px 1px #574a44;
+}
+
+/*End of New room*/
+
+/*Rooms and room*/
+#room {
+    display: block;
+}
+
+#upRoom {
+    display: block;
+}
+
+
+.rooms h1,
+#room h1 {
+    padding: 0;
+    margin: 0;
+    color: #543322;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.rooms .intro,
+.room .intro {
+    margin: 0;
+    padding: 0;
+}
+
+#search .column {
+    padding: 20px;
+    margin: 0;
+    width: 45%;
+}
+
+#search .column:first-child {
+    text-align: left;
+}
+
+
+#search .column:not(:first-child) {
+    text-align: right;
+}
+
+
+.searchBar {
+    background: #FFF;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+    width: 300px;
+    height: 50px;
+    padding: 10px 15px;
+    flex-shrink: 0;
+    text-align: left !important;
+    float: right;
+}
+
+.searchBar button,
+.searchBar input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.searchBar input {
+    width: 90%;
+    height: 100%;
+}
+
+/* 
+.searchBar button {
+    /* margin-top: 10px; *
+} */
+
+.searchBar img {
+    width: 30px;
+}
+
+
+
+.myRooms .column {
+    padding: 20px;
+    margin: 0;
+    width: 29%;
+}
+
+.myRooms .card {
+    width: 100%;
+    height: 400px;
+    flex-shrink: 0;
+
+    background: #FFF;
+    box-shadow: 0px 0px 10px 6px #575757;
+}
+
+.myRooms img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.myRooms .card table {
+    padding: 0;
+    margin: 0;
+    width: 95%;
+}
+
+.myRooms .card h2 {
+    margin: 0;
+    padding: 0;
+    color: #543322;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.myRooms .card p {
+    margin: 0;
+    padding: 5px;
+}
+
+.myRooms .card button {
+    width: 95%;
+    background: #B6846A;
+    box-shadow: 0px 0px 4px 3px #543322;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+    margin: 10px;
+}
+
+.myRooms .card button:hover {
+    background: #f0c5b0;
+    border: 1px solid #543322;
+    color: #543322;
+    font-weight: 800;
+    box-shadow: 0px 0px 18px 1px #574a44;
+}
+
+/*End of Rooms and room*/
+
+
+/*Room*/
+#upRoom {
+    display: none;
+}
+
+.room .roomNav {
+    margin: 20px 30px;
+}
+
+.room .roomNav img {
+    cursor: pointer;
+    width: 40px;
+    filter: drop-shadow(3px 3px 5px #a08374);
+}
+
+.room .roomNav img:hover {
+    width: 42px;
+    filter: drop-shadow(3px 3px 5px #705c51);
+}
+
+#room {
+    margin: 50px;
+}
+
+.room .room-content {
+    margin: 50px 0 !important;
+}
+
+
+
+.room img {
+    margin: 10px;
+}
+
+.room-content .column:first-child img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.room-content .column:first-child {
+    padding: 20px;
+    margin: 0;
+    width: 30%;
+}
+
+.room-content .column:not(:first-child) {
+    padding: 20px;
+    margin: 0;
+    width: 60%;
+}
+
+.room-content .column:not(:first-child) img{
+height: 100px;
+width: 200px;
+object-fit: cover;
+}
+
+.room-content li {
+    display: inline;
+}
+
+.room-content ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* to remove default bullets */
+}
+
+.room-content li {
+    float: left;
+    width: auto;
+    padding-right: 20px;
+}
+
+/*End of room*/
+
+/*
+
+import { db } from '../../Config/Firebase';
+import { useEffect, useState } from "react";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { type } from '@testing-library/user-event/dist/type';
+
+export default function Room(props) {
+    const [room, setRoom] = useState([]);
+    //     const docRef = doc(db, "cities", "SF");
+    // const docSnap = await getDoc(docRef);
+
+    // if (docSnap.exists()) {
+    //   console.log("Document data:", docSnap.data());
+    // } else {
+    //   // docSnap.data() will be undefined in this case
+    //   console.log("No such document!");
+    // }
+
+    useEffect(() => {
+        const docId = props.isRoom;
+
+        async function fetchData() {
+            const docRef = doc(collection(db, "rooms"), docId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+                try {
+                    const documents = {
+                        id: docSnap.id, ...docSnap.data()
+                    }
+                    setRoom(documents);
+                    console.log(documents)
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                console.log("No such document!");
+            }
+        }
+
+        fetchData();
+
+    }, []);
+
+    function update(event, data){
+
+    }
+
+    function deleteRoom(event, data){
+
+    }
+
+    return (
+        <div className='room'>
+            <div id={'viewRoom'}>
+                <img src={room.roomImages[0].roomMainImage.imageUrl} alt='main' width={100} />
+                <h2>{room.roomBedsType}</h2>
+                <button onClick={event => update(event, room)}>update</button>
+                <button onClick={event => deleteRoom(event, room)}>delete</button>
+            </div> 
+        </div>
+    );
+
+
+}
+*/

@@ -257,6 +257,28 @@ body {
     background: #FFF;
     box-shadow: 0px 0px 10px 6px #575757;
     flex-shrink: 0;
+   
+    
+}
+
+.controllers{
+    margin:80px 20px 0 20px;
+    
+}
+
+.controllers button{
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    background: #D9D9D9;
+    outline: none;
+    border: none;
+}
+
+.controllers button:focus{
+    border-right: 3px solid #543322;
 }
 
 main {

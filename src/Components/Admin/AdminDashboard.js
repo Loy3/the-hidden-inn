@@ -77,7 +77,7 @@ export default function AdminDashboard() {
                             <img src={icon} alt='' width={30} /> <span>Add New Room</span>
                         </button>
                         <br />
-                        <button onClick={(event) => changeMenu(event, "rooms")}>
+                        <button onClick={(event) => changeMenu(event, "rooms")}> 
                             <img src={icon} alt='' width={30} /> <span>View Rooms</span>
                         </button>
                         <br />

@@ -1,6 +1,6 @@
 /*For everyone*/
 body {
-    background-color: #FFFBFA;
+    background-color: whitesmoke;
 }
 
 .row {
@@ -15,7 +15,6 @@ body {
 
 
 .column {
-    text-align: left;
     padding: 0;
     float: left;
 }
@@ -194,16 +193,34 @@ body {
     padding: 0;
 }
 
-.dashboard .sign-out {
+/* .dashboard .column:first-child {
+    float: left;
+    width: 60%;
+    padding: 0 10px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+
+}
+
+.dashboard .column:not(:first-child) {
+    float: left;
+    width: 35%;
+    padding: 0 10px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+} */
+
+.top .sign-out {
     width: 45%;
     color: black;
     float: left;
     padding: 0;
     margin: 0;
+    text-align: right;
 }
 
-.dashboard .sign-out button {
-    width: 150px;
+.top .sign-out button {
+    width: 120px;
     background: #543322;
     border: none;
     color: white;
@@ -213,11 +230,43 @@ body {
     padding: 10px;
 }
 
-.dashboard .sign-out button:hover {
+.top .sign-out button:hover {
     background: #ff8585;
     border: 1px solid #543322;
     color: #000;
     box-shadow: 0px 0px 18px 1px #b40202;
+}
+
+.top {
+    margin-left: 21%;
+    padding: 0 0 0 40px;
+}
+
+.top h1 {
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+    color: #003147;
+}
+
+.top .hotel {
+    cursor: pointer;
+    padding: 10px;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border-radius: 100%;
+    border: 2px solid #999999;
+}
+
+.top .hotel button {
+    background-color: transparent;
+    outline: none;
+    border: none;
 }
 
 .dashboard .date {
@@ -240,12 +289,165 @@ body {
     padding: 30px;
     background: #FFF;
     box-shadow: 0px 0px 10px 6px #575757;
-
     padding-left: 22%;
 }
 
 #top-nav .sign-out {
     text-align: right;
+}
+
+#dash header {
+    background-image: url("./Assets/Images/hotel.jpg");
+    background-size: cover;
+    height: 30vh;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: left;
+    width: 94%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 30px 0px 0px 30px;
+    border-radius: 1em;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+}
+
+#dash .hdText {
+    position: absolute;
+    color: whitesmoke;
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+#dash .bgLayer {
+    width: 100%;
+    border-radius: 1em;
+    background-color: #003147;
+    opacity: 0.7;
+
+    text-align: center;
+    height: 100%;
+}
+
+#dash .column:first-child {
+    width: 60%;
+    color: black;
+    float: left;
+}
+
+#dash .column:not(:first-child) {
+    width: 36%;
+
+    right: 0;
+}
+
+#states {
+    margin: 40px 0 0 40px;
+
+}
+
+#states .column {
+    width: 45% !important;
+    float: left;
+    padding: 5px;
+}
+
+#states .stCard {
+    padding: 10px 20px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+    border-radius: 1em;
+}
+
+#states h4 {
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-size: 22px;
+    color: #003147;
+}
+
+#states .stCard h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: #003147;
+}
+
+#states .stCard p {
+    margin: 0;
+    padding: 0;
+
+    font-size: 14px;
+}
+
+/* number */
+#states .stCard span {
+    float: right;
+}
+
+#states .sideCard {
+    padding: 20px;
+    background-color: rgb(26, 26, 26);
+    color: white;
+    width: 100%;
+    height: 100%;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+    border-radius: 1em;
+    margin-bottom: 10px;
+}
+
+#states #imgbg {
+
+    background-image: url("./Assets/Images/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#states .lStCard {
+    padding: 10px 20px;
+    background-color: white;
+    width: 87%;
+    height: 100%;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+    border-radius: 1em;
+    margin-top: 20px;
+}
+
+
+.dashboard #details {
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 15px;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+}
+
+.dashboard #details table {
+    width: 100%;
+}
+
+.dashboard #details p {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.dashboard #details h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+#details iframe {
+    height: 200px;
+    width: 100%;
+    margin: 10px 0;
+    outline: none;
+    border: none;
 }
 
 .sideNav {
@@ -257,33 +459,46 @@ body {
     background: #FFF;
     box-shadow: 0px 0px 10px 6px #575757;
     flex-shrink: 0;
-   
-    
 }
 
-.controllers{
-    margin:80px 20px 0 20px;
-    
+.sideNav h1 {
+    margin: 20px !important;
+    font-size: 28px;
+    color: #003147;
 }
 
-.controllers button{
+.controllers {
+    margin: 50px 20px 0 20px;
+
+}
+
+.controllers button {
     width: 100%;
     text-align: left;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
 
-    background: #D9D9D9;
+    background: whitesmoke;
+
     outline: none;
     border: none;
 }
 
-.controllers button:focus{
+.controllers button:hover {
+    box-shadow: 3px 3px 5px 0px #747272;
+}
+
+.controllers button:focus {
     border-right: 3px solid #543322;
+}
+
+.controllers span {
+    margin-left: 15px !important;
 }
 
 main {
     margin-left: 21%;
-    padding: 0 50px 30px 0;
+    padding: 0 30px 30px 0;
 }
 
 #dashboard {
@@ -421,10 +636,7 @@ main {
     text-align: right;
 }
 
-.card6 iframe {
-    height: 200px;
-    width: 250px;
-}
+
 
 /*Grid*/
 /*Admin Dashboard*/
@@ -439,18 +651,27 @@ main {
 .new-room h1 {
     padding: 0;
     margin: 0;
-    color: #543322;
-    font-size: 40px;
+    color: black !important;
+    font-size: 30px !important;
     font-weight: bold;
+
 }
+
+
 
 .new-room .intro {
     margin: 0;
     padding: 0;
+    color: #616060;
+    font-size: 16px;
+
 }
 
 #room-imgs {
     display: block;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
 }
 
 #room-dtls {
@@ -461,20 +682,39 @@ main {
     width: 50%;
 }
 
-.images-form button {
-    width: 200px;
-    background: #543322;
+.images-form {
+    margin: 10px 0;
+}
+
+.images-form button,
+#displayImg button {
+    width: 250px;
+    background: #003147;
+
     border: none;
     color: white;
     font-size: 16px;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: -10px;
+}
+
+.images-form button:hover,
+#displayImg button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+.images-form h4 {
+    color: #003147;
+    padding: 0;
+    margin: 10px;
 }
 
 .input-images {
     width: 400px;
-    border: 1px solid #85736b;
-    background-color: #FFF5F0;
+    border: 1px solid #4d4d4d;
+    background-color: whitesmoke;
     margin-bottom: 20px;
     padding: 10px;
 }
@@ -482,10 +722,11 @@ main {
 .images-form p {
     margin-top: 20px;
     font-style: italic;
+    font-size: 16px;
 }
 
 .room-form {
-    padding: 30px;
+    padding: 30px 0;
 }
 
 .room-form .check {
@@ -496,29 +737,37 @@ main {
 .room-form select,
 .room-form textarea {
 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     outline: none;
-    border: 1px solid #85736b;
-    background-color: #FFF5F0;
+    border: 1px solid #003147;
+    background-color: whitesmoke;
 }
 
 .room-form .small {
-    width: 42%;
+    width: 39%;
+    margin-right: 10px;
+}
+
+.room-form .small2 {
+    width: 44%;
     margin-right: 10px;
 }
 
 .room-form select {
-    width: 93% !important;
+    /* width: 50% !important; */
+    padding: 10px;
+    /* margin-left: 20%; */
 
 }
 
 .room-form label {
-    color: #543322;
-    font-size: 22px;
+    color: #003147;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-bottom: 10px !important;
 }
 
 /* .room-form textarea {
@@ -532,8 +781,8 @@ margin-top: 20px;
 .room-form input:focus,
 .room-form select:focus,
 .room-form textarea:focus {
-    box-shadow: 0px 0px 18px 1px #574a44;
-    border: 2px solid #85736b;
+    box-shadow: 0px 0px 18px 1px #003147;
+    border: 2px solid #0035c5;
 }
 
 .room-form span {
@@ -561,7 +810,7 @@ margin-top: 20px;
 
 #displayImg {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -582,36 +831,36 @@ margin-top: 20px;
 }
 
 #displayImg .main {
-    width: 450px;
-    height: 390px;
+    width: 360px;
+    height: 280px;
     object-fit: cover;
-    box-shadow: 0px 0px 18px 1px #574a44;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
 }
 
+
 #addImgs .sub {
-    width: 150px;
-    height: 130px;
+    width: 116px;
+    height: 90px;
     object-fit: cover;
-    box-shadow: 0px 0px 18px 1px #574a44;
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+}
+
+#displayImg button {
+    margin-top: 10px;
+    width: 100%;
 }
 
 /*End of New room*/
 
 /*Rooms and room*/
-#room {
-    display: block;
-}
 
-#upRoom {
-    display: block;
-}
 
 
 .rooms h1,
 #room h1 {
     padding: 0;
     margin: 0;
-    color: #543322;
+    color: #003147;
     font-size: 40px;
     font-weight: bold;
 }
@@ -672,39 +921,64 @@ margin-top: 20px;
     width: 30px;
 }
 
-
-
 .myRooms .column {
     padding: 20px;
     margin: 0;
-    width: 29%;
+    width: 95%;
 }
 
 .myRooms .card {
+    display: flex;
+    align-items: center;
     width: 100%;
+    /* max-width: 650px; */
+    padding: 10px;
+    background: #fff;
+    /* border-radius: 24px; */
+    box-shadow: 0px 0px 10px 6px #575757;
+
+    /* width: 100%;
     height: 400px;
     flex-shrink: 0;
 
     background: #FFF;
-    box-shadow: 0px 0px 10px 6px #575757;
+    box-shadow: 0px 0px 10px 6px #575757; */
 }
 
 .myRooms img {
-    width: 100%;
-    height: 70%;
+    /* max-width: 280px; */
+    width: 35%;
+    height: 100%;
     object-fit: cover;
+    margin-left: 0px;
+    margin-right: 40px;
+    /* border-radius: inherit; */
+
+    /* width: 100%;
+    height: 70%;
+    object-fit: cover; */
 }
 
-.myRooms .card table {
-    padding: 0;
-    margin: 0;
-    width: 95%;
+.myRooms .add {
+    background-color: #003147;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+}
+
+.myRooms .add:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
 }
 
 .myRooms .card h2 {
     margin: 0;
     padding: 0;
-    color: #543322;
+    color: #003147;
     font-size: 26px;
     font-weight: 700;
 }
@@ -715,9 +989,19 @@ margin-top: 20px;
 }
 
 .myRooms .card button {
-    width: 95%;
-    background: #B6846A;
-    box-shadow: 0px 0px 4px 3px #543322;
+    border: 2px solid #003147;
+    /* background: transparent; */
+    /* color: #003147; */
+    padding: 10px;
+    /* border-radius: 6px; */
+    /* min-width: 120px; */
+    float: right;
+
+    /*display: inline-flex;
+    gap: 10px; */
+    width: 150px;
+    background: #003147;
+    /* box-shadow: 0px 0px 4px 3px #543322; */
     border: none;
     color: white;
     font-size: 20px;
@@ -725,22 +1009,113 @@ margin-top: 20px;
     font-weight: 400;
     padding: 10px;
     margin: 10px;
+    margin-bottom: -50px;
 }
 
 .myRooms .card button:hover {
-    background: #f0c5b0;
-    border: 1px solid #543322;
-    color: #543322;
-    font-weight: 800;
-    box-shadow: 0px 0px 18px 1px #574a44;
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
 }
+
+.myRooms .cardContent {
+    width: 100%;
+}
+
+@media screen and (width <=700px) {
+    .myRooms .card {
+        margin: 0 40px;
+        padding-left: 50px;
+        padding-right: 50px;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+/*Popup*/
+.box {
+    background-color: #f8f8f8;
+    /* top: 20px; */
+    width: 1000px;
+    height: 600px;
+    z-index: 99;
+    padding: 50px;
+    margin: 20px;
+}
+
+#popup {
+    display: none;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.mypopup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(19, 19, 19, 0.788);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mypopup a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.mypopup a:hover {
+    color: #f1f1f1;
+}
+
+.mypopup .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.box .close {
+    width: 20px;
+    float: right;
+}
+
+.box .close:hover {
+    filter: drop-shadow(5px 5px 5px #ff0101);
+}
+
+/*End of popup*/
 
 /*End of Rooms and room*/
 
 
 /*Room*/
+#room {
+    display: block;
+}
+
 #upRoom {
-    display: none;
+    display: block;
 }
 
 .room .roomNav {
@@ -766,16 +1141,47 @@ margin-top: 20px;
     margin: 50px 0 !important;
 }
 
+.room .room-content h2 {
+    color: #003147;
+    font-size: 35px;
+    margin: 20px 0 10px 0;
+}
 
+.room .room-content p {
+    color: #353535;
+    font-size: 16px;
+    margin: 0;
+}
+
+.room .room-content .price {
+    color: #003147;
+    font-size: 32px;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+.room .content table {
+    width: 100%;
+}
+
+.room .imgTable{
+    width: 100%;
+    }
+
+.room .room-content span {
+   color: #003147;
+   font-size: 24px;
+}
 
 .room img {
     margin: 10px;
 }
 
-.room-content .column:first-child img {
+.room-content .myMainImg img {
     width: 100%;
     height: 350px;
     object-fit: cover;
+    box-shadow: 5px 5px 10px 0px #7a7a7a;
 }
 
 .room-content .column:first-child {
@@ -790,10 +1196,11 @@ margin-top: 20px;
     width: 60%;
 }
 
-.room-content .column:not(:first-child) img{
-height: 100px;
-width: 200px;
-object-fit: cover;
+.room-content .mySubImgs img {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 5px 5px 10px 0px #7a7a7a;
 }
 
 .room-content li {

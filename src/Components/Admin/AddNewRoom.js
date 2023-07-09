@@ -181,116 +181,129 @@ export default function AddNewRoom() {
     //End of add function
     return (
         <>
-            <AdminDashboard />
 
             <div className='new-room'>
 
 
-                <main>
-                    <h1>Add A New Room</h1>
-                    <p className='intro'>
-                        First start by adding images, then add room details.
-                    </p>
-                    <div id={'room-imgs'}>
-                        <div className='images-form'>
-                            <h4>
-                                Main Image:
-                            </h4>
-                            <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleMainImage(event)} accept="image/*" />
 
-                            <h4>
-                                Sub Images:
-                            </h4>
-                            <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 1)} accept="image/*" />
+                <h1>Add A New Room</h1>
+                <p className='intro'>
+                    First start by adding images, then add room details.
+                </p>
+                <div id={'room-imgs'}>
+                    <div className='images-form'>
+                        <h4>
+                            Main Image:
+                        </h4>
+                        <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleMainImage(event)} accept="image/*" />
+
+                        <h4>
+                            Sub Images:
+                        </h4>
+                        <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 1)} accept="image/*" />
+                        <br />
+                        <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 2)} accept="image/*" />
+                        <br />
+                        <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 3)} accept="image/*" />
+                        <br /><br />
+                        <button onClick={event => setMyUrl(event)}>Add Images</button>
+                        <p>
+                            Images will be displayed on the next step
+                        </p>
+                    </div>
+
+                </div>
+
+                <div className='row' id={'room-dtls'}>
+                    <div className='column'>
+                        <div className='room-form'>
+
+
+                            <label>Room</label>
                             <br />
-                            <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 2)} accept="image/*" />
-                            <br />
-                            <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleSubImages(event, 3)} accept="image/*" />
+                            <select className='long' onChange={(event) => setRoomType(event.target.value)}>
+                                <option hidden={true} >
+                                    Select Room Type
+                                </option>
+                                <option value={"Single Rooms "}>Single Rooms </option>
+                                <option value={"Twin or Double Rooms "}>Twin or Double Rooms </option>
+                                <option value={"Studio Rooms"}>Studio Rooms</option>
+                                <option value={"Deluxe Rooms"}>Deluxe Rooms</option>
+                                <option value={"Rooms with a View "}>Rooms with a View </option>
+                                <option value={"Suites"}>Suites</option>
+                                <option value={"Presidential Suites "}>Presidential Suites </option>
+                                
+                            </select>
+
+                            {/* <input type="text" className='small' placeholder="Enter Room Type" onChange={(event) => setRoomType(event.target.value)} /> */}
+
+                            <input type="number" className='small' placeholder="Enter Room Price" onChange={(event) => setRoomPrice(event.target.value)} />
+
+                            <input type="number" className='small' placeholder="Enter of Room Occupants" onChange={(event) => setRoomOccupants(event.target.value)} />
+                            <input type="number" className='small' placeholder="Enter The Number Rooms" onChange={(event) => setRoomQuantity(event.target.value)} />
+
+                            <select className='small2' onChange={(event) => setRoomBedsType(event.target.value)}>
+                                <option hidden={true} >
+                                    Select Bed Type
+                                </option>
+                                <option value={"1 Single Bed"}>1 Single Bed</option>
+                                <option value={"2 Single Beds"}>2 Single Beds</option>
+                                <option value={"4 Single Beds"}>4 Single Beds</option>
+                                <option value={"1 Queen Bed"}>1 Queen Bed</option>
+                                <option value={"2 Queen Beds"}>2 Queen Beds</option>
+                                <option value={"1 King Bed"}>1 King Bed</option>
+                                <option value={"2 King Beds"}>2 King Beds</option>
+                                <option value={"1 Water Bed"}>1 Water Bed</option>
+                            </select>
+
                             <br /><br />
-                            <button onClick={event => setMyUrl(event)}>Add Images</button>
-                            <p>
-                                Images will be displayed on the next step
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div className='row' id={'room-dtls'}>
-                        <div className='column'>
-                            <div className='room-form'>
-
-
-                                <label>Room</label>
-                                <br />
-                                <input type="text" className='small' placeholder="Enter Room Type" onChange={(event) => setRoomType(event.target.value)} />
-
-                                <input type="number" className='small' placeholder="Enter Room Price" onChange={(event) => setRoomPrice(event.target.value)} />
-
-                                <input type="number" className='small' placeholder="Enter of Room Occupants" onChange={(event) => setRoomOccupants(event.target.value)} />
-                                <input type="number" className='small' placeholder="Enter The Number Rooms" onChange={(event) => setRoomQuantity(event.target.value)} />
-
-                                <select className='long' onChange={(event) => setRoomBedsType(event.target.value)}>
-                                    <option hidden={true} >
-                                        Select Bed Type
-                                    </option>
-                                    <option value={"1 Single Bed"}>1 Single Bed</option>
-                                    <option value={"2 Single Beds"}>2 Single Beds</option>
-                                    <option value={"4 Single Beds"}>4 Single Beds</option>
-                                    <option value={"1 Queen Bed"}>1 Queen Bed</option>
-                                    <option value={"2 Queen Beds"}>2 Queen Beds</option>
-                                    <option value={"1 King Bed"}>1 King Bed</option>
-                                    <option value={"2 King Beds"}>2 King Beds</option>
-                                    <option value={"1 Water Bed"}>1 Water Bed</option>
-                                </select>
-
-                                <br />
-                                <label>Room Amenities</label>
-                                <br />
-                                <input type="checkbox" className='check' name="roomAmenities" value="Wi-FI" /><span>Wi-Fi</span>
-                                <input type="checkbox" className='check' name="roomAmenities" value="Heater" /><span>Heater</span>
-                                <input type="checkbox" className='check' name="roomAmenities" value="Room Service" /><span>Room Service</span>
-                                <input type="checkbox" className='check' name="roomAmenities" value="In-Room Safe" /><span>In-Room Safe</span>
-                                <br />
-                                <br />
-                                <label>Room Description</label>
-                                <br />
+                            <label>Room Amenities</label>
+                            <br />
+                            <input type="checkbox" className='check' name="roomAmenities" value="Wi-FI" /><span>Wi-Fi</span>
+                            <input type="checkbox" className='check' name="roomAmenities" value="Heater" /><span>Heater</span>
+                            <input type="checkbox" className='check' name="roomAmenities" value="Room Service" /><span>Room Service</span>
+                            <input type="checkbox" className='check' name="roomAmenities" value="In-Room Safe" /><span>In-Room Safe</span>
+                            <br />
+                            <br />
+                            <label>Room Description</label>
+                            <br />
 
 
-                                <textarea type="text" className="long" placeholder="Enter Room Description" rows="4" cols="50" onChange={(event) => setRoomDescipt(event.target.value)} />
-                                <br />
-                                <button onClick={event => addRoom(event)}>Submit</button>
-
-
-                            </div>
-                        </div>
-                        <div className='column' id={"displayImg"}>
-                            <table >
-                                <tbody>
-                                    <tr>
-                                        <td colSpan={3}>
-                                            <img src={url === "" ? cam : url} alt='Main ' className='main' />
-                                        </td>
-                                    </tr>
-                                    <tr id={'addImgs'}>
-                                        <td>
-                                            <img src={url1 === "" ? cam : url1} alt='Sub ' className='sub' />
-                                        </td>
-                                        <td>
-                                            <img src={url2 === "" ? cam : url2} alt='Sub ' className='sub' />
-                                        </td>
-                                        <td>
-                                            <img src={url3 === "" ? cam : url3} alt='Sub ' className='sub' />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-
+                            <textarea type="text" className="long" placeholder="Enter Room Description" rows="4" cols="50" onChange={(event) => setRoomDescipt(event.target.value)} />
+                            <br />
                         </div>
                     </div>
+                    <div className='column' id={"displayImg"}>
+                        <table >
+                            <tbody>
+                                <tr>
+                                    <td colSpan={3}>
+                                        <img src={url === "" ? cam : url} alt='Main ' className='main' />
+                                    </td>
+                                </tr>
+                                <tr id={'addImgs'}>
+                                    <td>
+                                        <img src={url1 === "" ? cam : url1} alt='Sub ' className='sub' />
+                                    </td>
+                                    <td>
+                                        <img src={url2 === "" ? cam : url2} alt='Sub ' className='sub' />
+                                    </td>
+                                    <td>
+                                        <img src={url3 === "" ? cam : url3} alt='Sub ' className='sub' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={3}>
+                                        <button onClick={event => addRoom(event)}>Submit</button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
 
-                </main>
+                    </div>
+                </div>
             </div>
         </>
     )

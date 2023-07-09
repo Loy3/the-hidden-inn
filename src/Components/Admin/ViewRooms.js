@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import AdminDashboard from "./AdminDashboard";
 import search from "../../Assets/Icons/search.png";
+import close from "../../Assets/Icons/close.png";
+import AddNewRoom from './AddNewRoom';
 
 export default function ViewRooms({ setRoomStatus }) {
     const navigate = useNavigate()
@@ -97,6 +99,21 @@ export default function ViewRooms({ setRoomStatus }) {
             }
         });
     }
+
+
+
+    //Open and close popup
+    function openForm() {
+        document.getElementById("popup").style.display = "block";
+
+    }
+
+    function closeForm() {
+        document.getElementById("popup").style.display = "none";
+        // window.location.reload();
+    }
+
+
     return (
         <>
             <AdminDashboard />
@@ -106,14 +123,14 @@ export default function ViewRooms({ setRoomStatus }) {
                 <main>
                     <div className="row" id={"search"}>
                         <div className="column">
-                            <h1>Add A New Room</h1>
+                            <h1>Rooms</h1>
                             <p className='intro'>
-                                First start by adding images, then add room details.
+                                Click view for a full description of the room.
                             </p>
                         </div>
                         <div className="column">
                             <div className="searchBar">
-                                <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)}/>
+                                <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
                                     <img src={search} alt="searchbar" onClick={searchRoom()} />
                                 </button>
@@ -123,28 +140,28 @@ export default function ViewRooms({ setRoomStatus }) {
                     </div>
 
                     <div className="myRooms">
+
+                        <button onClick={openForm} className="add">Add New Room</button>
+
                         <div className="row">
                             {rooms.map((doc) => (
                                 <div className="column" key={doc.id}>
                                     <div className="card">
-                                        <img src={doc.roomImages[0].roomMainImage.imageUrl} alt='main' width={100} />
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2>{doc.roomType}</h2>
-                                                        <p>
-                                                            Room Price: {doc.roomPrice}
-                                                            <br />
-                                                            Room Occupants: {doc.roomQuantity}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <button onClick={event => viewRoom(event, doc.id)}>view</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+
+                                        <img src={doc.roomImages[0].roomMainImage.imageUrl} alt='main' />
+
+
+                                        <div className="cardContent">
+                                            <h2>{doc.roomType}</h2>
+                                            <p>
+                                                R{doc.roomPrice}.00
+                                                <br />
+                                                Room Occupants: {doc.roomQuantity} occupants
+                                                
+                                            </p>
+                                            <button onClick={event => viewRoom(event, doc.id)}>view</button>
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             ))}
@@ -161,6 +178,20 @@ export default function ViewRooms({ setRoomStatus }) {
                 </div> */}
                     </div>
                 </main>
+
+                <div id={"popup"}>
+                    <div className="mypopup">
+                        <div className="box" id={"box"}>
+                            <div className="box-content">
+                                <div>
+                                    <img src={close} alt="close" className="close" onClick={closeForm} />
+                                    <AddNewRoom />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );

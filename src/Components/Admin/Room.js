@@ -98,7 +98,8 @@ export default function Room(props) {
 
 
     function update(event, data) {
-
+        document.getElementById("upRoom").style.display = "block";
+        document.getElementById("room").style.display = "none";
         console.log(upRoom);
     }
 
@@ -215,6 +216,7 @@ export default function Room(props) {
         deleteObject(desertRef).then(() => {
             // File deleted successfully
             console.log("success");
+            window.location.reload();
         }).catch((error) => {
             // Uh-oh, an error occurred!
             console.log("failed")
@@ -244,7 +246,7 @@ export default function Room(props) {
     function toRooms() {
         navigate("/rooms")
     }
- 
+
 
 
     return (
@@ -268,35 +270,97 @@ export default function Room(props) {
                     {room === [] ? null : <div key={room.id}>
                         <div className='row'>
                             <div className='column'>
-                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
-                                <h2>{room.roomType}</h2>
-                                <h3>Price: {room.roomPrice}</h3>
-                                <h3>Max Occupants: {room.roomOccupants}</h3>
-                                <h3>Number Of Rooms: {room.roomQuantity}</h3>
-                                <button onClick={event => update(event, room)}>update</button>
-                                <button onClick={event => deleteRoom(event, room)}>delete</button>
+                                <table className='imgTable'>
+                                    <tbody>
+                                        <tr className='myMainImg'>
+                                            <td colSpan={3}>
+                                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
+                                            </td>
+
+                                        </tr>
+                                        <tr className='mySubImgs'>
+                                            <td>
+                                                <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
+                                            </td>
+                                            <td>
+                                                <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
+                                            </td>
+                                            <td >
+                                                <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
+                                                {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+
+
                             </div>
                             <div className='column'>
-                                <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
-                                <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
-                                <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
-                                {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />}
-
                                 <div className='content'>
-                                    <h3>Description</h3>
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h2>{room.roomType}</h2>
+                                                </td>
+                                                <td>
+                                                    <button onClick={event => update(event, room)}>update</button>
+                                                    <button onClick={event => deleteRoom(event, room)}>delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
                                     <p>
                                         {room.roomDescript}
                                     </p>
 
+
+
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colSpan={2}>
+                                                    <h3 className='price'>R {room.roomPrice}.00</h3>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h3>Max Occupants: <span>{room.roomOccupants}</span></h3>
+                                                </td>
+                                                <td>
+                                                    <h3>Number Of Rooms: <span>{room.roomQuantity}</span></h3>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan={2}>
+                                                    <h3>Amenities</h3>
+                                                    <ul>
+                                                        {amenities.map((doc, index) => (
+                                                            <li key={index}>
+                                                                {doc}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+
+
+
                                     <br />
-                                    <h3>Amenities</h3>
-                                    <ul>
-                                        {amenities.map((doc, index) => (
-                                            <li key={index}>
-                                                {doc}
-                                            </li>
-                                        ))}
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>

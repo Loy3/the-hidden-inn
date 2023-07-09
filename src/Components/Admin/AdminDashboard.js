@@ -1,8 +1,10 @@
-import { auth } from '../../Config/Firebase';
+import dash from "../../Assets/Icons/dashboard.png";
+import newRoom from "../../Assets/Icons/hotels.png";
+import vRooms from "../../Assets/Icons/available.png";
+import book from "../../Assets/Icons/living-room.png";
+import sUsers from "../../Assets/Icons/human.png";
+import hot from "../../Assets/Icons/hotel.png";
 import icon from "../../Assets/Icons/password.png";
-
-import AddNewRoom from './AddNewRoom';
-import ViewRooms from './ViewRooms';
 
 import { db } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
@@ -10,28 +12,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const today = new Date();
-    const dayOfWeek = daysOfWeek[today.getDay()];
-    const dayOfMonth = today.getDate();
-    const monthOfYear = monthsOfYear[today.getMonth()];
-    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${monthOfYear}`;
+    const navigate = useNavigate();
 
-    const  navigate = useNavigate();
 
-    function signOut() {
-        auth.signOut().then(() => {
-            // Sign-out successful.
-            alert("Sign-out successful.");
-            //localStorage.setItem('adminStatus', JSON.stringify(false));
-        }).catch((error) => {
-            console.log(error.message);
-        });
-
-        window.location.reload();
-    }
 
     function changeMenu(event, type) {
         switch (type) {
@@ -56,50 +40,109 @@ export default function AdminDashboard() {
     return (
         <div className='dashboard'>
             <nav>
-                <div className='row' id={'top-nav'}>
-                    <div className='date'>
-                        <h3>{formattedDate}</h3>
-                    </div>
-                    <div className='sign-out'>
-                        <button onClick={signOut}>Sign Out</button>
-                    </div>
 
-                </div>
                 <div className='sideNav'>
                     <h1>The Hidden Inn</h1>
 
                     <div className='controllers'>
                         <button onClick={(event) => changeMenu(event, "dash")}>
-                            <img src={icon} alt='' width={30} /> <span>Dashboard</span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={dash} alt='' width={25} />
+                                        </td>
+                                        <td>
+                                            <span>Dashboard</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </button>
-                        <br />
-                        <button onClick={(event) => changeMenu(event, "add")}>
-                            <img src={icon} alt='' width={30} /> <span>Add New Room</span>
+
+                        {/* <button onClick={(event) => changeMenu(event, "add")}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={newRoom} alt='' width={30} />
+                                        </td>
+                                        <td>
+                                            <span>Add New Room</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </button> */}
+
+                        <button onClick={(event) => changeMenu(event, "rooms")}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={vRooms} alt='' width={30} />
+                                        </td>
+                                        <td>
+                                            <span>View Rooms</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </button>
-                        <br />
-                        <button onClick={(event) => changeMenu(event, "rooms")}> 
-                            <img src={icon} alt='' width={30} /> <span>View Rooms</span>
-                        </button>
-                        <br />
+
                         <button>
-                            <img src={icon} alt='' width={30} /> <span>View Bookings</span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={book} alt='' width={30} />
+                                        </td>
+                                        <td>
+                                            <span>View Bookings</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </button>
-                        <br />
+
                         <button>
-                            <img src={icon} alt='' width={30} /> <span>View Users</span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={sUsers} alt='' width={30} />
+                                        </td>
+                                        <td>
+                                            <span>View Users</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </button>
-                        <br />
+
                         <button>
-                            <img src={icon} alt='' width={30} /> <span>Hotel Details</span>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={hot} alt='' width={25} />
+                                        </td>
+                                        <td>
+                                            <span>Hotel Details</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
                         </button>
-                        <br />
+
 
                     </div>
                 </div>
             </nav>
 
             <br />
-            
+
 
         </div>
     )

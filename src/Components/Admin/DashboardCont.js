@@ -39,7 +39,7 @@ export default function DashboardCont() {
         auth.signOut().then(() => {
             // Sign-out successful.
             alert("Sign-out successful.");
-            //localStorage.setItem('adminStatus', JSON.stringify(false));
+            localStorage.setItem('adminStatus', JSON.stringify(false));
         }).catch((error) => {
             console.log(error.message);
         });
@@ -56,10 +56,12 @@ export default function DashboardCont() {
                     <h3>{formattedDate}</h3>
                 </div>
                 <div className='sign-out'>
-                    <button onClick={signOut}>Sign Out</button>
+                    
                 </div>
 
             </div> */}
+
+
 
             <div className='top'>
                 <div className='row'>
@@ -165,9 +167,9 @@ export default function DashboardCont() {
                                     </table>
                                 </div>
                             </div>
-                            <div className='lStCard'>
+                            {/* <div className='lStCard'>
                                what to add
-                            </div>
+                            </div> */}
                         </div>
 
                     </div>
@@ -237,7 +239,7 @@ export default function DashboardCont() {
                                         </tr>
                                         <tr>
                                             <td colSpan={2}>
-                                            <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                                                <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -317,6 +319,9 @@ export default function DashboardCont() {
                 <div id={'viewRooms'}>
                     <ViewRooms />
                 </div> */}
+
+
+                <button onClick={signOut}>Sign Out</button>
             </main>
         </div>
     )

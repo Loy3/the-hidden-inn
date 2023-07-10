@@ -68,7 +68,7 @@ function SignIn({ setSignIn }) {
             getPass.classList.remove("password");
             getPass.classList.add("tempStyle");
         }
-      
+
 
     }
 
@@ -133,7 +133,7 @@ function SignIn({ setSignIn }) {
                     </div>
                 </div>
                 <div className="column" id={"bg"}>
-
+                    <div className="bgLayer"></div>
                 </div>
             </div>
 

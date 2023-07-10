@@ -31,6 +31,10 @@ export default function AdminDashboard() {
                 // document.getElementById("dashboard").style.display = "none";
                 navigate("/rooms")
                 break;
+                case "users":
+                    // document.getElementById("dashboard").style.display = "none";
+                    navigate("/users")
+                    break;
             default:
                 document.getElementById("dashboard").style.display = "block";
                 document.getElementById("addRoom").style.display = "none";
@@ -105,7 +109,7 @@ export default function AdminDashboard() {
                             </table>
                         </button>
 
-                        <button>
+                        <button  onClick={(event) => changeMenu(event, "users")}>
                             <table>
                                 <tbody>
                                     <tr>

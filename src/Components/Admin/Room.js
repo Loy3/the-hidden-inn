@@ -6,6 +6,14 @@ import { collection, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestor
 
 import cam from "../../Assets/Icons/Camera.png";
 import backToRooms from "../../Assets/Icons/prev.png";
+import edit from "../../Assets/Icons/editing.png";
+import trash from "../../Assets/Icons/trash.png";
+import close from "../../Assets/Icons/close.png";
+
+import wifi from "../../Assets/Icons/wifi.png";
+import heater from "../../Assets/Icons/heater.png";
+import safe from "../../Assets/Icons/safe.png";
+import room_serv from "../../Assets/Icons/room-service.png";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -98,8 +106,7 @@ export default function Room(props) {
 
 
     function update(event, data) {
-        document.getElementById("upRoom").style.display = "block";
-        document.getElementById("room").style.display = "none";
+        document.getElementById("roomPopup").style.display = "block";
         console.log(upRoom);
     }
 
@@ -112,6 +119,9 @@ export default function Room(props) {
             await updateDoc(storageRef, upRoom);
             console.log('good');
 
+            document.getElementById("roomPopup").style.display = "none";
+            window.location.reload();
+
         } catch (error) {
             console.log('bad');
         }
@@ -122,6 +132,18 @@ export default function Room(props) {
         setUpRoom(prevState => ({ ...prevState, [e.target.name]: e.target.value }),
             // console.log(upRoom)
         )
+
+
+    //Open and close popup
+    // function openForm() {
+    //     document.getElementById("roomPopup").style.display = "block";
+
+    // }
+
+    function closeForm() {
+        document.getElementById("roomPopup").style.display = "none";
+        // window.location.reload();
+    }
 
     async function deleteRoom(event, data) {
         /*
@@ -249,6 +271,8 @@ export default function Room(props) {
 
 
 
+
+
     return (
         <div className='room'>
 
@@ -256,13 +280,19 @@ export default function Room(props) {
                 <img src={backToRooms} alt='return to rooms' onClick={toRooms} />
             </div>
 
+            <header>
+                <div className='bgLayer'></div>
+                <div className='hdText'>
+                    <h1>Room</h1>
+                    <p className='intro'>
+                        A full view for room {room.roomType}.
+                    </p>
+                </div>
+            </header>
 
             <div id={'room'}>
 
-                <h1>Room</h1>
-                <p className='intro'>
-                    A full view for room {room.roomType}.
-                </p>
+
                 <br />
                 <div className='room-content'>
 
@@ -307,9 +337,9 @@ export default function Room(props) {
                                                 <td>
                                                     <h2>{room.roomType}</h2>
                                                 </td>
-                                                <td>
-                                                    <button onClick={event => update(event, room)}>update</button>
-                                                    <button onClick={event => deleteRoom(event, room)}>delete</button>
+                                                <td className='changes'>
+                                                    <button onClick={event => update(event, room)}><img src={edit} alt='edit' width={40} /></button>
+                                                    <button onClick={event => deleteRoom(event, room)}><img src={trash} alt='delete' width={40} /></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -343,7 +373,21 @@ export default function Room(props) {
                                                     <ul>
                                                         {amenities.map((doc, index) => (
                                                             <li key={index}>
-                                                                {doc}
+                                                                <table>
+                                                                    <tbody>
+                                                                        <td>
+                                                                            {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
+                                                                            {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
+                                                                            {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
+                                                                            {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
+                                                                            
+                                                                        </td>
+                                                                        <td>
+                                                                            {doc}
+                                                                        </td>
+                                                                    </tbody>
+                                                                </table>
+
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -375,35 +419,68 @@ export default function Room(props) {
             <div id={'upRoom'}>
                 <div className='room-form'>
 
+                    <div id={"roomPopup"}>
+                        <div className="mypopup">
+                            <div className="box" id={"box"}>
+                                <div className="box-content">
+                                    <div>
+                                        <img src={close} alt="close" className="close" onClick={closeForm} />
+                                        <h1>Room Update</h1>
+                                        <p className='intro'>
+                                            A room update for room {room.roomType}.
+                                        </p>
 
-                    <input type="text" name='roomType' placeholder="Enter Room Type" onChange={handleChange} />
-                    <br />
-                    <input type="number" name='roomPrice' placeholder="Enter Room Price" onChange={handleChange} />
 
-                    <br />
-                    <select className="long" name='roomBedsType' onChange={handleChange}>
-                        <option hidden={true} >
-                            Select Bed Type
-                        </option>
-                        <option value={"1 Single Bed"}>1 Single Bed</option>
-                        <option value={"2 Single Beds"}>2 Single Beds</option>
-                        <option value={"4 Single Beds"}>4 Single Beds</option>
-                        <option value={"1 Queen Bed"}>1 Queen Bed</option>
-                        <option value={"2 Queen Beds"}>2 Queen Beds</option>
-                        <option value={"1 King Bed"}>1 King Bed</option>
-                        <option value={"2 King Beds"}>2 King Beds</option>
-                        <option value={"1 Water Bed"}>1 Water Bed</option>
-                    </select>
-                    <br />
+                                        {/* <input type="text" name='roomType' placeholder="Enter Room Type" onChange={handleChange} /> */}
 
-                    <input type="number" name='roomOccupants' placeholder="Enter of Room Occupants" onChange={handleChange} />
-                    <br />
-                    <input type="number" name='roomQuantity' placeholder="Enter The Number Rooms" onChange={handleChange} />
-                    <br />
-                    <br />
-                    <textarea type="text" name='roomDescript' className="long" placeholder="Task description" rows="4" cols="50" onChange={handleChange} />
-                    <br />
-                    <button onClick={event => updateRoom(event)}>Submit</button>
+                                        <label>Room</label>
+                                        <br />
+                                        <select className='long' name='roomType' onChange={handleChange}>
+                                            <option hidden={true} >
+                                                Select Room Type
+                                            </option>
+                                            <option value={"Single Rooms "}>Single Rooms </option>
+                                            <option value={"Twin or Double Rooms "}>Twin or Double Rooms </option>
+                                            <option value={"Studio Rooms"}>Studio Rooms</option>
+                                            <option value={"Deluxe Rooms"}>Deluxe Rooms</option>
+                                            <option value={"Rooms with a View "}>Rooms with a View </option>
+                                            <option value={"Suites"}>Suites</option>
+                                            <option value={"Presidential Suites "}>Presidential Suites </option>
+
+                                        </select>
+                                        <br />
+                                        <select className="long" name='roomBedsType' onChange={handleChange}>
+                                            <option hidden={true} >
+                                                Select Bed Type
+                                            </option>
+                                            <option value={"1 Single Bed"}>1 Single Bed</option>
+                                            <option value={"2 Single Beds"}>2 Single Beds</option>
+                                            <option value={"4 Single Beds"}>4 Single Beds</option>
+                                            <option value={"1 Queen Bed"}>1 Queen Bed</option>
+                                            <option value={"2 Queen Beds"}>2 Queen Beds</option>
+                                            <option value={"1 King Bed"}>1 King Bed</option>
+                                            <option value={"2 King Beds"}>2 King Beds</option>
+                                            <option value={"1 Water Bed"}>1 Water Bed</option>
+                                        </select>
+                                        <br />
+                                        <input type="number" className="small" name='roomPrice' placeholder="Enter Room Price" onChange={handleChange} />
+
+                                        <input type="number" className="small" name='roomOccupants' placeholder="Enter of Room Occupants" onChange={handleChange} />
+
+                                        <input type="number" className="small" name='roomQuantity' placeholder="Enter The Number Rooms" onChange={handleChange} />
+                                        <br />
+                                        <br />
+                                        <label>Room Description</label>
+                                        <br />
+                                        <textarea type="text" name='roomDescript' className="long" placeholder="Task description" rows="4" cols="50" onChange={handleChange} />
+                                        <br />
+                                        <button onClick={event => updateRoom(event)}>Submit</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

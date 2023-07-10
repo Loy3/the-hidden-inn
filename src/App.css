@@ -63,7 +63,7 @@ body {
 
 .signIn nav .active {
 
-    border-bottom: 2px solid #543322;
+    border-bottom: 2px solid #003147;
 
 }
 
@@ -75,7 +75,7 @@ body {
 }
 
 .signIn h1 {
-    color: #543322;
+    color: #003147;
     font-size: 40px;
     font-style: normal;
     font-weight: bold;
@@ -104,7 +104,7 @@ body {
     margin: 0;
     padding: 0;
     font-weight: bold;
-    color: #543322;
+    color: #003147;
     font-size: 18px;
 }
 
@@ -173,7 +173,7 @@ body {
     width: 500px;
     padding: 10px;
     flex-shrink: 0;
-    background: #543322;
+    background: #003147;
     border: none;
     outline: none;
     color: white;
@@ -183,6 +183,16 @@ body {
 
 .signIn-form button:hover {
     background: #85736b;
+}
+
+.signIn .bgLayer {
+    width: 100%;
+    border-radius: 1em;
+    background-color: #003147;
+    opacity: 0.5;
+
+    text-align: center;
+    height: 100%;
 }
 
 /*End of Sign In*/
@@ -1122,15 +1132,74 @@ margin-top: 20px;
     margin: 20px 30px;
 }
 
+
+
+.room header {
+    background-image: url("./Assets/Images/hotel.jpg");
+    background-size: cover;
+    height: 30vh;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: left;
+    width: 97%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 30px 0px 0px 30px;
+    /* border-radius: 1em; */
+    box-shadow: 5px 5px 10px 0px #4F4E4E;
+}
+
+.room .hdText {
+    position: absolute;
+    color: whitesmoke;
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+.room .hdText h1 {
+    /* font-size: 35px; */
+    padding: 0;
+    margin: 5px
+}
+
+.room .hdText p {
+    /* font-size: 35px; */
+    padding: 0;
+    margin: 5px;
+    color: #f1fbff;
+}
+
+.room .bgLayer {
+    width: 100%;
+    border-radius: 1em;
+    background-color: #003147;
+    opacity: 0.7;
+
+    text-align: center;
+    height: 100%;
+}
+
+.room .changes button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0;
+}
+
+.room .changes {
+    text-align: right;
+}
+
 .room .roomNav img {
     cursor: pointer;
     width: 40px;
-    filter: drop-shadow(3px 3px 5px #a08374);
+    /* filter: drop-shadow(3px 3px 5px #a08374); */
 }
 
 .room .roomNav img:hover {
     width: 42px;
-    filter: drop-shadow(3px 3px 5px #705c51);
+    filter: drop-shadow(3px 3px 5px #006c9e);
 }
 
 #room {
@@ -1164,13 +1233,13 @@ margin-top: 20px;
     width: 100%;
 }
 
-.room .imgTable{
+.room .imgTable {
     width: 100%;
-    }
+}
 
 .room .room-content span {
-   color: #003147;
-   font-size: 24px;
+    color: #003147;
+    font-size: 24px;
 }
 
 .room img {
@@ -1219,6 +1288,230 @@ margin-top: 20px;
     width: auto;
     padding-right: 20px;
 }
+
+
+/*Popup*/
+.room .box {
+    background-color: #f8f8f8;
+    /* top: 20px; */
+    width: 500px;
+    height: auto;
+    z-index: 99;
+    padding: 50px;
+    margin: 20px;
+}
+
+.room #roomPopup {
+    display: none;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.room .mypopup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(19, 19, 19, 0.788);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.room .mypopup h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.room .mypopup p {
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
+.room .mypopup .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.room .box .close {
+    width: 20px;
+    float: right;
+}
+
+.room .box .close:hover {
+    filter: drop-shadow(5px 5px 5px #ff0101);
+}
+
+.room .box button {
+    border: 2px solid #003147;
+
+    background: #003147;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+
+}
+
+.room .box button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+/*End of popup*/
+
+
+
+/*Users*/
+
+.users h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.users .intro {
+    margin: 0;
+    padding: 0;
+}
+
+.myUsers .column {
+    padding: 20px;
+    margin: 0;
+    width: 95%;
+}
+
+.myUsers .card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* max-width: 650px; */
+    padding: 10px;
+    background: #fff;
+    /* border-radius: 24px; */
+    box-shadow: 0px 0px 10px 6px #575757;
+
+    /* width: 100%;
+    height: 400px;
+    flex-shrink: 0;
+
+    background: #FFF;
+    box-shadow: 0px 0px 10px 6px #575757; */
+}
+
+.myUsers img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    margin-left: 0px;
+    margin-right: 40px;
+    border-radius: 100%;
+
+
+
+}
+
+.myUsers .card h2 {
+    margin: 0;
+    padding: 0;
+    color: #003147;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+.myUsers .card h3 {
+    margin: 0;
+    padding: 5px;
+}
+
+.myUsers #avail img{
+width: 100px;
+height: 100px;
+border-radius: 0;
+float: right;
+}
+
+
+
+.myUsers .card button {
+    border: 2px solid #003147;
+    /* background: transparent; */
+    /* color: #003147; */
+    padding: 10px;
+    /* border-radius: 6px; */
+    /* min-width: 120px; */
+    float: right;
+
+    /*display: inline-flex;
+    gap: 10px; */
+    width: 150px;
+    background: #003147;
+    /* box-shadow: 0px 0px 4px 3px #543322; */
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: -50px;
+}
+
+.myUsers .card button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+.myUsers .cardContent {
+    width: 100%;
+}
+
+.myUsers .cardContent .column {
+    padding: 20px;
+    margin: 0;
+    width: 25%;
+
+}
+
+@media screen and (width <=700px) {
+    .myUsers .card {
+        margin: 0 40px;
+        padding-left: 50px;
+        padding-right: 50px;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+/*End of users*/
+
 
 /*End of room*/
 

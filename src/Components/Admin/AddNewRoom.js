@@ -27,6 +27,7 @@ export default function AddNewRoom() {
     const [subImg1Name, setSubImg1Name] = useState("");
     const [subImg2Name, setSubImg2Name] = useState("");
     const [subImg3Name, setSubImg3Name] = useState("");
+    const [alphabet, setalphabet] = useState("abcdefghijklmnopqrstuvwxyz");
     //End of Declarations
 
     //Handle Images
@@ -95,9 +96,12 @@ export default function AddNewRoom() {
                 roomOccupants: roomOccupants,
                 roomQuantity: roomQuantity,
                 date: Timestamp.fromDate(new Date()),
-                roomImageLink: roomLink
+                roomImageLink: roomLink,
+                roomLike: 0,
+                // roomDisLike: 0
             });
             alert("Successful.");
+            window.location.reload();
         } catch (error) {
 
         }
@@ -106,14 +110,19 @@ export default function AddNewRoom() {
 
     async function setMyUrl(event) {
         //Get collection length
-        const snapshot = await getDocs(collection(db, "rooms"));
-        const roomCollectionLength = snapshot.size;
-        console.log(`room${roomCollectionLength}`);
-        setRoomLink(`room${roomCollectionLength + 1}`);
+        // const snapshot = await getDocs(collection(db, "rooms"));
+        // const roomCollectionLength = snapshot.size;
+        // console.log(`room${roomCollectionLength}`);
 
+        const rLetters = getRandomLetter();
+        const rNums = getRandomNumber();
+
+        setRoomLink(`room${rLetters + rNums}`);
+        // console.log();
         try {
+            document.getElementById("test").style.display="block";
             //Set path
-            const roomPath = `rooms/room${roomCollectionLength + 1}`;
+            const roomPath = `rooms/room${rLetters + rNums}`;
             const mImg = `${roomMainImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
             const mainImgPath = `${roomPath}/${mImg}`;
             setMainImgName(mImg);
@@ -166,6 +175,7 @@ export default function AddNewRoom() {
                     console.log("Image uploaded to:", suburl3);
                     setUrl3(suburl3);
                 });
+                document.getElementById("test").style.display="none";
             }))
             //End of Get Image url
 
@@ -178,6 +188,15 @@ export default function AddNewRoom() {
             console.log(error);
         }
     }
+
+    function getRandomNumber() {
+        return Math.floor(Math.random() * 500);
+    }
+    function getRandomLetter() {
+        // const alphabet = "abcdefghijklmnopqrstuvwxyz";
+        return alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+
     //End of add function
     return (
         <>
@@ -232,7 +251,7 @@ export default function AddNewRoom() {
                                 <option value={"Rooms with a View "}>Rooms with a View </option>
                                 <option value={"Suites"}>Suites</option>
                                 <option value={"Presidential Suites "}>Presidential Suites </option>
-                                
+
                             </select>
 
                             {/* <input type="text" className='small' placeholder="Enter Room Type" onChange={(event) => setRoomType(event.target.value)} /> */}
@@ -303,6 +322,12 @@ export default function AddNewRoom() {
 
 
                     </div>
+                </div>
+            </div>
+            <div id={"test"}>
+                <div className="testing">
+
+                    <div className="loader"></div>
                 </div>
             </div>
         </>

@@ -1382,7 +1382,103 @@ margin-top: 20px;
 
 /*End of popup*/
 
+/*User Nav*/
+.userTopNav {
+    margin: 0;
+    padding: 20px 50px;
+}
 
+.userTopNav h2 {
+    padding: 0 10px;
+    margin: 0;
+    color: #003147;
+}
+
+.userTopNav h3 {
+    padding: 0 10px;
+    margin: 0;
+    color: #575757;
+}
+
+.userTopNav .profile img {
+    border: 3px solid #003147;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.userTopNav .column {
+    width: 50%;
+    float: left;
+
+}
+
+.userTopNav button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+
+.userTopNav img:hover {
+    border: 2px solid #003147;
+    background-color: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+
+.userBtmNav {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.userBtmNav li {
+    display: inline;
+}
+
+.userBtmNav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* to remove default bullets */
+}
+
+.userBtmNav li {
+    float: left;
+    width: auto;
+    padding-right: 50px;
+}
+
+.userBtmNav img {
+    width: 35px;
+}
+
+.userBtmNav button {
+    margin: 0;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 100%;
+}
+
+.userBtmNav button:hover {
+    margin: 0;
+    filter: drop-shadow(5px 5px 5px #003147);
+}
+
+/*End of user nav*/
 
 /*Users*/
 
@@ -1449,11 +1545,11 @@ margin-top: 20px;
     padding: 5px;
 }
 
-.myUsers #avail img{
-width: 100px;
-height: 100px;
-border-radius: 0;
-float: right;
+.myUsers #avail img {
+    width: 100px;
+    height: 100px;
+    border-radius: 0;
+    float: right;
 }
 
 
@@ -1510,76 +1606,311 @@ float: right;
     }
 }
 
+/*Popup*/
+.userProfile .wrap {
+    background-color: #f8f8f8;
+    /* top: 20px; */
+    width: 350px;
+    height: auto;
+    z-index: 99;
+    padding: 50px;
+    margin: 20px;
+}
+
+.userProfile #userUpdate {
+    display: none;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.userProfile .myPopup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(19, 19, 19, 0.788);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.userProfile .myPopup h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.userProfile .myPopup p {
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
+.userProfile .myPopup .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.userProfile .wrap .close {
+    width: 20px;
+    float: right;
+}
+
+.userProfile .wrap .close:hover {
+    filter: drop-shadow(5px 5px 5px #ff0101);
+}
+
+.userProfile .wrap button {
+    border: 2px solid #003147;
+
+    background: #003147;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+
+}
+
+.userProfile .wrap button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+/*End of popup*/
 /*End of users*/
 
 
 /*End of room*/
 
-/*
 
-import { db } from '../../Config/Firebase';
-import { useEffect, useState } from "react";
-import { collection, getDoc, doc } from "firebase/firestore";
-import { type } from '@testing-library/user-event/dist/type';
+/*landing page*/
+.userRooms {
+    margin: 0 0 0 50px;
+}
 
-export default function Room(props) {
-    const [room, setRoom] = useState([]);
-    //     const docRef = doc(db, "cities", "SF");
-    // const docSnap = await getDoc(docRef);
+.userRooms main {
+    margin: 0;
+}
 
-    // if (docSnap.exists()) {
-    //   console.log("Document data:", docSnap.data());
-    // } else {
-    //   // docSnap.data() will be undefined in this case
-    //   console.log("No such document!");
-    // }
+.userRooms .rows {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
 
-    useEffect(() => {
-        const docId = props.isRoom;
+.userRooms .rows::-webkit-scrollbar {
+    width: 10px;
+}
 
-        async function fetchData() {
-            const docRef = doc(collection(db, "rooms"), docId);
-            const docSnap = await getDoc(docRef);
+.userRooms .rows::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
 
-            if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data());
-                try {
-                    const documents = {
-                        id: docSnap.id, ...docSnap.data()
-                    }
-                    setRoom(documents);
-                    console.log(documents)
-                } catch (error) {
-                    console.log(error);
-                }
-            } else {
-                console.log("No such document!");
-            }
-        }
+.userRooms .rows::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
 
-        fetchData();
 
-    }, []);
+.userRooms .card {
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 400px;
+    margin: 20px;
+    position: relative;
+}
 
-    function update(event, data){
+.userRooms .card img {
+    width: 100%;
+}
 
-    }
-
-    function deleteRoom(event, data){
-
-    }
-
-    return (
-        <div className='room'>
-            <div id={'viewRoom'}>
-                <img src={room.roomImages[0].roomMainImage.imageUrl} alt='main' width={100} />
-                <h2>{room.roomBedsType}</h2>
-                <button onClick={event => update(event, room)}>update</button>
-                <button onClick={event => deleteRoom(event, room)}>delete</button>
-            </div> 
-        </div>
-    );
+.userRooms .ratings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* transform: translate(-50%, -50%); */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
 
 
 }
-*/
+
+/*end of landing page*/
+
+
+/*User View Room*/
+.userRoom,
+#vRoom {
+    margin: 0;
+    padding: 0;
+}
+
+.userRoom header {
+    height: 80vh;
+    width: 100%;
+    background-color: #003147;
+    position: relative;
+}
+
+.userRoom .mainImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.userRoom .imgs {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    /* transform: translate(-50%, -50%); */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+
+
+}
+
+.userRoom .imgs img {
+    height: 100px;
+    width: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 4px solid gray;
+    border-radius: 1em;
+}
+
+.userRoom .roomNav {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    /* transform: translate(-50%, -50%); */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+
+}
+
+
+.userRoom .roomNav img {
+    cursor: pointer;
+    width: 40px;
+
+    filter: drop-shadow(5px 5px 5px #ffffff);
+}
+
+.userRoom .roomNav img:hover {
+    width: 42px;
+    filter: drop-shadow(3px 3px 5px #006c9e);
+}
+
+.userRoom .content{
+    padding: 50px;
+}
+
+.userRoom .content ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* to remove default bullets */
+}
+
+.userRoom .content li {
+    display: inline;
+    float: left;
+    width: auto;
+    padding-right: 20px;
+}
+/*End of User View Room*/
+
+
+
+/*testing*/
+
+
+
+#test {
+    display: none;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.testing {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); */
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

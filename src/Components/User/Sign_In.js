@@ -43,6 +43,7 @@ console.log(userEmail + " " + userPassword);
          //set status
          setUserSignIn(true);
          localStorage.setItem('userStatus', JSON.stringify(true));
+         localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
          //end of set status
      }).catch((error) => {
          console.log(error.message);

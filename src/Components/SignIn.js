@@ -24,26 +24,11 @@ function SignIn({ setSignIn }) {
         var getPass = document.getElementById("password");
         getPass.classList.remove("tempStyle");
         getPass.classList.add("password");
-        // console.log(adminEmail + " " + adminPassword);
-        //set status
-        //setSignIn(true);
-        //localStorage.setItem('userStatus', JSON.stringify(true));
-        //end of set status
-
-        //Signing up
-        // createUserWithEmailAndPassword(auth, adminEmail, adminPassword).then(() => {
-        //     alert("sign up sccessfully");
-        // }).catch((error) => {
-        //     console.log(error.message);
-        // })
-        //End of Signing up
 
         signInWithEmailAndPassword(auth, adminEmail, adminPassword).then(() => {
             alert("sign in sccessfully");
-            //set status
             setSignIn(true);
             localStorage.setItem('adminStatus', JSON.stringify(true));
-            //end of set status
         }).catch((error) => {
             console.log(error.message);
             alert("Incorrect Email or Password");
@@ -75,6 +60,9 @@ function SignIn({ setSignIn }) {
     return (
         <div className="signIn" >
             <div className="row">
+            <div className="column" id={"bg"}>
+                    <div className="bgLayer"></div>
+                </div>
                 <div className="column">
                     <nav>
                         <a className="active">Sign In</a>
@@ -132,9 +120,7 @@ function SignIn({ setSignIn }) {
                         </div>
                     </div>
                 </div>
-                <div className="column" id={"bg"}>
-                    <div className="bgLayer"></div>
-                </div>
+                
             </div>
 
         </div>

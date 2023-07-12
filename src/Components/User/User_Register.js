@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { db, storage } from '../../Config/Firebase';
-import { collection, addDoc, Timestamp, getDocs } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from "react-router-dom";
 
@@ -16,13 +16,23 @@ export default function User_Register({ setUserSignUp }) {
 
     }
 
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const today = new Date();
+    const dayOfWeek = daysOfWeek[today.getDay()];
+    const dayOfMonth = today.getDate();
+    const monthOfYear = monthsOfYear[today.getMonth()];
+    const year = today.getFullYear();
+    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${monthOfYear} ${year}`;
+
     //Declarations
     const navigate = useNavigate();
     const [userImage, setuserImage] = useState("");
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [username, setusername] = useState("");
-    const [emailAddress, setemailAddress] = useState(emailStatus);//
+    const [emailAddress, setemailAddress] = useState(emailStatus);
     const [phNum, setphNum] = useState("");
     const [idNumber, setidNumber] = useState("");
     const [signUpStatus, setsignUpStatus] = useState("Active"); //Auto set
@@ -61,7 +71,8 @@ export default function User_Register({ setUserSignUp }) {
                             idNumber: idNumber,
                             signUpStatus: signUpStatus,
                             userImage: url,
-                            userImgeName: img
+                            userImgeName: img,
+                            joinedDate: formattedDate
                         });
                         alert("You have completed the sign up process, now please sign in.");
                         localStorage.setItem('userEmailAddress', JSON.stringify(""))

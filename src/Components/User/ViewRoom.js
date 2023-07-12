@@ -1,15 +1,12 @@
-import { db, storage, refFromURL } from '../../Config/Firebase';
+import { db } from '../../Config/Firebase';
 // import { ref, deleteObject, listAll } from 'firebase/storage';
 import { useEffect, useState } from "react";
-import { collection, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 
 
 
 import cam from "../../Assets/Icons/Camera.png";
 import backToRooms from "../../Assets/Icons/prev.png";
-import edit from "../../Assets/Icons/editing.png";
-import trash from "../../Assets/Icons/trash.png";
-import close from "../../Assets/Icons/close.png";
 
 import wifi from "../../Assets/Icons/wifi.png";
 import heater from "../../Assets/Icons/heater.png";

@@ -27,16 +27,18 @@ body {
 }
 
 .signIn .column:first-child {
-    width: 65%;
-    color: black;
-    float: left;
+
+
+    width: 35%;
+    position: fixed;
+    right: 0;
 
 }
 
 .signIn .column:not(:first-child) {
-    width: 35%;
-    position: fixed;
-    right: 0;
+    width: 65%;
+    color: black;
+    float: left;
 }
 
 .signIn #bg {
@@ -140,7 +142,6 @@ body {
     background-color: #fff;
     width: 500px;
     padding: 10px 20px;
-    box-shadow: 0px 0px 18px 1px #FFF5F0;
     margin-bottom: 20px;
     position: relative;
 
@@ -182,7 +183,7 @@ body {
 }
 
 .signIn-form button:hover {
-    background: #1e516b;
+    background: #85736b;
 }
 
 .signIn .bgLayer {
@@ -293,6 +294,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 
 
 #top-nav {
@@ -428,7 +430,7 @@ body {
 
 
 .dashboard #details {
-    padding: 10px;
+    padding: 20px;
     margin-top: 30px;
     margin-left: 15px;
     background-color: white;
@@ -436,8 +438,10 @@ body {
     box-shadow: 5px 5px 10px 0px #4F4E4E;
 }
 
-.dashboard #details table {
-    width: 100%;
+.dashboard #details .column {
+    width: 45%;
+    float: left;
+    padding: 10px;
 }
 
 .dashboard #details p {
@@ -450,7 +454,16 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16px;
+    color: #003147;
 }
+
+.dashboard #details h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    color: #003147;
+}
+
 
 #details iframe {
     height: 200px;
@@ -469,6 +482,7 @@ body {
     background: #FFF;
     box-shadow: 0px 0px 10px 6px #575757;
     flex-shrink: 0;
+
 }
 
 .sideNav h1 {
@@ -477,9 +491,41 @@ body {
     color: #003147;
 }
 
+.sideNav .logo {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin-left: 20px;
+}
+
+.sideNav #text {
+    display: block;
+}
+
 .controllers {
     margin: 50px 20px 0 20px;
 
+}
+
+.sideNav .sign-outBtn {
+    margin: 40vh 20px 20px 20px;
+    width: 90%;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    background: whitesmoke;
+
+    outline: none;
+    border: none;
+}
+
+.sideNav .sign-outBtn:hover {
+    background-color: #c50404;
+}
+
+.sideNav .sign-outBtn span {
+    margin-left: 15px !important;
 }
 
 .controllers button {
@@ -523,134 +569,7 @@ main {
     display: none;
 }
 
-
-/*Grid */
-
-.card1 {
-    grid-area: header;
-    position: relative;
-}
-
-.card2 {
-    grid-area: menu;
-}
-
-.card3 {
-    grid-area: main;
-
-}
-
-.card4 {
-    grid-area: right;
-}
-
-.card5 {
-    grid-area: footer;
-}
-
-.card6 {
-    grid-area: bottom;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-areas:
-        'header header menu main'
-        'right right footer main'
-        'bottom bottom bottom bottom';
-    gap: 20px;
-    background-color: transparent;
-    padding: 10px;
-}
-
-.grid-container .card1,
-.grid-container .card2,
-.grid-container .card3,
-.grid-container .card4,
-.grid-container .card5,
-.grid-container .card6 {
-    background: #FFF;
-    box-shadow: 0px 0px 10px 6px #575757;
-    text-align: center;
-
-    padding: 5px 10px;
-    height: 200px;
-}
-
-.grid-container .card3 {
-    height: 450px;
-    background-image: url("./Assets/Images/bg.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.card1 .column:first-child {
-    padding: 0;
-    margin: 0;
-    width: 30%;
-}
-
-
-.card1 .column:not(:first-child) {
-    padding: 0;
-    margin: 0;
-    width: 60%;
-}
-
-.card1 img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.card1 h2 {
-    color: #543322;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    padding: 10px 0;
-    margin: 0;
-}
-
-.states {
-    color: #4D4744;
-    text-align: center;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0;
-    padding: 0;
-}
-
-.card4 .column {
-    width: 50%;
-}
-
-.card6 {
-    padding: 5px;
-}
-
-.card6 .column:first-child {
-    padding: 0;
-    margin: 0;
-    width: 70%;
-}
-
-
-.card6 .column:not(:first-child) {
-    padding: 0;
-    margin: 0;
-    width: 30%;
-    text-align: right;
-}
-
-
-
-/*Grid*/
 /*Admin Dashboard*/
-
 
 /*New room*/
 .new-room {
@@ -661,7 +580,7 @@ main {
 .new-room h1 {
     padding: 0;
     margin: 0;
-    color: black !important;
+    color: #003147 !important;
     font-size: 30px !important;
     font-weight: bold;
 
@@ -956,17 +875,13 @@ margin-top: 20px;
 }
 
 .myRooms img {
-    /* max-width: 280px; */
+
     width: 35%;
     height: 100%;
     object-fit: cover;
     margin-left: 0px;
     margin-right: 40px;
-    /* border-radius: inherit; */
 
-    /* width: 100%;
-    height: 70%;
-    object-fit: cover; */
 }
 
 .myRooms .add {
@@ -1034,11 +949,9 @@ margin-top: 20px;
 
 @media screen and (width <=700px) {
     .myRooms .card {
-        margin: 0 40px;
-        padding-left: 50px;
-        padding-right: 50px;
-        width: 100%;
-        text-align: center;
+        margin: 0;
+        padding: 10px;
+        width: 95%;
         flex-direction: column;
     }
 }
@@ -1233,9 +1146,6 @@ margin-top: 20px;
     width: 100%;
 }
 
-.room .imgTable {
-    width: 100%;
-}
 
 .room .room-content span {
     color: #003147;
@@ -1256,20 +1166,39 @@ margin-top: 20px;
 .room-content .column:first-child {
     padding: 20px;
     margin: 0;
-    width: 30%;
+    width: 40%;
 }
 
 .room-content .column:not(:first-child) {
     padding: 20px;
     margin: 0;
-    width: 60%;
+    width: 50%;
 }
 
-.room-content .mySubImgs img {
-    height: 100px;
+.room-content #roomImgs img {
+    height: 100%;
     width: 100%;
     object-fit: cover;
     box-shadow: 5px 5px 10px 0px #7a7a7a;
+
+}
+
+/* .room-content #roomImgs .column:first-child {
+    padding: 0px;
+    margin: 0;
+    width: 95%;
+    height: 50vh;
+} */
+
+.room-content #roomImgs .column {
+    padding: 0px;
+    margin: 10px 10px 0 0;
+    width: 23.5%;
+}
+
+
+.room-content .tempImgStyle {
+    border: 3px solid #003147;
 }
 
 .room-content li {
@@ -1595,13 +1524,26 @@ margin-top: 20px;
 
 }
 
+.myUsers .profileD img {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 0;
+}
+
+.myUsers .profileD h5{
+    padding: 0;
+    margin: 0 0 0 5px;
+    font-size: 17px;
+}
+
 @media screen and (width <=700px) {
     .myUsers .card {
-        margin: 0 40px;
-        padding-left: 50px;
-        padding-right: 50px;
-        width: 100%;
-        text-align: center;
+        margin: 0;
+        padding: 10px;
+        width: 95%;
         flex-direction: column;
     }
 }
@@ -1828,7 +1770,7 @@ margin-top: 20px;
     filter: drop-shadow(3px 3px 5px #006c9e);
 }
 
-.userRoom .content{
+.userRoom .content {
     padding: 50px;
 }
 
@@ -1845,6 +1787,7 @@ margin-top: 20px;
     width: auto;
     padding-right: 20px;
 }
+
 /*End of User View Room*/
 
 
@@ -1914,3 +1857,675 @@ margin-top: 20px;
         transform: rotate(360deg);
     }
 }
+
+
+/*Media*/
+@media screen and (width <=700px) {
+
+    /*Sign In*/
+    .signIn {
+        margin: 0px;
+    }
+
+    .signIn .column:first-child {
+        width: 100%;
+        position: unset;
+        right: 0;
+    }
+
+    .signIn .column:not(:first-child) {
+        width: 100%;
+    }
+
+    .signIn #bg {
+        height: 20vh;
+        position: unset;
+        top: 0;
+        right: 0;
+    }
+
+    .signIn nav {
+        display: none;
+    }
+
+    .signIn .wrapper {
+        margin: 30px;
+
+    }
+
+    .signIn table h3 {
+        font-size: 16px;
+    }
+
+    .signIn table img {
+        width: 40px;
+        margin: 10px 10px 0 0;
+    }
+
+    .signIn .email,
+    .signIn .password {
+        background-color: #fff;
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0px 0px 18px 1px #FFF5F0;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .signIn .tempStyle {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .signIn-form p {
+        cursor: pointer;
+        width: 100%;
+        text-align: right;
+    }
+
+    .signIn-form button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    /*End of Sign In*/
+
+
+    /*Dashboard*/
+    .sideNav {
+        padding-top: 30px;
+    }
+
+    .sideNav #text {
+        display: none;
+    }
+
+
+    .top .sign-out {
+        width: 45%;
+        color: black;
+        float: left;
+        padding: 0;
+        margin: 0;
+        text-align: right;
+    }
+
+    .top .sign-out button {
+        width: 120px;
+        background: #543322;
+        border: none;
+        color: white;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        padding: 10px;
+    }
+
+    .top .sign-out button:hover {
+        background: #ff8585;
+        border: 1px solid #543322;
+        color: #000;
+        box-shadow: 0px 0px 18px 1px #b40202;
+    }
+
+    .top {
+        margin-left: 21%;
+        padding: 0 0 0 40px;
+    }
+
+    .top h1 {
+        font-size: 30px;
+        margin: 0;
+        padding: 0;
+        color: #003147;
+    }
+
+
+    .dashboard .date {
+        width: 95%;
+    }
+
+    .dashboard .date h3 {
+        font-size: 16px;
+        font-weight: 100;
+    }
+
+    #dash header {
+        height: 20vh;
+        width: 97%;
+        margin: 20px;
+        box-shadow: 3px 3px 10px 0px #4F4E4E;
+    }
+
+    #dash .hdText {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    #dash .column:first-child {
+        width: 95%;
+    }
+
+    #dash .column:not(:first-child) {
+        width: 95%;
+    }
+
+    #states {
+        margin: 30px 0 0 20px;
+
+    }
+
+    #states .column {
+        width: 100% !important;
+        padding: 5px 0;
+    }
+
+    #states .stCard {
+        padding: 10px 10px 0 10px;
+        box-shadow: 3px 3px 10px 0px #4F4E4E;
+        border-radius: 1em;
+    }
+
+    #states h4 {
+        font-size: 20px;
+    }
+
+    #states .stCard h5 {
+        font-size: 18px;
+    }
+
+    #states .stCard p {
+        font-size: 14px;
+    }
+
+    .dashboard #details {
+        width: 99%;
+
+        margin-top: 30px;
+        margin-left: 0;
+        background-color: white;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .dashboard #details h3 {
+        font-size: 22px;
+    }
+
+    .dashboard #details h5 {
+        font-size: 16px;
+    }
+
+    .dashboard #details .column {
+        width: 100%;
+    }
+
+    .sideNav {
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 20%;
+        background: #FFF;
+        box-shadow: 0px 0px 10px 1px #575757;
+        flex-shrink: 0;
+    }
+
+    .sideNav .sign-outBtn {
+        margin: 45vh 20px 20px 20px;
+        width: 60%;
+        text-align: left;
+        padding: 5px;
+        margin-bottom: 10px;
+
+        background: whitesmoke;
+
+        outline: none;
+        border: none;
+    }
+
+    .controllers {
+        margin: 50px 20px 0 20px;
+
+    }
+
+    /*End of Dashboard*/
+
+
+    /*New room*/
+    .new-room {
+        margin: 0px;
+        padding: 20px;
+    }
+
+    .new-room h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 28px !important;
+        font-weight: bold;
+    }
+
+    .new-room .intro {
+        margin: 0 0 10px 0;
+        padding: 0;
+        color: #616060;
+        font-size: 14px;
+    }
+
+    #room-dtls .column {
+        width: 100%;
+    }
+
+    .images-form {
+        margin: 10px 0;
+    }
+
+    .input-images {
+        width: 350px;
+    }
+
+    .images-form p {
+        margin-top: 20px;
+        font-style: italic;
+        font-size: 14px;
+    }
+
+    .room-form .small {
+        width: 90%;
+        margin-right: 10px;
+    }
+
+    .room-form .small2 {
+        width: 96%;
+        margin-right: 10px;
+    }
+
+    .room-form select {
+        padding: 10px;
+    }
+
+    .room-form .long {
+        width: 90%;
+    }
+
+    #displayImg .main {
+        width: 360px;
+        height: 280px;
+        object-fit: cover;
+        box-shadow: 5px 5px 10px 0px #4F4E4E;
+    }
+
+
+    #addImgs .sub {
+        width: 116px;
+        height: 90px;
+        object-fit: cover;
+        box-shadow: 5px 5px 10px 0px #4F4E4E;
+    }
+
+    #displayImg button {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /*End of New room*/
+
+
+    /*Rooms and room*/
+
+    .rooms h1,
+    #room h1 {
+        padding: 0;
+        margin: 0;
+        color: #003147;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .rooms .intro,
+    .room .intro {
+        margin: 0;
+        padding: 0;
+    }
+
+    #search {
+        margin: 0 20px 10px 10px;
+    }
+
+    #search .column {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+
+    #search .column:first-child {
+        text-align: left;
+    }
+
+
+    #search .column:not(:first-child) {
+        text-align: right;
+    }
+
+
+    .searchBar {
+
+        width: 100%;
+        height: 40px;
+        float: none;
+    }
+
+    .searchBar button,
+    .searchBar input {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
+    .searchBar input {
+        width: 90%;
+        height: 100%;
+    }
+
+    .searchBar img {
+        width: 25px;
+    }
+
+    .myRooms .column {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+
+    .myRooms img {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+        margin-left: 0px;
+        margin-right: 0px;
+
+    }
+
+    .myRooms .add {
+        background-color: #003147;
+        color: white;
+        outline: none;
+        border: none;
+        padding: 10px;
+        margin: 10px 35px;
+        width: 150px;
+    }
+
+    .myRooms .add:hover {
+        background: #6b818a !important;
+        border: 2px solid #003147 !important;
+        color: #003147 !important;
+    }
+
+    .myRooms .card h2 {
+        margin: 0;
+        padding: 0;
+        color: #003147;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .myRooms .card p {
+        margin: 0;
+        padding: 5px;
+    }
+
+    .myRooms .card button {
+        padding: 8px;
+        float: right;
+        width: 130px;
+        font-size: 16px;
+        font-weight: 100;
+        margin: 10px;
+        margin-bottom: 0px;
+    }
+
+
+    /*Popup*/
+    .box {
+        background-color: #f8f8f8;
+        /* top: 20px; */
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        padding: 20px;
+        margin: 0px;
+        position: relative;
+        bottom: 0;
+
+        display: flex;
+        align-items: center;
+    }
+
+    #popup {
+        display: none;
+        height: 100%;
+
+    }
+
+
+
+    .mypopup .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .box .close {
+        position: absolute;
+        top: 30px;
+        right: 50px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    /*End of popup*/
+
+    /*End of Rooms and room*/
+
+
+
+
+    /*Room*/
+    #room {
+        display: block;
+    }
+
+    #upRoom {
+        display: block;
+    }
+
+    .room .roomNav {
+        position: absolute;
+        z-index: 1;
+        margin: 10px;
+    }
+
+    .room header {
+        display: none;
+    }
+
+    .room .roomNav img {
+        width: 30px;
+    }
+
+    .room .roomNav img:hover {
+        width: 32px;
+    }
+
+    #room {
+        margin: 0px;
+    }
+
+    .room .room-content {
+        position: absolute;
+        top: 0;
+        margin: 0px 0 !important;
+    }
+
+    .room .room-content h2 {
+        color: #003147;
+        font-size: 35px;
+        margin: 20px 0 10px 0;
+    }
+
+    .room .room-content p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .room .room-content .price {
+        color: #003147;
+        font-size: 32px;
+        margin: 20px 0 0 0;
+        padding: 0;
+    }
+
+    .room .content table {
+        width: 100%;
+    }
+
+
+    .room .room-content span {
+        color: #003147;
+        font-size: 24px;
+    }
+
+    .room img {
+        margin: 0px;
+    }
+
+
+
+    .room-content .column:first-child {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .room-content .column:not(:first-child) {
+        padding: 0;
+        margin: 30px;
+        width: 90%;
+    }
+
+    .room-content .mainImg {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        box-shadow: none;
+
+        padding: 0px;
+        margin: 0;
+        width: 100%;
+        height: 50vh;
+    }
+
+    .room-content #roomImgs .column {
+
+        width: 22.3%;
+    }
+
+    .room-content #roomImgs .row {
+        margin: 0px 20px;
+    }
+
+
+    /*Popup*/
+    .room .box {
+        background-color: #f8f8f8;
+        /* top: 20px; */
+        width: 100%;
+        height: 90%;
+        z-index: 99;
+        padding: 30px;
+        margin: 0;
+    }
+
+    /*End of popup*/
+
+
+
+    /*Users*/
+
+
+    .myUsers img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-left: 0px;
+        margin-right: 0px;
+        border-radius: 100%;
+
+
+
+    }
+
+
+    .myUsers #avail img {
+        width: 100px;
+        height: 100px;
+        border-radius: 0;
+        float: right;
+    }
+
+
+
+    .myUsers .card button {
+        border: 2px solid #003147;
+        /* background: transparent; */
+        /* color: #003147; */
+        padding: 10px;
+        /* border-radius: 6px; */
+        /* min-width: 120px; */
+        float: right;
+
+        /*display: inline-flex;
+    gap: 10px; */
+        width: 150px;
+        background: #003147;
+        /* box-shadow: 0px 0px 4px 3px #543322; */
+        border: none;
+        color: white;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        padding: 10px;
+        margin: 10px;
+        margin-bottom: -50px;
+    }
+
+    .myUsers .card button:hover {
+        background: #6b818a !important;
+        border: 2px solid #003147 !important;
+        color: #003147 !important;
+    }
+
+    .myUsers .cardContent {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .myUsers .cardContent .column {
+        padding: 20px;
+        margin: 0;
+        width: 90%;
+
+    }
+
+    /*End of users*/
+
+
+}
+
+/*Media*/

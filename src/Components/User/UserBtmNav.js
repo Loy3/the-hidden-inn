@@ -3,7 +3,6 @@ import booked from "../../Assets/Icons/appointment.png";
 import hotel from "../../Assets/Icons/locate.png";
 import profile from "../../Assets/Icons/user.png";
 
-import UserProfile from "./UserProfile";
 import { useNavigate } from "react-router-dom";
 
 export default function UserBtmNav() {

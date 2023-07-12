@@ -5,6 +5,11 @@ import AdminDashboard from "./AdminDashboard";
 import search from "../../Assets/Icons/search.png";
 import available from "../../Assets/Icons/availablee.png";
 import un_available from "../../Assets/Icons/un-available.png";
+import userN from "../../Assets/Icons/user.png";
+import emailA from "../../Assets/Icons/email.png";
+import phoNum from "../../Assets/Icons/smartphone.png";
+import iDNum from "../../Assets/Icons/id.png";
+import calen from "../../Assets/Icons/calendar.png";
 import { useNavigate } from 'react-router-dom';
 
 export default function ViewUsers() {
@@ -46,9 +51,12 @@ export default function ViewUsers() {
                 <main>
                     <div className="row" id={"search"}>
                         <div className="column">
-                            <h1>Rooms</h1>
+                            <h1>Users</h1>
                             <p className='intro'>
-                                Click view for a full description of the room.
+                                Users that have signed up.
+                                <br />
+                                <i>Green Sticker is for active users,
+                                    <br />and the red one is for users who are deactivated.</i>
                             </p>
                         </div>
                         <div className="column">
@@ -78,16 +86,60 @@ export default function ViewUsers() {
 
                                             <div className='row'>
                                                 <div className='column'>
-                                                    <h3>Username: {doc.username}</h3>
-                                                    <h3>Email Address: {doc.emailAddress}</h3>
-                                                    <h3>Phone Number: {doc.phNum}</h3>
+                                                    <table className='profileD'>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={userN} alt='' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    <h5>{doc.username}</h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={emailA} alt='' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    <h5>{doc.emailAddress}</h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={phoNum} alt='' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    <h5>{doc.phNum}</h5>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
 
                                                 </div>
 
                                                 <div className='column'>
-                                                    <h3>Id Number: {doc.idNumber}</h3>
-                                                    <h3>User Status: {doc.signUpStatus}</h3>
-                                                    <h3>Date: Today</h3>
+                                                    <table className='profileD'>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={iDNum} alt='' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    <h5>{doc.idNumber}</h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={calen} alt='' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    <h5>{doc.joinedDate}</h5>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+
 
                                                 </div>
 
@@ -96,10 +148,6 @@ export default function ViewUsers() {
 
                                                 </div>
                                             </div>
-
-
-
-
                                         </div>
 
                                     </div>

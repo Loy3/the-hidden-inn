@@ -11,7 +11,6 @@ export default function Sign_Up({ setUserSignUp }) {
     //Declarations
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [confPassword, setConfPassword] = useState('');
     const [showHidePassword, setShowHidePassword] = useState(false);
 
     const navigate = useNavigate();
@@ -63,22 +62,7 @@ export default function Sign_Up({ setUserSignUp }) {
 
     //Sign Up Function
     function userSignUp() {
-        //  var getEmail = document.getElementById("email");
-        //  getEmail.classList.remove("tempStyle");
-        //  getEmail.classList.add("email");
-
-        //  var getPass = document.getElementById("password");
-        //  getPass.classList.remove("tempStyle");
-        //  getPass.classList.add("password");
-
-
-        //set status
-        //setSignIn(true);
-        //localStorage.setItem('userStatus', JSON.stringify(true));
-        //end of set status
-
-        //Signing up
-
+       
         if (passStatus === true && emailStatus === true) {
             createUserWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
                 alert("sign up sccessfully");
@@ -95,16 +79,7 @@ export default function Sign_Up({ setUserSignUp }) {
         }
         //End of Signing up
 
-        //  signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
-        //      alert("sign in sccessfully");
-        //      //set status
-        //      setUserSignUp(true);
-        //      localStorage.setItem('adminStatus', JSON.stringify(true));
-        //      //end of set status
-        //  }).catch((error) => {
-        //      console.log(error.message);
-        //      alert("Incorrect Email or Password");
-        //  })
+        
     }
 
     function addStyle(event, type) {

@@ -11,49 +11,6 @@ import AddNewRoom from './AddNewRoom';
 export default function ViewRooms({ setRoomStatus }) {
     const navigate = useNavigate()
     const [rooms, setRooms] = useState([]);
-    // const [roomId, setRoomId] = useState("");
-    /*date
-    //                 :
-    // it { seconds: 1688465025, nanoseconds: 283000000}
-    //             id
-    //             :
-    //             "PaOXVc9lgMOucIx4Gkpg"
-    //             roomBedsType
-    //             :
-    //             "2 Queen Beds"
-    //             roomDescript
-    //             :
-    //             "Outside View"
-    //             roomImageLink
-    //             :
-    //             "room2"
-    //             roomImages
-    //             :
-    //             (4) [{…}, {…}, {…}, {…}]
-    //             roomOccupants
-    //             :
-    //             "4"
-    //             roomPrice
-    //             :
-    //             "10000"
-    //             roomQuantity
-    //             :
-    //             "3"
-    //             roomType
-    //             :
-    //             "Outside"*/
-
-    // const [room, setRoom] = useState({
-    //     id: '',
-    //     roomBedsType: '',
-    //     roomDescript: '',
-    //     roomImageLink: '',
-    //     roomImages: '',
-    //     roomOccupants: '',
-    //     roomPrice: '',
-    //     roomQuantity: '',
-    //     roomType: ''
-    // })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,26 +20,14 @@ export default function ViewRooms({ setRoomStatus }) {
                 return { id: doc.id, ...doc.data() };
             });
             setRooms(documents);
-            console.log(documents);
+            // console.log(documents);
         };
 
         fetchData();
     }, []);
 
     function viewRoom(event, roomID) {
-        // localStorage.setItem('roomId', JSON.stringify(roomId));
-        console.log(roomID);
-        // setRoom({
-        //     id: roomData.id,
-        //     roomBedsType: roomData.roomBedsType,
-        //     roomDescript: roomData.roomDescript,
-        //     roomImageLink: roomData.roomImageLink,
-        //     roomImages: roomData.roomImages,
-        //     roomOccupants: roomData.roomOccupants,
-        //     roomPrice: roomData.roomPrice,
-        //     roomQuantity: roomData.roomQuantity,
-        //     roomType: roomData.roomType
-        // })
+
         setRoomStatus(roomID);
         navigate("/room");
         document.getElementById("room").style.display = 'block';
@@ -95,7 +40,6 @@ export default function ViewRooms({ setRoomStatus }) {
         rooms.forEach(rm => {
             if (searched === rm.roomType) {
                 setSearchedRoom(rm);
-                //alert("found")
             }
         });
     }
@@ -156,12 +100,12 @@ export default function ViewRooms({ setRoomStatus }) {
                                             <p>
                                                 R{doc.roomPrice}.00
                                                 <br />
-                                                Room Occupants: {doc.roomQuantity} occupants
-                                                
+                                                {doc.roomQuantity} occupants
+
                                             </p>
                                             <button onClick={event => viewRoom(event, doc.id)}>view</button>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             ))}
@@ -196,34 +140,3 @@ export default function ViewRooms({ setRoomStatus }) {
         </>
     );
 }
-
-//                 date
-//                 :
-// it { seconds: 1688465025, nanoseconds: 283000000}
-//             id
-//             :
-//             "PaOXVc9lgMOucIx4Gkpg"
-//             roomBedsType
-//             :
-//             "2 Queen Beds"
-//             roomDescript
-//             :
-//             "Outside View"
-//             roomImageLink
-//             :
-//             "room2"
-//             roomImages
-//             :
-//             (4) [{…}, {…}, {…}, {…}]
-//             roomOccupants
-//             :
-//             "4"
-//             roomPrice
-//             :
-//             "10000"
-//             roomQuantity
-//             :
-//             "3"
-//             roomType
-//             :
-//             "Outside"

@@ -22,7 +22,7 @@ export default function Hotel() {
     async function addHotel(event) {
         event.preventDefault();
 
-        console.log(hotelAddress, hotelCity, hotelZip, hotelLocation, hotelPhNum, hotelEmail, hotelChIn, hotelChOut, hotelPolicy);
+        // console.log(hotelAddress, hotelCity, hotelZip, hotelLocation, hotelPhNum, hotelEmail, hotelChIn, hotelChOut, hotelPolicy);
 
         try {
             await addDoc(collection(db, "hotel_details"), {

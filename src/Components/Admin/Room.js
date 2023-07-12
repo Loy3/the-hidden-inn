@@ -1,5 +1,5 @@
-import { db, storage, refFromURL } from '../../Config/Firebase';
-import { ref, deleteObject, listAll } from 'firebase/storage';
+import { db, storage } from '../../Config/Firebase';
+import { ref, deleteObject } from 'firebase/storage';
 import { useEffect, useState } from "react";
 import { collection, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
 
@@ -13,6 +13,10 @@ import wifi from "../../Assets/Icons/wifi.png";
 import heater from "../../Assets/Icons/heater.png";
 import safe from "../../Assets/Icons/safe.png";
 import room_serv from "../../Assets/Icons/room-service.png";
+
+import occupants from "../../Assets/Icons/occu.png";
+import bed from "../../Assets/Icons/bed.png";
+import bedroom from "../../Assets/Icons/bdr.png";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -26,21 +30,6 @@ export default function Room(props) {
     const [amenities, setAmenities] = useState([]);
 
     const navigate = useNavigate();
-    // const [roomType, setRoomType] = useState("");
-    // const [roomPrice, setRoomPrice] = useState("");
-    // const [roomDescript, setRoomDescipt] = useState("");
-    // const [roomBedsType, setRoomBedsType] = useState("");
-    // const [roomOccupants, setRoomOccupants] = useState(0);
-    // const [roomQuantity, setRoomQuantity] = useState(0);
-    //     const docRef = doc(db, "cities", "SF");
-    // const docSnap = await getDoc(docRef);
-
-    // if (docSnap.exists()) {
-    //   console.log("Document data:", docSnap.data());
-    // } else {
-    //   // docSnap.data() will be undefined in this case
-    //   console.log("No such document!");
-    // }
 
     const [upRoom, setUpRoom] = useState({
         roomBedsType: "",
@@ -51,14 +40,6 @@ export default function Room(props) {
         roomType: "",
     })
 
-    /*
-        roomBedsType: room.roomBedsType,
-        roomDescript: room.roomDescript,
-        roomOccupants: room.roomOccupants,
-        roomPrice: room.roomPrice,
-        roomQuantity: room.roomQuantity,
-        roomType: room.roomType,*/
-
     useEffect(() => {
         const docId = props.isRoom;
 
@@ -67,7 +48,7 @@ export default function Room(props) {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data());
+                // console.log("Document data:", docSnap.data());
                 try {
                     const documents = {
                         id: docSnap.id, ...docSnap.data()
@@ -80,7 +61,7 @@ export default function Room(props) {
                     setRoomSubImage3(documents.roomImages[3].roomSubImage3.imageUrl)
                     setTempImg(documents.roomImages[0].roomMainImage.imageUrl)
                     setAmenities(documents.roomAmenities)
-                    console.log(documents)
+                    // console.log(documents)
 
                     setUpRoom({
                         roomBedsType: documents.roomBedsType,
@@ -94,7 +75,7 @@ export default function Room(props) {
                     console.log(error);
                 }
             } else {
-                console.log("No such document!");
+                alert("No such document!");
             }
         }
 
@@ -106,7 +87,7 @@ export default function Room(props) {
 
     function update(event, data) {
         document.getElementById("roomPopup").style.display = "block";
-        console.log(upRoom);
+        // console.log(upRoom);
     }
 
     async function updateRoom(event) {
@@ -116,7 +97,7 @@ export default function Room(props) {
 
         try {
             await updateDoc(storageRef, upRoom);
-            console.log('good');
+            // console.log('good');
 
             document.getElementById("roomPopup").style.display = "none";
             window.location.reload();
@@ -133,54 +114,12 @@ export default function Room(props) {
         )
 
 
-    //Open and close popup
-    // function openForm() {
-    //     document.getElementById("roomPopup").style.display = "block";
-
-    // }
-
     function closeForm() {
         document.getElementById("roomPopup").style.display = "none";
         // window.location.reload();
     }
 
     async function deleteRoom(event, data) {
-        /*
-        roomImages
-        : 
-        Array(4)
-        0
-        : 
-        roomMainImage
-        : 
-        {imageName: 'pexels-aleksandar-pasaric-2067048.jpg', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/the-hi…=media&token=066d12e3-951b-4e26-86c3-cb848586459b'}
-        [[Prototype]]
-        : 
-        Object
-        1
-        : 
-        roomSubImage1
-        : 
-        {imageName: 'pexels-aleksandar-pasaric-3048516 (1).jpg', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/the-hi…=media&token=a9759034-18da-484f-a190-8f65d80cce04'}
-        [[Prototype]]
-        : 
-        Object
-        2
-        : 
-        {roomSubImage2: {…}}
-        3
-        : 
-        {roomSubImage3: {…}}
-        length
-        : 
-        4
-        [[Prototype]]
-        : 
-        Array(0)
-        roomOccupants
-        : 
-        "4"*/
-
         try {
 
             const mainImgLink = data.roomImages[0].roomMainImage.imageName;
@@ -204,32 +143,9 @@ export default function Room(props) {
     async function deleteImages(imgsRef, arr) {
 
         const storageRef = ref(storage, "rooms/room4");
-        // const result = await listAll(storageRef)
-        // console.log(result);
-        // Get a reference to the storage path
-        // const storageRef = firebase.storage().refFromURL('your-storage-path');
 
-        // Get the bucket name from the reference
         const bucketName = storageRef.bucket;
         console.log(`Bucket name: ${bucketName}`);
-        // console.log(`rooms/${imgsRef}`);
-        // const subfolderRef = ref(storage, `rooms/room4/`);
-        // await deleteObject(subfolderRef).then(() => {
-        //   console.log("Subfolder deleted successfully!");
-        // })
-        // .catch((error) => {
-        //   console.log(`Error deleting subfolder: ${error}`);
-        // });
-
-        // console.log(imgRef);
-        // const imageRef = refFromURL(storage, imgRef);
-        // imageRef.delete().then(() => {
-        //     console.log("Image deleted successfully");
-        // })
-        //     .catch((error) => {
-        //         console.error("Error deleting image:", error);
-        //     });
-
 
         const desertRef = ref(storage, `rooms/${imgsRef}/${arr}`);
         console.log(arr);
@@ -250,25 +166,90 @@ export default function Room(props) {
 
             setRoomMainImage(room.roomImages[1].roomSubImage1.imageUrl)
             setViewImg(1);
+            var getImg2 = document.getElementById("subimg2");
+            getImg2.classList.remove("imgStyle");
+            getImg2.classList.add("tempImgStyle");
+
+            var getImg1 = document.getElementById("subimg1");
+            getImg1.classList.remove("tempImgStyle");
+            getImg1.classList.add("imgStyle");
+
+            var getImg3 = document.getElementById("subimg3");
+            getImg3.classList.remove("tempImgStyle");
+            getImg3.classList.add("imgStyle");
+
+            var getImg4 = document.getElementById("subimg4");
+            getImg4.classList.remove("tempImgStyle");
+            getImg4.classList.add("imgStyle");
+
         } else
             if (type === 2) {
                 setRoomMainImage(room.roomImages[2].roomSubImage2.imageUrl)
                 setViewImg(1);
+
+                var getImg2 = document.getElementById("subimg2");
+                getImg2.classList.remove("tempImgStyle");
+                getImg2.classList.add("imgStyle");
+
+                var getImg1 = document.getElementById("subimg1");
+                getImg1.classList.remove("tempImgStyle");
+                getImg1.classList.add("imgStyle");
+
+                var getImg3 = document.getElementById("subimg3");
+                getImg3.classList.remove("imgStyle");
+                getImg3.classList.add("tempImgStyle");
+
+                var getImg4 = document.getElementById("subimg4");
+                getImg4.classList.remove("tempImgStyle");
+                getImg4.classList.add("imgStyle");
             } else
                 if (type === 3) {
                     setRoomMainImage(room.roomImages[3].roomSubImage3.imageUrl)
                     setViewImg(1);
+
+                    var getImg2 = document.getElementById("subimg2");
+                    getImg2.classList.remove("tempImgStyle");
+                    getImg2.classList.add("imgStyle");
+
+                    var getImg1 = document.getElementById("subimg1");
+                    getImg1.classList.remove("tempImgStyle");
+                    getImg1.classList.add("imgStyle");
+
+                    var getImg3 = document.getElementById("subimg3");
+                    getImg3.classList.remove("tempImgStyle");
+                    getImg3.classList.add("imgStyle");
+
+
+                    var getImg4 = document.getElementById("subimg4");
+                    getImg4.classList.remove("imgStyle");
+                    getImg4.classList.add("tempImgStyle");
                 } else {
                     setRoomMainImage(room.roomImages[0].roomMainImage.imageUrl)
                     setViewImg(0);
+
+                    var getImg2 = document.getElementById("subimg2");
+                    getImg2.classList.remove("tempImgStyle");
+                    getImg2.classList.add("imgStyle");
+
+                    var getImg1 = document.getElementById("subimg1");
+
+                    getImg1.classList.remove("imgStyle");
+                    getImg1.classList.add("tempImgStyle");
+
+
+                    var getImg3 = document.getElementById("subimg3");
+                    getImg3.classList.remove("tempImgStyle");
+                    getImg3.classList.add("imgStyle");
+
+                    var getImg4 = document.getElementById("subimg4");
+                    getImg4.classList.remove("tempImgStyle");
+                    getImg4.classList.add("imgStyle");
                 }
     }
 
     function toRooms() {
         navigate("/rooms")
     }
-
-
 
 
 
@@ -290,41 +271,30 @@ export default function Room(props) {
             </header>
 
             <div id={'room'}>
-
-
-                <br />
                 <div className='room-content'>
 
 
                     {room === [] ? null : <div key={room.id}>
                         <div className='row'>
-                            <div className='column'>
-                                <table className='imgTable'>
-                                    <tbody>
-                                        <tr className='myMainImg'>
-                                            <td colSpan={3}>
-                                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
-                                            </td>
+                            <div className='column' id={'roomImgs'}>
+                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
 
-                                        </tr>
-                                        <tr className='mySubImgs'>
-                                            <td>
-                                                <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
-                                            </td>
-                                            <td>
-                                                <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
-                                            </td>
-                                            <td >
-                                                <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
-                                                {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div className='row'>
+                                    <div className='column'>
+                                        <img src={tempImg === "" ? cam : tempImg} alt='main' id={'subimg1'} className='tempImgStyle' width={100} onClick={(event) => changeImg(event, 4)} />
+                                    </div>
+                                    <div className='column'>
+                                        <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' id={'subimg2'} className='imgStyle' width={100} onClick={(event) => changeImg(event, 1)} />
+                                    </div>
+                                    <div className='column'>
+                                        <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' id={'subimg3'} className='imgStyle' width={100} onClick={(event) => changeImg(event, 2)} />
+                                    </div>
+                                    <div className='column'>
+                                        <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' id={'subimg4'} className='imgStyle' width={100} onClick={(event) => changeImg(event, 3)} />
+                                        {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
+                                    </div>
 
-
-
-
+                                </div>
 
                             </div>
                             <div className='column'>
@@ -349,59 +319,59 @@ export default function Room(props) {
                                         {room.roomDescript}
                                     </p>
 
+                                    <h3 className='price'>R {room.roomPrice}.00</h3>
 
+                                    <br />
 
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td colSpan={2}>
-                                                    <h3 className='price'>R {room.roomPrice}.00</h3>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
-                                                    <h3>Max Occupants: <span>{room.roomOccupants}</span></h3>
+                                                    <img src={occupants} alt='WiFi' width={35} />
+                                                    <br />
+                                                    {room.roomOccupants} occupants
                                                 </td>
-                                                <td>
-                                                    <h3>Number Of Rooms: <span>{room.roomQuantity}</span></h3>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={2}>
-                                                    <h3>Amenities</h3>
-                                                    <ul>
-                                                        {amenities.map((doc, index) => (
-                                                            <li key={index}>
-                                                                <table>
-                                                                    <tbody>
-                                                                        <td>
-                                                                            {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
-                                                                            {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
-                                                                            {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
-                                                                            {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
-                                                                            
-                                                                        </td>
-                                                                        <td>
-                                                                            {doc}
-                                                                        </td>
-                                                                    </tbody>
-                                                                </table>
 
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                <td>
+                                                    <img src={bedroom} alt='WiFi' width={35} />
+                                                    <br />
+                                                    {room.roomQuantity} bedrooms
+                                                </td>
+                                                <td>
+                                                    <img src={bed} alt='WiFi' width={35} />
+                                                    <br />
+                                                    {room.roomBedsType}
                                                 </td>
                                             </tr>
+
                                         </tbody>
                                     </table>
 
+                                    <br /><br />
+                                    <h2>Amenities</h2>
+                                    <ul>
+                                        {amenities.map((doc, index) => (
+                                            <li key={index}>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
+                                                                {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
+                                                                {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
+                                                                {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
 
+                                                            </td>
+                                                            <td>
+                                                                {doc}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
 
-
-
-
-
-
+                                            </li>
+                                        ))}
+                                    </ul>
                                     <br />
 
                                 </div>
@@ -484,7 +454,7 @@ export default function Room(props) {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 
 

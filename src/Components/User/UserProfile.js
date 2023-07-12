@@ -1,6 +1,6 @@
 import UserBtmNav from "./UserBtmNav";
 import "../../Styles/user_styles.css";
-import { db, auth, storage, refFromURL } from '../../Config/Firebase';
+import { db, auth } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs, doc, updateDoc } from "firebase/firestore";
 // import { collection, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";

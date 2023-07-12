@@ -15,27 +15,7 @@ export default function Sign_In({setUserSignIn}){
 
  //Sign in Function
  function userSignIn() {
-    //  var getEmail = document.getElementById("email");
-    //  getEmail.classList.remove("tempStyle");
-    //  getEmail.classList.add("email");
-
-    //  var getPass = document.getElementById("password");
-    //  getPass.classList.remove("tempStyle");
-    //  getPass.classList.add("password");
-     // console.log(adminEmail + " " + adminPassword);
-     //set status
-     //setSignIn(true);
-     //localStorage.setItem('userStatus', JSON.stringify(true));
-     //end of set status
-
-     //Signing up
-     // createUserWithEmailAndPassword(auth, adminEmail, adminPassword).then(() => {
-     //     alert("sign up sccessfully");
-     // }).catch((error) => {
-     //     console.log(error.message);
-     // })
-     //End of Signing up
-
+    
 console.log(userEmail + " " + userPassword);
 
      signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
@@ -50,28 +30,6 @@ console.log(userEmail + " " + userPassword);
          alert("Incorrect Email or Password");
      })
  }
-
-//  function addStyle(event, type) {
-//      if (type === 1) {
-//          var getEmail = document.getElementById("email");
-//          getEmail.classList.remove("email");
-//          getEmail.classList.add("tempStyle");
-
-//          var getPass = document.getElementById("password");
-//          getPass.classList.remove("tempStyle");
-//          getPass.classList.add("password");
-//      } else if (type === 2) {
-//          var getEmail = document.getElementById("email");
-//          getEmail.classList.remove("tempStyle");
-//          getEmail.classList.add("email");
-
-//          var getPass = document.getElementById("password");
-//          getPass.classList.remove("password");
-//          getPass.classList.add("tempStyle");
-//      }
-
-
-//  }
 
  return (
      <div className="uSignIn" >

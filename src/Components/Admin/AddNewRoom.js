@@ -4,7 +4,6 @@ import { collection, addDoc, Timestamp, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import cam from "../../Assets/Icons/Camera.png";
-import AdminDashboard from './AdminDashboard';
 export default function AddNewRoom() {
     //Declarations
     const [roomType, setRoomType] = useState("");
@@ -34,7 +33,7 @@ export default function AddNewRoom() {
     function handleMainImage(event) {
         const file = event.target.files[0];
         setRoomMainImage(file);
-        console.log(file.name);
+        // console.log(file.name);
     }
 
     function handleSubImages(event, type) {
@@ -43,16 +42,16 @@ export default function AddNewRoom() {
 
         if (type === 1) {
             setRoomSubImage1(files);
-            console.log(files.name);
+            // console.log(files.name);
 
         } else
             if (type === 2) {
                 setRoomSubImage2(files);
-                console.log(files.name);
+                // console.log(files.name);
             } else
                 if (type === 3) {
                     setRoomSubImage3(files);
-                    console.log(files.name);
+                    // console.log(files.name);
                 }
 
     }
@@ -109,18 +108,12 @@ export default function AddNewRoom() {
 
 
     async function setMyUrl(event) {
-        //Get collection length
-        // const snapshot = await getDocs(collection(db, "rooms"));
-        // const roomCollectionLength = snapshot.size;
-        // console.log(`room${roomCollectionLength}`);
-
         const rLetters = getRandomLetter();
         const rNums = getRandomNumber();
 
         setRoomLink(`room${rLetters + rNums}`);
-        // console.log();
         try {
-            document.getElementById("test").style.display="block";
+            document.getElementById("test").style.display = "block";
             //Set path
             const roomPath = `rooms/room${rLetters + rNums}`;
             const mImg = `${roomMainImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
@@ -139,7 +132,7 @@ export default function AddNewRoom() {
             setSubImg3Name(sIm3);
 
 
-            console.log(mainImgPath);
+            // console.log(mainImgPath);
             //Image Upload
             const storageRef = ref(storage, mainImgPath);
             const uploadeMainImg = uploadBytes(storageRef, roomMainImage);
@@ -157,25 +150,25 @@ export default function AddNewRoom() {
             //Get Image url
             await uploadeMainImg.then(() => {
                 getDownloadURL(storageRef).then((url) => {
-                    console.log("Image uploaded to:", url);
+                    // console.log("Image uploaded to:", url);
                     setUrl(url);
                 });
             }).then(await uploadeSubImg1.then(() => {
                 getDownloadURL(storageRefsub1).then((suburl1) => {
-                    console.log("Image uploaded to:", suburl1);
+                    // console.log("Image uploaded to:", suburl1);
                     setUrl1(suburl1);
                 });
             })).then(await uploadeSubImg2.then(() => {
                 getDownloadURL(storageRefsub2).then((suburl2) => {
-                    console.log("Image uploaded to:", suburl2);
+                    // console.log("Image uploaded to:", suburl2);
                     setUrl2(suburl2);
                 });
             })).then(await uploadeSubImg3.then(() => {
                 getDownloadURL(storageRefsub3).then((suburl3) => {
-                    console.log("Image uploaded to:", suburl3);
+                    // console.log("Image uploaded to:", suburl3);
                     setUrl3(suburl3);
                 });
-                document.getElementById("test").style.display="none";
+                document.getElementById("test").style.display = "none";
             }))
             //End of Get Image url
 
@@ -244,13 +237,13 @@ export default function AddNewRoom() {
                                 <option hidden={true} >
                                     Select Room Type
                                 </option>
-                                <option value={"Single Rooms "}>Single Rooms </option>
-                                <option value={"Twin or Double Rooms "}>Twin or Double Rooms </option>
-                                <option value={"Studio Rooms"}>Studio Rooms</option>
-                                <option value={"Deluxe Rooms"}>Deluxe Rooms</option>
-                                <option value={"Rooms with a View "}>Rooms with a View </option>
-                                <option value={"Suites"}>Suites</option>
-                                <option value={"Presidential Suites "}>Presidential Suites </option>
+                                <option value={"Single Rooms "}>Single Room </option>
+                                <option value={"Twin or Double Rooms "}>Twin or Double Room </option>
+                                <option value={"Studio Rooms"}>Studio Room</option>
+                                <option value={"Deluxe Rooms"}>Deluxe Room</option>
+                                <option value={"Rooms with a View "}>Room with a View </option>
+                                <option value={"Suites"}>Suite</option>
+                                <option value={"Presidential Suites "}>Presidential Suite </option>
 
                             </select>
 

@@ -1,12 +1,10 @@
 import { db } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import myHotel from "../../Assets/Images/hotel.jpg";
-import hotelLo from "../../Assets/Icons/hotel.png";
-import signoutLo from "../../Assets/Icons/exit.png";
+
 import AdminDashboard from './AdminDashboard';
 
-import { auth } from '../../Config/Firebase';
+
 
 export default function DashboardCont() {
 
@@ -29,23 +27,13 @@ export default function DashboardCont() {
                 return { id: doc.id, ...doc.data() };
             });
             setHotel(documents);
-            console.log(documents);
+            // console.log(documents);
         };
 
         fetchData();
     }, []);
 
-    function signOut() {
-        auth.signOut().then(() => {
-            // Sign-out successful.
-            alert("Sign-out successful.");
-            localStorage.setItem('adminStatus', JSON.stringify(false));
-        }).catch((error) => {
-            console.log(error.message);
-        });
-
-        window.location.reload();
-    }
+   
 
 
     return (
@@ -184,66 +172,45 @@ export default function DashboardCont() {
 
                             <div key={index}>
                                 <br />
+                                <h5>Check In & Check Out Time</h5>
 
-                                <table >
-                                    <tbody>
-                                        <tr>
-                                            <td colSpan={2}>
-                                                <h5>Check In & Check Out Time</h5>
-                                                <br />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>{doc.hotelTimes[0].hotelChIn}</p>
-                                                <h5>Check In</h5>
-                                            </td>
-                                            <td>
-                                                <p>{doc.hotelTimes[0].hotelChOut}</p>
-                                                <h5>Check Out</h5>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <br />
-                                                <h5>Contact Details</h5>
-                                                <p>
-                                                    <span>Email Address:</span><br />
-                                                    {doc.hotelContact[0].hotelEmail}
-                                                    <br />
-                                                    <span>Contact Number:</span><br />
-                                                    {doc.hotelContact[0].hotelPhNum}
-                                                </p>
+                                <div className='row'>
+                                    <div className='column'>
+                                        <p>{doc.hotelTimes[0].hotelChIn}</p>
+                                        <h5>Check In</h5>
+                                    </div>
+                                    <div className='column'>
+                                        <p>{doc.hotelTimes[0].hotelChOut}</p>
+                                        <h5>Check Out</h5>
+                                    </div>
 
-                                            </td>
+                                    <div className='column'>
+                                        <h5>Contact Details</h5>
+                                        <p>
+                                            <span>Email Address:</span><br />
+                                            {doc.hotelContact[0].hotelEmail}
+                                            <br />
+                                            <span>Contact Number:</span><br />
+                                            {doc.hotelContact[0].hotelPhNum}
+                                        </p>
+                                    </div>
+                                    <div className='column'>
+                                        <h5>Physical Address</h5>
+                                        <p>
+                                            {doc.hotelAddress[0].hotelAddress}
+                                            <br />
+                                            {doc.hotelAddress[0].hotelCity}
+                                            <br />
+                                            {doc.hotelAddress[0].hotelZip}
 
-                                            <td>
-                                                <br />
-                                                <h5>Physical Address</h5>
-                                                <p>
-                                                    {doc.hotelAddress[0].hotelAddress}
-                                                    <br />
-                                                    {doc.hotelAddress[0].hotelCity}
-                                                    <br />
-                                                    {doc.hotelAddress[0].hotelZip}
-
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colSpan={2}>
-                                                <br />
-                                                <h5>Hotel Policies</h5>
-                                                <p>{doc.hotelPolicy}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colSpan={2}>
-                                                <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br />
+                                <h5>Hotel Policies</h5>
+                                <p>{doc.hotelPolicy}</p>
+                                <br />
+                                <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         ))}
                     </div>
@@ -321,7 +288,7 @@ export default function DashboardCont() {
                 </div> */}
 
 
-                <button onClick={signOut}>Sign Out</button>
+                
             </main>
         </div>
     )

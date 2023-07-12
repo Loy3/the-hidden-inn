@@ -1,21 +1,29 @@
 import dash from "../../Assets/Icons/dashboard.png";
-import newRoom from "../../Assets/Icons/hotels.png";
 import vRooms from "../../Assets/Icons/available.png";
 import book from "../../Assets/Icons/living-room.png";
 import sUsers from "../../Assets/Icons/human.png";
 import hot from "../../Assets/Icons/hotel.png";
-import icon from "../../Assets/Icons/password.png";
+import logo from "../../Assets/Icons/logo.png";
+import signoutLo from "../../Assets/Icons/exit.png";
 
-import { db } from '../../Config/Firebase';
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../../Config/Firebase';
 
 export default function AdminDashboard() {
 
     const navigate = useNavigate();
 
+    function signOut() {
+        auth.signOut().then(() => {
+            // Sign-out successful.
+            alert("Sign-out successful.");
+            localStorage.setItem('adminStatus', JSON.stringify(false));
+        }).catch((error) => {
+            console.log(error.message);
+        });
 
+        window.location.reload();
+    }
 
     function changeMenu(event, type) {
         switch (type) {
@@ -31,10 +39,10 @@ export default function AdminDashboard() {
                 // document.getElementById("dashboard").style.display = "none";
                 navigate("/rooms")
                 break;
-                case "users":
-                    // document.getElementById("dashboard").style.display = "none";
-                    navigate("/users")
-                    break;
+            case "users":
+                // document.getElementById("dashboard").style.display = "none";
+                navigate("/users")
+                break;
             default:
                 document.getElementById("dashboard").style.display = "block";
                 document.getElementById("addRoom").style.display = "none";
@@ -46,7 +54,23 @@ export default function AdminDashboard() {
             <nav>
 
                 <div className='sideNav'>
-                    <h1>The Hidden Inn</h1>
+
+                    <button className="logo">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src={logo} alt="Hotel" width={30} />
+                                    </td>
+                                    <td id={"text"}>
+                                        <h1>The Hidden Inn</h1>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </button>
+
+
 
                     <div className='controllers'>
                         <button onClick={(event) => changeMenu(event, "dash")}>
@@ -56,7 +80,7 @@ export default function AdminDashboard() {
                                         <td>
                                             <img src={dash} alt='' width={25} />
                                         </td>
-                                        <td>
+                                        <td id={"text"}>
                                             <span>Dashboard</span>
                                         </td>
                                     </tr>
@@ -86,7 +110,7 @@ export default function AdminDashboard() {
                                         <td>
                                             <img src={vRooms} alt='' width={30} />
                                         </td>
-                                        <td>
+                                        <td id={"text"}>
                                             <span>View Rooms</span>
                                         </td>
                                     </tr>
@@ -101,7 +125,7 @@ export default function AdminDashboard() {
                                         <td>
                                             <img src={book} alt='' width={30} />
                                         </td>
-                                        <td>
+                                        <td id={"text"}>
                                             <span>View Bookings</span>
                                         </td>
                                     </tr>
@@ -109,14 +133,14 @@ export default function AdminDashboard() {
                             </table>
                         </button>
 
-                        <button  onClick={(event) => changeMenu(event, "users")}>
+                        <button onClick={(event) => changeMenu(event, "users")}>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <img src={sUsers} alt='' width={30} />
                                         </td>
-                                        <td>
+                                        <td id={"text"}>
                                             <span>View Users</span>
                                         </td>
                                     </tr>
@@ -131,7 +155,7 @@ export default function AdminDashboard() {
                                         <td>
                                             <img src={hot} alt='' width={25} />
                                         </td>
-                                        <td>
+                                        <td id={"text"}>
                                             <span>Hotel Details</span>
                                         </td>
                                     </tr>
@@ -142,6 +166,22 @@ export default function AdminDashboard() {
 
 
                     </div>
+
+                    <button className="sign-outBtn" onClick={signOut}>
+                        
+                    <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={signoutLo} alt='' width={25} />
+                                        </td>
+                                        <td id={"text"}>
+                                            <span>Sign Out</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+</button>
                 </div>
             </nav>
 

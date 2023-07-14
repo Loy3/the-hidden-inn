@@ -77,8 +77,8 @@ export default function AdminDashboard() {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <img src={dash} alt='' width={25} />
+                                        <td className="imgSize2">
+                                            <img src={dash} alt='' />
                                         </td>
                                         <td id={"text"}>
                                             <span>Dashboard</span>
@@ -102,13 +102,12 @@ export default function AdminDashboard() {
                                 </tbody>
                             </table>
                         </button> */}
-
                         <button onClick={(event) => changeMenu(event, "rooms")}>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <img src={vRooms} alt='' width={30} />
+                                        <td className="imgSize1">
+                                            <img src={book} alt='' />
                                         </td>
                                         <td id={"text"}>
                                             <span>View Rooms</span>
@@ -117,13 +116,12 @@ export default function AdminDashboard() {
                                 </tbody>
                             </table>
                         </button>
-
                         <button>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <img src={book} alt='' width={30} />
+                                        <td className="imgSize1">
+                                            <img src={vRooms} alt='' />
                                         </td>
                                         <td id={"text"}>
                                             <span>View Bookings</span>
@@ -137,8 +135,8 @@ export default function AdminDashboard() {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <img src={sUsers} alt='' width={30} />
+                                        <td className="imgSize1">
+                                            <img src={sUsers} alt='' />
                                         </td>
                                         <td id={"text"}>
                                             <span>View Users</span>
@@ -152,8 +150,8 @@ export default function AdminDashboard() {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <img src={hot} alt='' width={25} />
+                                        <td className="imgSize2">
+                                            <img src={hot} alt='' />
                                         </td>
                                         <td id={"text"}>
                                             <span>Hotel Details</span>
@@ -168,20 +166,20 @@ export default function AdminDashboard() {
                     </div>
 
                     <button className="sign-outBtn" onClick={signOut}>
-                        
-                    <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src={signoutLo} alt='' width={25} />
-                                        </td>
-                                        <td id={"text"}>
-                                            <span>Sign Out</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-</button>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src={signoutLo} alt='' width={25} />
+                                    </td>
+                                    <td id={"text"}>
+                                        <span>Sign Out</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </button>
                 </div>
             </nav>
 

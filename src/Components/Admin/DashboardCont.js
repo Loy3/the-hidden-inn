@@ -27,7 +27,7 @@ export default function DashboardCont() {
                 return { id: doc.id, ...doc.data() };
             });
             setHotel(documents);
-            // console.log(documents);
+            // console.log(documents); 
         };
 
         fetchData();
@@ -210,7 +210,7 @@ export default function DashboardCont() {
                                 <h5>Hotel Policies</h5>
                                 <p>{doc.hotelPolicy}</p>
                                 <br />
-                                <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" title='map' referrerPolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         ))}
                     </div>

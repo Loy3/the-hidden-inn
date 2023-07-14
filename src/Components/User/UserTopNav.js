@@ -1,7 +1,8 @@
 import { db, auth } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import signOutB from "../../Assets/Icons/logout.png";
+
+import logo from "../../Assets/Icons/logo.png";
 
 export default function UserTopNav() {
     const email = localStorage.getItem("userEmailAddress");
@@ -28,19 +29,7 @@ export default function UserTopNav() {
         getUser();
     }, []);
 
-    function signOut() {
-        auth.signOut().then(() => {
-            // Sign-out successful.
-            alert("Sign-out successful.");
-            localStorage.setItem('userStatus', JSON.stringify(false));
-            localStorage.setItem('userEmailAddress', JSON.stringify(""));
-            window.location.reload();
-        }).catch((error) => {
-            console.log(error.message);
-        });
-
-        window.location.reload();
-    }
+    
 
     return (
         <>
@@ -51,23 +40,37 @@ export default function UserTopNav() {
 
                         <div className='row'>
                             <div className='column'>
-                                <table className='profile'>
+                                <table>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <img src={doc.userImage} alt='profile' width={80} />
+                                                <img src={logo} alt="Hotel" width={40} />
                                             </td>
                                             <td>
-
-                                                <h2>{doc.firstName + " " + doc.lastName}</h2>
-                                                <h3>{doc.emailAddress}</h3>
+                                                <h1>The Hidden Inn</h1>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                             <div className='column'>
-                                <button onClick={signOut}><img src={signOutB} alt='profile' width={50} /></button>
+                                <table className='profile'>
+                                    <tbody>
+                                        <tr>
+                                                                                       <td>
+
+                                                <h2>{doc.firstName + " " + doc.lastName}</h2>
+                                                <h3>{doc.emailAddress}</h3>
+                                            </td>
+                                            <td>
+                                                <img src={doc.userImage} alt='profile' width={80} />
+                                            </td>
+                                           
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
 
                             </div>
                         </div>

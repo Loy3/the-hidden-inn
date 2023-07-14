@@ -81,7 +81,7 @@ export default function Room(props) {
 
         fetchData();
 
-    }, []);
+    }, [props.isRoom]);
 
 
 
@@ -160,88 +160,71 @@ export default function Room(props) {
         });
     }
 
-    const [viewImg, setViewImg] = useState(0);
     function changeImg(event, type) {
+        var getImg2 = document.getElementById("subimg2");
+        var getImg1 = document.getElementById("subimg1");
+        var getImg3 = document.getElementById("subimg3");
+        var getImg4 = document.getElementById("subimg4");
         if (type === 1) {
 
             setRoomMainImage(room.roomImages[1].roomSubImage1.imageUrl)
-            setViewImg(1);
-            var getImg2 = document.getElementById("subimg2");
+
             getImg2.classList.remove("imgStyle");
             getImg2.classList.add("tempImgStyle");
 
-            var getImg1 = document.getElementById("subimg1");
             getImg1.classList.remove("tempImgStyle");
             getImg1.classList.add("imgStyle");
 
-            var getImg3 = document.getElementById("subimg3");
             getImg3.classList.remove("tempImgStyle");
             getImg3.classList.add("imgStyle");
 
-            var getImg4 = document.getElementById("subimg4");
             getImg4.classList.remove("tempImgStyle");
             getImg4.classList.add("imgStyle");
 
         } else
             if (type === 2) {
                 setRoomMainImage(room.roomImages[2].roomSubImage2.imageUrl)
-                setViewImg(1);
 
-                var getImg2 = document.getElementById("subimg2");
                 getImg2.classList.remove("tempImgStyle");
                 getImg2.classList.add("imgStyle");
 
-                var getImg1 = document.getElementById("subimg1");
                 getImg1.classList.remove("tempImgStyle");
                 getImg1.classList.add("imgStyle");
 
-                var getImg3 = document.getElementById("subimg3");
                 getImg3.classList.remove("imgStyle");
                 getImg3.classList.add("tempImgStyle");
 
-                var getImg4 = document.getElementById("subimg4");
                 getImg4.classList.remove("tempImgStyle");
                 getImg4.classList.add("imgStyle");
             } else
                 if (type === 3) {
                     setRoomMainImage(room.roomImages[3].roomSubImage3.imageUrl)
-                    setViewImg(1);
 
-                    var getImg2 = document.getElementById("subimg2");
                     getImg2.classList.remove("tempImgStyle");
                     getImg2.classList.add("imgStyle");
 
-                    var getImg1 = document.getElementById("subimg1");
                     getImg1.classList.remove("tempImgStyle");
                     getImg1.classList.add("imgStyle");
 
-                    var getImg3 = document.getElementById("subimg3");
                     getImg3.classList.remove("tempImgStyle");
                     getImg3.classList.add("imgStyle");
 
 
-                    var getImg4 = document.getElementById("subimg4");
                     getImg4.classList.remove("imgStyle");
                     getImg4.classList.add("tempImgStyle");
                 } else {
                     setRoomMainImage(room.roomImages[0].roomMainImage.imageUrl)
-                    setViewImg(0);
 
-                    var getImg2 = document.getElementById("subimg2");
                     getImg2.classList.remove("tempImgStyle");
                     getImg2.classList.add("imgStyle");
-
-                    var getImg1 = document.getElementById("subimg1");
 
                     getImg1.classList.remove("imgStyle");
                     getImg1.classList.add("tempImgStyle");
 
 
-                    var getImg3 = document.getElementById("subimg3");
                     getImg3.classList.remove("tempImgStyle");
                     getImg3.classList.add("imgStyle");
 
-                    var getImg4 = document.getElementById("subimg4");
                     getImg4.classList.remove("tempImgStyle");
                     getImg4.classList.add("imgStyle");
                 }
@@ -408,13 +391,13 @@ export default function Room(props) {
                                             <option hidden={true} >
                                                 Select Room Type
                                             </option>
-                                            <option value={"Single Rooms "}>Single Rooms </option>
-                                            <option value={"Twin or Double Rooms "}>Twin or Double Rooms </option>
-                                            <option value={"Studio Rooms"}>Studio Rooms</option>
-                                            <option value={"Deluxe Rooms"}>Deluxe Rooms</option>
-                                            <option value={"Rooms with a View "}>Rooms with a View </option>
-                                            <option value={"Suites"}>Suites</option>
-                                            <option value={"Presidential Suites "}>Presidential Suites </option>
+                                            <option value={"Single Rooms "}>Single Room </option>
+                                            <option value={"Twin or Double Rooms "}>Twin or Double Room </option>
+                                            <option value={"Studio Rooms"}>Studio Room</option>
+                                            <option value={"Deluxe Rooms"}>Deluxe Room</option>
+                                            <option value={"Rooms with a View "}>Room with a View </option>
+                                            <option value={"Suites"}>Suite</option>
+                                            <option value={"Presidential Suites "}>Presidential Suite </option>
 
                                         </select>
                                         <br />

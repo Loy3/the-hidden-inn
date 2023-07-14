@@ -10,10 +10,10 @@ import emailA from "../../Assets/Icons/email.png";
 import phoNum from "../../Assets/Icons/smartphone.png";
 import iDNum from "../../Assets/Icons/id.png";
 import calen from "../../Assets/Icons/calendar.png";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export default function ViewUsers() {
-    const navigate = useNavigate()
+    // const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -31,15 +31,14 @@ export default function ViewUsers() {
     }, []);
 
     const [searched, setSearched] = useState('')
-    const [searchedRoom, setSearchedRoom] = useState([])
-    function searchRoom() {
-        // rooms.forEach(rm => {
-        //     if (searched === rm.roomType) {
-        //         setSearchedRoom(rm);
-        //         //alert("found")
-        //     }
-        // });
-        console.log(searched);
+    const [searchedUser, setSearchedUser] = useState([])
+    function searchUser() {
+        for (let u = 0; u < users.length; u++) {
+            if (searched === u.emailAddress) {
+                setSearchedUser(u);
+            }
+        }
+        console.log(searchedUser);
     }
 
     return (
@@ -49,21 +48,20 @@ export default function ViewUsers() {
             <div className='users'>
 
                 <main>
-                    <div className="row" id={"search"}>
+                    <div className="row" id={"search"}> 
                         <div className="column">
                             <h1>Users</h1>
                             <p className='intro'>
                                 Users that have signed up.
                                 <br />
-                                <i>Green Sticker is for active users,
-                                    <br />and the red one is for users who are deactivated.</i>
+                                <i>Green Sticker is for active users, and the red one is for users who are deactivated.</i>
                             </p>
                         </div>
                         <div className="column">
                             <div className="searchBar">
-                                <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
+                                <input type="text" placeholder="Search user by email" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
-                                    <img src={search} alt="searchbar" onClick={searchRoom()} />
+                                    <img src={search} alt="searchbar" onClick={searchUser()} />
                                 </button>
                             </div>
 

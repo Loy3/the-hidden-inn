@@ -27,13 +27,14 @@ function SignIn({ setSignIn }) {
 
         signInWithEmailAndPassword(auth, adminEmail, adminPassword).then(() => {
             alert("sign in sccessfully");
-            setSignIn(true);
-            localStorage.setItem('adminStatus', JSON.stringify(true));
+            
         }).catch((error) => {
             console.log(error.message);
             alert("Incorrect Email or Password");
         })
+
     }
+
 
     function addStyle(event, type) {
         if (type === 1) {

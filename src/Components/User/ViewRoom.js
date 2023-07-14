@@ -1,7 +1,7 @@
 import { db } from '../../Config/Firebase';
 // import { ref, deleteObject, listAll } from 'firebase/storage';
 import { useEffect, useState } from "react";
-import { collection, getDoc, doc } from "firebase/firestore";
+import { collection, getDoc, doc, addDoc } from "firebase/firestore";
 
 
 
@@ -12,6 +12,12 @@ import wifi from "../../Assets/Icons/wifi.png";
 import heater from "../../Assets/Icons/heater.png";
 import safe from "../../Assets/Icons/safe.png";
 import room_serv from "../../Assets/Icons/room-service.png";
+import occupants from "../../Assets/Icons/occu.png";
+import bed from "../../Assets/Icons/bed.png";
+import calender from "../../Assets/Icons/calendar.png";
+
+import occ from "../../Assets/Icons/occu.png";
+import ident from "../../Assets/Icons/id.png";
 import { useNavigate } from 'react-router-dom';
 
 export default function ViewRoom(props) {
@@ -25,9 +31,26 @@ export default function ViewRoom(props) {
     const navigate = useNavigate();
     const [minDate, setMinDate] = useState("");
 
-    useEffect(() => {
-        const docId = props.isUserRoom;
+    const [chInDate, setchInDate] = useState("yyyy-mm-dd");
+    const [chOutDate, setchOutDate] = useState("yyyy-mm-dd");
+    const [numOccc, setnumOccc] = useState("0");
+    const [price, setPrice] = useState(0);
+    const [step, setStep] = useState(0);
 
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const today = new Date();
+    const dayOfWeek = daysOfWeek[today.getDay()];
+    const dayOfMonth = today.getDate();
+    const monthOfYear = monthsOfYear[today.getMonth()];
+    const year = today.getFullYear();
+    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${monthOfYear} ${year}`;
+
+
+    useEffect(() => {
+        const docId = props.roomVariables[0].isUserRoom;
+        console.log(props);
         async function fetchData() {
             const docRef = doc(collection(db, "rooms"), docId);
             const docSnap = await getDoc(docRef);
@@ -101,6 +124,106 @@ export default function ViewRoom(props) {
         navigate("/")
     }
 
+    function bookRoom() {
+        document.getElementById("vRoom").style.display = "none";
+        document.getElementById("book").style.display = "block";
+    }
+
+
+
+    async function roomBooking(event) {
+
+        // const store = {
+        //     roomId: room.id,
+        //     userId: props.roomVariables[0].userId,
+        //     chInDate: chInDate,
+        //     chOutDate: chOutDate,
+        //     guests: numOccc,
+        //     bookedDate: formattedDate
+        // }
+        event.preventDefault();
+
+        // console.log(hotelAddress, hotelCity, hotelZip, hotelLocation, hotelPhNum, hotelEmail, hotelChIn, hotelChOut, hotelPolicy);
+        let price = parseInt(room.roomPrice, 10);
+        console.log(price);
+        if (chInDate !== "" && chOutDate !== "") {
+            const date1 = new Date(chInDate);
+            const date2 = new Date(chOutDate);
+
+            let num = 0;
+            let diffInDays = 0;
+            if (date1.getTime() === date2.getTime()) {
+                num = date1.getTime() - date2.getTime();
+                diffInDays = Math.floor(num / (24 * 60 * 60 * 1000));
+                console.log(diffInDays);
+
+                let num2 = parseInt(numOccc, 10) * 20;
+                price += num2;
+                alert(`Your total amount is R${price}.00, please confirm payment`);
+                setStep(1)
+                setPrice(price);
+                document.getElementById("price").innerHTML = `R${price}.00`;
+
+            } else if (date1.getTime() > date2.getTime()) {
+                num = date2.getTime() - date1.getTime();
+                diffInDays = Math.floor(num / (24 * 60 * 60 * 1000));
+                console.log(diffInDays);
+                alert("Check In Date Cannot be less then Check Out Date");
+            } else if (date1.getTime() < date2.getTime()) {
+                num = date2.getTime() - date1.getTime();
+                diffInDays = Math.floor(num / (24 * 60 * 60 * 1000));
+                console.log(diffInDays);
+                let add = diffInDays * 50;
+                price += add;
+
+                let num2 = parseInt(numOccc, 10) * 20;
+                price += num2;
+                alert(`Your total amount is R${price}.00, please confirm payment`);
+                setStep(1)
+                setPrice(price);
+                document.getElementById("price").innerHTML = `R${price}.00`;
+            }
+        } else {
+            alert("There Was no date added")
+        }
+    }
+
+    async function confirmPayment() {
+        try {
+            await addDoc(collection(db, "bookings"), {
+
+                roomId: room.id,
+                userId: props.roomVariables[0].userId,
+                chInDate: chInDate,
+                chOutDate: chOutDate,
+                guests: numOccc,
+                bookedDate: formattedDate,
+                totalPrice: price
+            });
+            alert("Successful.");
+            window.location.reload();
+        } catch (error) {
+
+        }
+    }
+
+    function handleChange(event, type) {
+        event.preventDefault();
+        switch (type) {
+            case 1:
+                setchInDate(event.target.value)
+                break;
+            case 2:
+                setchOutDate(event.target.value)
+                break;
+            case 3:
+                setnumOccc(event.target.value)
+                break;
+        }
+
+
+
+    }
 
     return (
         <div className='userRoom'>
@@ -116,189 +239,323 @@ export default function ViewRoom(props) {
                 </div>
             </header> */}
 
-            <div id={'vRoom'}>
-
+            <div>
                 {room === [] ? null : <div key={room.id}>
-                    <header>
-                        <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
-                        <div className='imgs'>
-                            <table className='imgTable'>
-                                <tbody>
+                    <div className='roomNav'>
+                        <img src={backToRooms} alt='return to rooms' onClick={toRooms} />
+                    </div>
 
-                                    <tr className='mySubImgs'>
-                                        <td >
+                    <div id={'vRoom'}>
+                        <div className='row' id='roomV'>
+                            <div className='column'>
+                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
+                            </div>
+                            <div className='column'>
+                                <div className='content'>
+                                    <div className='imgs'>
+                                        <table className='imgTable'>
+                                            <tbody>
+                                                <tr className='mySubImgs'>
+                                                    <td >
+                                                        <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />
+                                                    </td>
+                                                    <td>
+                                                        <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
+                                                    </td>
+                                                    <td>
+                                                        <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
+                                                    </td>
+                                                    <td >
+                                                        <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
+                                                        {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
+                                                    </td>
 
-                                            <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />
-                                        </td>
-                                        <td>
-                                            <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
-                                        </td>
-                                        <td>
-                                            <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
-                                        </td>
-                                        <td >
-                                            <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
-                                            {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
-                                        </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h2>{room.roomType}</h2>
+                                                </td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div className='roomNav'>
-                            <img src={backToRooms} alt='return to rooms' onClick={toRooms} />
-                        </div>
-                    </header>
-
-
-                    <div className='content'>
-
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h2>{room.roomType}</h2>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
 
-                        <p>
-                            {room.roomDescript}
-                        </p>
+                                    <p>
+                                        {room.roomDescript}
+                                    </p>
+
+                                    {/* <h3 className='price'>R {room.roomPrice}.00</h3> */}
 
 
+                                    <table className='roomDet'>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img src={occupants} alt='WiFi' width={35} />
+                                                    <br />
+                                                    {room.roomOccupants} occupants
+                                                </td>
 
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td colSpan={2}>
-                                        <h3 className='price'>R {room.roomPrice}.00</h3>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h3>Max Occupants: <span>{room.roomOccupants}</span></h3>
-                                    </td>
-                                    <td>
-                                        <h3>Number Of Rooms: <span>{room.roomQuantity}</span></h3>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={2}>
-                                        <h3>Amenities</h3>
-                                        <ul>
-                                            {amenities.map((doc, index) => (
-                                                <li key={index}>
-                                                    <table>
-                                                        <tbody>
+
+                                                <td>
+                                                    <img src={bed} alt='WiFi' width={35} />
+                                                    <br />
+                                                    {room.roomBedsType}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <br />
+                                    <h2>Amenities</h2>
+                                    <ul className='ameni'>
+                                        {amenities.map((doc, index) => (
+                                            <li key={index}>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
                                                             <td>
                                                                 {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
                                                                 {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
                                                                 {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
                                                                 {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
-
                                                             </td>
                                                             <td>
                                                                 {doc}
                                                             </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <br />
+
+                                    <div className='bookRoom'>
+                                        <button onClick={bookRoom}>
+                                            Book Room
+                                        </button>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id={'book'}>
+
+                        <div className='content'>
+                            <div className='row'>
+                                <div className='column'>
+
+                                    <h2>
+                                        Book
+                                    </h2>
+
+                                    <div id={'bookForm'}>
+                                        <h3>Check Out Date</h3>
+                                        <div className='row' >
+                                            <div className='column'>
+                                                <table className="chIn" id={"chIn"}>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td rowSpan={2}>
+                                                                <img src={calender} alt="CheckIn" width={30} />
+                                                            </td>
+                                                            <td>
+                                                                <h3>Check In & Out Date</h3>
+                                                                <input type="date" className="small" placeholder="dd-mm-yyyy"
+                                                                    min={`${minDate}`} max="2030-12-31" onChange={(event) => handleChange(event, 1)} />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div className='column'>
+                                                <table className="chIn" id={"chIn"}>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td rowSpan={2}>
+                                                                <img src={calender} alt="CheckIn" width={30} />
+                                                            </td>
+                                                            <td>
+                                                                <h3>Check Out Date</h3>
+                                                                <input type="date" className="small" placeholder="dd-mm-yyyy"
+                                                                    min={`${minDate}`} max="2030-12-31" onChange={(event) => handleChange(event, 2)} />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div className='column'>
+                                                <table className="chIn" id={"chIn"}>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td rowSpan={2}>
+                                                                <img src={occ} alt="CheckIn" width={30} />
+                                                            </td>
+                                                            <td>
+                                                                <h3>Number of Occupants</h3>
+                                                                <input type='number' placeholder='Number of occupants' onChange={(event) => handleChange(event, 3)} />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div className='checkout'>
+                                            <h2>Payment</h2>
+                                            <div className='row' >
+                                                <div className='column'>
+                                                    <table className="chIn" id={"chIn"}>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowSpan={2}>
+                                                                    <img src={ident} alt="CheckIn" width={30} />
+                                                                </td>
+                                                                <td>
+                                                                    <h3>Card Name</h3>
+                                                                    <input type='text' placeholder='card name' />
+                                                                </td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
+                                                </div>
 
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button>
-                                            Book
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                                <div className='column'>
+                                                    <table className="chIn" id={"chIn"}>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowSpan={2}>
+                                                                    <img src={ident} alt="CheckIn" width={30} />
+                                                                </td>
+                                                                <td>
+                                                                    <h3>Card Number</h3>
+                                                                    <input type='number' placeholder='Card Number' />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
-                        <div className='bookForm'>
-                            <h2>
-                                Book
-                            </h2>
+                                                <div className='column'>
+                                                    <table className="chIn" id={"chIn"}>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowSpan={2}>
+                                                                    <img src={ident} alt="CheckIn" width={30} />
+                                                                </td>
+                                                                <td>
+                                                                    <h3>Exp. Date</h3>
+                                                                    <input type='number' placeholder='mm/yy' />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
-                            <label>Check In Date</label>
-                            <br />
-                            <input type="date" className="small" placeholder="dd-mm-yyyy"
-                                min={`${minDate}`} max="2030-12-31" />
-                            {/* onChange={(event) => setTaskDueDate(event.target.value)} */}
-                            {/* onChange={(event) => setTaskDueDate(event.target.value)} */}
-                            <br />
+                                                <div className='column'>
+                                                    <table className="chIn" id={"chIn"}>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowSpan={2}>
+                                                                    <img src={ident} alt="CheckIn" width={30} />
+                                                                </td>
+                                                                <td>
+                                                                    <h3>Zip</h3>
+                                                                    <input type='cvv' placeholder='000' />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
-                            <label>Check Out Date</label>
-                            <br />
-                            <input type="date" className="small" placeholder="dd-mm-yyyy"
-                                min={`${minDate}`} max="2030-12-31" />
-                            {/* onChange={(event) => setTaskDueDate(event.target.value)} */}
-                            {/* onChange={(event) => setTaskDueDate(event.target.value)} */}
-                            <br />
-                            <label>Occupants</label>
-                            <br />
-                            <input type='number' placeholder='Number of occupants' />
-                            <br />
 
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>
-                                                Total
-                                                <br />
-                                                R7000
-                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        </td>
-                                        <td>
-                                            <button>Book</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <div className='column' >
+
+                                    <table className='checkoutInfo'>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img src={tempImg === "" ? cam : tempImg} alt='main' className='chMain' width={150} />
+                                                </td>
+                                                <td>
+                                                    <h2>Summary</h2>
+                                                    <br />
+                                                    <h3>
+                                                        {room.roomType}
+                                                    </h3>
+
+                                                    <ul>
+                                                        <li>
+                                                            <p>
+                                                                <img src={calender} alt='calender' width={30} /> {chInDate}
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <img src={calender} alt='calender' width={30} />  {chOutDate}
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+
+                                                    <p>
+                                                        <img src={occ} alt='calender' width={30} />  {numOccc} occupants
+
+                                                    </p>
+                                                    <p>
+                                                        <i>Price to book a room is R{room.roomPrice}.00, for each day you spend at the hotel R50.00 will be added, and R20.00 per occupant(the R20.00 is a once of payment).</i>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h3>Total</h3>
+                                                    <h4 id={"price"}>R{room.roomPrice}.00</h4>
+                                                </td>
+                                                <td>
+                                                    {step === 0 ?
+                                                        <button onClick={roomBooking}>Book</button>
+                                                        :
+                                                        <button onClick={confirmPayment}>Confirm</button>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
                         </div>
 
 
-                        <div className='checkout'>
-                            <table>
-                                <tbody>
-                                    <td>
-                                        <img src={tempImg === "" ? cam : tempImg} alt='main' className='' width={150} />
-                                    </td>
-                                    <td>
-                                        <h2>{room.roomType}</h2>
-                                        <h2>{room.roomBedsType}</h2>
-                                        <p>
-                                            guests
-                                        </p>
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <h2>Payment</h2>
-                            <input type='text' placeholder='card name' />
-                            <br />
-                            <input type='number' placeholder='card number' />
-                            <br />
-                            <input type='number' placeholder='mm/yy' />
-                            <br />
-                            <input type='cvv' placeholder='zip' />
-                            <br />
-                            <button>Pay</button>
-                            <br />
-
-                        </div>
 
                     </div>
+
+
+
+
                 </div>
 
                 }

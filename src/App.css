@@ -133,7 +133,7 @@ body {
     background-color: #fff;
     width: 500px;
     padding: 10px 20px;
-    box-shadow: 0px 0px 18px 1px #FFF5F0;
+    box-shadow: 0px 0px 18px 1px #f0f6ff;
     margin-bottom: 20px;
     position: relative;
 }
@@ -488,8 +488,8 @@ body {
 }
 
 .sideNav h1 {
-    margin: 20px !important;
-    font-size: 28px;
+    margin: 15px !important;
+    font-size: 26px;
     color: #003147;
 }
 
@@ -509,6 +509,14 @@ body {
 
 }
 
+.imgSize1 img {
+    width: 30px;
+}
+
+.imgSize2 img {
+    width: 25px;
+}
+
 .sideNav .sign-outBtn {
     margin: 40vh 20px 20px 20px;
     width: 90%;
@@ -523,7 +531,10 @@ body {
 }
 
 .sideNav .sign-outBtn:hover {
-    background-color: #c50404;
+    background-color: #ff8181;
+
+    border: 2px solid #ff0101;
+    color: #ff0101;
 }
 
 .sideNav .sign-outBtn span {
@@ -547,7 +558,7 @@ body {
 }
 
 .controllers button:focus {
-    border-right: 3px solid #543322;
+    border-right: 3px solid #003147;
 }
 
 .controllers span {
@@ -877,9 +888,8 @@ margin-top: 20px;
 }
 
 .myRooms img {
-
-    width: 35%;
-    height: 100%;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     margin-left: 0px;
     margin-right: 40px;
@@ -1319,22 +1329,35 @@ margin-top: 20px;
     padding: 20px 50px;
 }
 
+
+.userTopNav h1 {
+    padding: 0 10px;
+    margin: 0px 0 0 0;
+    color: #003147;
+    font-weight: normal;
+}
+
+.userTopNav .profile {
+    float: right;
+}
+
 .userTopNav h2 {
     padding: 0 10px;
-    margin: 0;
+    margin: -10px 0 0 0;
     color: #003147;
 }
 
 .userTopNav h3 {
     padding: 0 10px;
-    margin: 0;
+    margin: -10px 0 0 0;
     color: #575757;
 }
 
+
 .userTopNav .profile img {
     border: 3px solid #003147;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 100%;
 }
@@ -1407,6 +1430,21 @@ margin-top: 20px;
 .userBtmNav button:hover {
     margin: 0;
     filter: drop-shadow(5px 5px 5px #003147);
+}
+
+.userBtmNav .signOut {
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    background-color: #ff8181;
+    border-radius: 100%;
+    text-align: center;
+    border: 2px solid #ff0101;
+    margin-left: -10px;
+}
+
+.userBtmNav .signOut img {
+    width: 20px;
 }
 
 /*End of user nav*/
@@ -1535,10 +1573,11 @@ margin-top: 20px;
     border-radius: 0;
 }
 
-.myUsers .profileD h5{
+.myUsers .profileD h5 {
     padding: 0;
     margin: 0 0 0 5px;
     font-size: 17px;
+    font-weight: normal;
 }
 
 @media screen and (width <=700px) {
@@ -1656,7 +1695,7 @@ margin-top: 20px;
     margin: 0;
 }
 
-.userRooms .rows {
+/* .userRooms .rows {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -1673,20 +1712,33 @@ margin-top: 20px;
 
 .userRooms .rows::-webkit-scrollbar-track {
     background-color: #f1f1f1;
-}
+} */
 
+
+.userRooms .columns {
+    width: 23%;
+    color: black;
+    float: left;
+    margin: 10px;
+    background-color: white;
+    /* padding: 10px; */
+    box-shadow: 3px 3px 10px 0px #4F4E4E;
+}
 
 .userRooms .card {
     float: left;
     padding: 0;
-    margin: 0;
-    width: 400px;
-    margin: 20px;
+    margin: 0px;
+    width: 100%;
+    /* margin: 20px; */
     position: relative;
+
 }
 
 .userRooms .card img {
     width: 100%;
+    height: 340px;
+    object-fit: cover;
 }
 
 .userRooms .ratings {
@@ -1694,22 +1746,196 @@ margin-top: 20px;
     top: 0;
     right: 0;
     /* transform: translate(-50%, -50%); */
+
+}
+
+.userRooms .price h2 {
     color: white;
-    font-size: 24px;
-    font-weight: bold;
+    font-weight: normal;
     text-align: right;
+    padding: 0;
+    font-size: 16px;
+
+}
+
+.userRooms .price span {
+    color: #a6dffa;
+    margin-bottom: -100px;
+}
+
+.userRooms .price {
+    padding: 0px 10px;
+    margin: 20px;
+    background-color: #003147;
+}
+
+.myUserRooms .cardContent h2 {
+    padding: 0;
+    margin: 4px;
+    font-size: 20px;
+    color: #003147;
+}
+
+.myUserRooms .cardContent span {
+    padding: 0;
+    margin: -10px 0 0 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: gray;
+}
+
+.myUserRooms .category .align {
+    display: flex;
+    justify-content: center;
+}
 
 
+
+.myUserRooms .cardContent li {
+    display: inline;
+}
+
+.myUserRooms .cardContent ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* to remove default bullets */
+}
+
+.myUserRooms .cardContent li {
+    float: left;
+    width: auto;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.myUserRooms .cardContent li img {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* .myUserRooms{
+    width: 1200px;
+} */
+
+
+
+/* .myUserRooms .category table {
+    width: 50%;
+}
+
+.myUserRooms .category td {
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+} */
+
+.myUserRooms .category h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.myUserRooms .category h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.myUserRooms .category img {
+    width: 40px;
+}
+
+
+.myUserRooms .category li {
+    display: inline;
+    cursor: pointer;
+}
+
+.myUserRooms .category ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    /* to remove default bullets */
+}
+
+.myUserRooms .category li {
+    float: left;
+    width: 60px;
+    padding-right: 20px;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+.userRooms .serach {
+    margin: 50px 0;
+}
+
+.userRooms .searchBar {
+    background: #ffffffb0;
+    box-shadow: none;
+    border: 4px solid white;
+    height: 50px;
+    padding: 10px 15px;
+    flex-shrink: 0;
+    text-align: left !important;
+    float: none;
+    width: 95%;
+    border-radius: 5em;
+}
+
+.userRooms .searchBar button,
+.userRooms .searchBar input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.userRooms .searchBar button {
+    margin: 10px 0 0 0;
+    float: right;
+}
+
+.userRooms .searchBar input {
+    width: 90%;
+    height: 100%;
+    float: left;
 }
 
 /*end of landing page*/
 
 
 /*User View Room*/
+#vRoom {
+    display: block;
+}
+
+#book {
+    display: none;
+}
+
 .userRoom,
 #vRoom {
     margin: 0;
     padding: 0;
+}
+
+.userRoom #roomV img {
+    width: 100%;
+}
+
+.userRoom #roomV {
+    margin: 50px;
+}
+
+.userRoom #roomV .column {
+    width: 45%;
+    float: left;
 }
 
 .userRoom header {
@@ -1721,30 +1947,26 @@ margin-top: 20px;
 
 .userRoom .mainImg {
     width: 100%;
-    height: 100%;
+    height: 550px;
     object-fit: cover;
 }
 
 .userRoom .imgs {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    /* transform: translate(-50%, -50%); */
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: right;
+    margin-top: -10px;
+}
 
-
+.userRoom .imgs table {
+    width: 100%;
 }
 
 .userRoom .imgs img {
     height: 100px;
-    width: 150px;
+    width: 98% !important;
     object-fit: cover;
-    margin-right: 20px;
-    border: 4px solid gray;
-    border-radius: 1em;
+    margin-right: 30px;
+
+    /* border: 4px solid gray; */
+    /* border-radius: 1em; */
 }
 
 .userRoom .roomNav {
@@ -1757,6 +1979,55 @@ margin-top: 20px;
     font-weight: bold;
     text-align: right;
 
+}
+
+#roomV .content h2,
+#book .content h2 {
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+    color: #003147;
+}
+
+#roomV .content p {
+    color: #353535;
+    font-size: 16px;
+    margin: 0;
+}
+
+
+#roomV .content .price {
+    color: #003147;
+    font-size: 32px;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+#roomV .content table {
+    width: 100%;
+}
+
+
+#roomV .content span {
+    color: #003147;
+    font-size: 24px;
+}
+
+#roomV .content .roomDet img {
+    width: 30px;
+}
+
+#roomV .content .roomDet {
+    margin-top: 30px;
+    width: 50%;
+}
+
+#roomV .content .ameni img {
+    width: 35px;
+}
+
+.room img {
+    margin: 10px;
 }
 
 
@@ -1773,7 +2044,10 @@ margin-top: 20px;
 }
 
 .userRoom .content {
-    padding: 50px;
+    padding: 10px 50px;
+    width: 100%;
+
+    position: relative;
 }
 
 .userRoom .content ul {
@@ -1788,6 +2062,129 @@ margin-top: 20px;
     float: left;
     width: auto;
     padding-right: 20px;
+}
+
+
+.userRoom .content .bookRoom {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+}
+
+#book .content {
+    margin-top: 80px;
+}
+
+
+.userRoom #book .column:first-child {
+    width: 55%;
+    float: left;
+}
+
+
+.userRoom #book .column:not(:first-child) {
+    width: 40%;
+    float: left;
+}
+
+#book #bookForm {
+    margin-top: 30px;
+}
+
+#book #bookForm .column {
+    width: 45% !important;
+    float: left;
+}
+
+#book .chIn {
+    background-color: #fff;
+    width: 95%;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 18px 1px #f0f6ff;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+
+#book table {
+    width: 100%;
+}
+
+#book .chIn td:first-child {
+    width: 10%;
+}
+
+#book table h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #003147;
+    font-size: 18px;
+}
+
+#book table td {
+    padding: 0;
+
+}
+
+#book table img {
+    width: 30px;
+    margin: 10px 10px 0 0;
+
+}
+
+#book table input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+
+.checkoutInfo {
+    border-spacing: 20px;
+    border-collapse: separate;
+    background-color: white;
+    box-shadow: 0px 0px 18px 1px #003147;
+}
+
+.checkoutInfo td:first-child {
+    width: 40%;
+}
+
+.checkoutInfo .chMain {
+    width: 100% !important;
+}
+
+.checkoutInfo td:not(:first-child) {
+    padding: 0 20px;
+}
+
+.checkoutInfo h4 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 28px;
+    color: gray;
+}
+
+.checkoutInfo ul {
+    margin: 20px 0 0 0;
+}
+
+.checkoutInfo button {
+    cursor: pointer;
+    width: 200px;
+    border: 2px solid #003147;
+    outline: none;
+    background-color: #a6dffa;
+    color: #003147;
+    padding: 5px;
+    font-size: 18px;
+    float: right;
+}
+
+.checkoutInfo td:first-child img {
+    box-shadow: 0px 0px 10px 1px #5a5a5a;
 }
 
 /*End of User View Room*/
@@ -1909,7 +2306,6 @@ margin-top: 20px;
         background-color: #fff;
         width: 100%;
         padding: 10px;
-        box-shadow: 0px 0px 18px 1px #FFF5F0;
         margin-bottom: 20px;
         position: relative;
     }
@@ -1942,6 +2338,10 @@ margin-top: 20px;
         display: none;
     }
 
+    main {
+        margin-left: 18%;
+        padding: 0 30px 30px 0;
+    }
 
     .top .sign-out {
         width: 45%;
@@ -2067,32 +2467,171 @@ margin-top: 20px;
         position: fixed;
         left: 0;
         top: 0;
-        width: 20%;
+        width: 15%;
         background: #FFF;
         box-shadow: 0px 0px 10px 1px #575757;
         flex-shrink: 0;
     }
 
     .sideNav .sign-outBtn {
-        margin: 45vh 20px 20px 20px;
-        width: 60%;
-        text-align: left;
+        margin: 45vh 10px 10px 8px;
+        width: 45px;
+        height: 45px;
         padding: 5px;
-        margin-bottom: 10px;
+        background-color: #ff8181;
+        border-radius: 100%;
+        text-align: center;
+        border: 2px solid #ff0101;
+    }
 
-        background: whitesmoke;
-
-        outline: none;
-        border: none;
+    .sideNav .sign-outBtn img {
+        width: 23px !important;
     }
 
     .controllers {
-        margin: 50px 20px 0 20px;
+        margin: 50px 10px 0 10px;
 
+    }
+
+    .sideNav .logo {
+        margin-left: 10px;
+    }
+
+    .controllers button {
+        width: 100%;
+        text-align: left;
+        padding: 5px;
+
+    }
+
+    .imgSize1 img {
+        width: 25px;
+    }
+
+    .imgSize2 img {
+        width: 20px;
     }
 
     /*End of Dashboard*/
 
+
+
+    /*Rooms and room*/
+
+    .rooms h1,
+    #room h1 {
+        padding: 0;
+        margin: 0;
+        color: #003147;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .rooms .intro,
+    .room .intro {
+        margin: 0;
+        padding: 0;
+    }
+
+    #search {
+        margin: 0 20px 10px 0px;
+    }
+
+    #search .column {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+
+    #search .column:first-child {
+        text-align: left;
+    }
+
+
+    #search .column:not(:first-child) {
+        text-align: right;
+    }
+
+
+    .searchBar {
+
+        width: 95%;
+        height: 35px;
+        float: none;
+    }
+
+    .searchBar button,
+    .searchBar input {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
+    .searchBar input {
+        width: 85%;
+        height: 100%;
+        font-size: 15px;
+    }
+
+    .searchBar img {
+        width: 25px;
+    }
+
+    #search h1 {
+        font-size: 28px;
+    }
+
+    #search p {
+        font-size: 14px !important;
+    }
+
+    .myRooms .column {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+
+    .myRooms img {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+        margin-left: 0px;
+        margin-right: 0px;
+
+    }
+
+    .myRooms .add {
+
+        padding: 10px;
+        margin: 10px 20px;
+        width: 150px;
+    }
+
+
+    .myRooms .card h2 {
+        margin: 0;
+        padding: 0;
+        color: #003147;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .myRooms .card p {
+        margin: 0;
+        padding: 5px;
+    }
+
+    .myRooms .card button {
+        padding: 8px;
+        float: right;
+        width: 130px;
+        font-size: 16px;
+        font-weight: 100;
+        margin: 10px;
+        margin-bottom: 0px;
+    }
 
     /*New room*/
     .new-room {
@@ -2123,7 +2662,7 @@ margin-top: 20px;
     }
 
     .input-images {
-        width: 350px;
+        width: 250px;
     }
 
     .images-form p {
@@ -2132,35 +2671,36 @@ margin-top: 20px;
         font-size: 14px;
     }
 
-    .room-form .small {
-        width: 90%;
-        margin-right: 10px;
-    }
-
-    .room-form .small2 {
-        width: 96%;
-        margin-right: 10px;
-    }
-
     .room-form select {
         padding: 10px;
     }
 
     .room-form .long {
         width: 90%;
+
+    }
+
+    .room-form textarea {
+        height: 80px;
     }
 
     #displayImg .main {
-        width: 360px;
-        height: 280px;
+        width: 100%;
+        height: 90px;
         object-fit: cover;
         box-shadow: 5px 5px 10px 0px #4F4E4E;
     }
 
+    #displayImg {
+        margin-top: -20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 
     #addImgs .sub {
         width: 116px;
-        height: 90px;
+        height: 80px;
         object-fit: cover;
         box-shadow: 5px 5px 10px 0px #4F4E4E;
     }
@@ -2171,139 +2711,18 @@ margin-top: 20px;
     }
 
     /*End of New room*/
-
-
-    /*Rooms and room*/
-
-    .rooms h1,
-    #room h1 {
-        padding: 0;
-        margin: 0;
-        color: #003147;
-        font-size: 40px;
-        font-weight: bold;
-    }
-
-    .rooms .intro,
-    .room .intro {
-        margin: 0;
-        padding: 0;
-    }
-
-    #search {
-        margin: 0 20px 10px 10px;
-    }
-
-    #search .column {
-        padding: 20px;
-        margin: 0;
-        width: 95%;
-    }
-
-    #search .column:first-child {
-        text-align: left;
-    }
-
-
-    #search .column:not(:first-child) {
-        text-align: right;
-    }
-
-
-    .searchBar {
-
-        width: 100%;
-        height: 40px;
-        float: none;
-    }
-
-    .searchBar button,
-    .searchBar input {
-        outline: none;
-        border: none;
-        background-color: transparent;
-        margin: 0;
-        padding: 0;
-    }
-
-    .searchBar input {
-        width: 90%;
-        height: 100%;
-    }
-
-    .searchBar img {
-        width: 25px;
-    }
-
-    .myRooms .column {
-        padding: 20px;
-        margin: 0;
-        width: 95%;
-    }
-
-    .myRooms img {
-        width: 100%;
-        height: 50%;
-        object-fit: contain;
-        margin-left: 0px;
-        margin-right: 0px;
-
-    }
-
-    .myRooms .add {
-        background-color: #003147;
-        color: white;
-        outline: none;
-        border: none;
-        padding: 10px;
-        margin: 10px 35px;
-        width: 150px;
-    }
-
-    .myRooms .add:hover {
-        background: #6b818a !important;
-        border: 2px solid #003147 !important;
-        color: #003147 !important;
-    }
-
-    .myRooms .card h2 {
-        margin: 0;
-        padding: 0;
-        color: #003147;
-        font-size: 26px;
-        font-weight: 700;
-    }
-
-    .myRooms .card p {
-        margin: 0;
-        padding: 5px;
-    }
-
-    .myRooms .card button {
-        padding: 8px;
-        float: right;
-        width: 130px;
-        font-size: 16px;
-        font-weight: 100;
-        margin: 10px;
-        margin-bottom: 0px;
-    }
-
-
     /*Popup*/
     .box {
         background-color: #f8f8f8;
         /* top: 20px; */
         width: 100%;
-        height: 100%;
+        height: auto;
         z-index: 99;
         padding: 20px;
         margin: 0px;
-        position: relative;
+        position: absolute;
         bottom: 0;
 
-        display: flex;
-        align-items: center;
     }
 
     #popup {
@@ -2342,9 +2761,6 @@ margin-top: 20px;
         display: block;
     }
 
-    #upRoom {
-        display: block;
-    }
 
     .room .roomNav {
         position: absolute;
@@ -2448,72 +2864,65 @@ margin-top: 20px;
         background-color: #f8f8f8;
         /* top: 20px; */
         width: 100%;
-        height: 90%;
+        height: 95%;
         z-index: 99;
         padding: 30px;
         margin: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center
     }
+
+    .room .mypopup h1 {
+        font-size: 30px;
+    }
+
+    .room .box-content {
+        margin: 30px;
+    }
+
+    .room .box .long {
+        width: 90%;
+    }
+
+    .room .box .small {
+        width: 300px;
+    }
+
+    .room .box textarea {
+        width: 300px !important;
+    }
+
+    .room .box button {
+        font-size: 16px;
+        width: 90%;
+    }
+
+
+
+    /*End of popup*/
+
 
     /*End of popup*/
 
 
 
     /*Users*/
-
-
     .myUsers img {
         width: 200px;
         height: 200px;
-        object-fit: cover;
-        margin-left: 0px;
         margin-right: 0px;
-        border-radius: 100%;
-
-
-
     }
-
 
     .myUsers #avail img {
-        width: 100px;
-        height: 100px;
-        border-radius: 0;
-        float: right;
+        width: 50px;
+        height: 50px;
     }
 
-
-
-    .myUsers .card button {
-        border: 2px solid #003147;
-        /* background: transparent; */
-        /* color: #003147; */
-        padding: 10px;
-        /* border-radius: 6px; */
-        /* min-width: 120px; */
-        float: right;
-
-        /*display: inline-flex;
-    gap: 10px; */
-        width: 150px;
-        background: #003147;
-        /* box-shadow: 0px 0px 4px 3px #543322; */
-        border: none;
-        color: white;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        padding: 10px;
-        margin: 10px;
-        margin-bottom: -50px;
-    }
-
-    .myUsers .card button:hover {
-        background: #6b818a !important;
-        border: 2px solid #003147 !important;
-        color: #003147 !important;
-    }
 
     .myUsers .cardContent {
+        text-align: left;
         width: 100%;
         margin-top: 30px;
     }
@@ -2521,13 +2930,720 @@ margin-top: 20px;
     .myUsers .cardContent .column {
         padding: 20px;
         margin: 0;
-        width: 90%;
+        width: 36%;
 
+    }
+
+
+    .myUsers .profileD img {
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+    }
+
+    .myUsers .profileD h5 {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .myUsers .card h2 {
+        margin: 0 0 0 10px;
+        padding: 0;
+        color: #003147;
+        font-size: 26px;
+        font-weight: 700;
     }
 
     /*End of users*/
 
 
+
 }
 
 /*Media*/
+
+
+
+/*User*/
+/*Sign in*/
+.uSignIn {
+    margin: 0px;
+}
+
+.uSignIn .column:first-child {
+    width: 40%;
+    position: fixed;
+    right: 0;
+}
+
+.uSignIn .column:not(:first-child) {
+    width: 60%;
+    color: black;
+    float: left;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.uSignIn #bg {
+    background-image: url("./Assets/Images/bg.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.uSignIn nav {
+    padding: 0 40px;
+}
+
+.uSignIn nav a {
+    margin-right: 30px;
+    font-size: 18px;
+    padding: 10px;
+
+}
+
+.uSignIn nav .active {
+
+    border-bottom: 2px solid #003147;
+
+}
+
+
+.uSignIn .wrapper {
+    margin-left: 5%;
+    margin-top: 5%;
+
+}
+
+.uSignIn h1 {
+    color: #003147;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.uSignIn p {
+    color: #4F4E4E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.uSignIn table {
+    width: 100%;
+}
+
+.uSignIn td:first-child {
+    width: 10%;
+}
+
+.uSignIn table h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #003147;
+    font-size: 18px;
+}
+
+.uSignIn table td {
+    padding: 0;
+
+}
+
+.uSignIn table img {
+    width: 40px;
+    margin: 10px 10px 0 0;
+}
+
+.uSignIn table input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+
+.uSignIn .email,
+.uSignIn .password {
+    background-color: #fff;
+    width: 400px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 18px 1px #f0f6ff;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.uSignIn .tempStyle {
+    background-color: #fff;
+    width: 400px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    position: relative;
+
+    background: #FFF;
+    box-shadow: 0px 0px 18px 1px #003147;
+    border-left: 3px solid #003147;
+}
+
+/* 
+.signIn .email input:focus {
+ border-left: 3px solid #543322;
+  } */
+
+
+.uSignIn .show {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    right: 15px;
+    top: 25px;
+}
+
+.signIn-form p {
+    cursor: pointer;
+    width: 390px;
+    text-align: right;
+    font-size: 16px;
+}
+
+.signIn-form button {
+    width: 400px;
+    padding: 10px;
+    flex-shrink: 0;
+    background: #003147;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.signIn-form button:hover {
+    background: #4d9bc0;
+    color: #003147;
+    border: 2px solid #003147;
+}
+
+.uSignIn .bgLayer {
+    width: 100%;
+    border-radius: 1em;
+    background-color: #003147;
+    opacity: 0.5;
+
+    text-align: center;
+    height: 100%;
+}
+
+/*End of sign in*/
+
+
+/*Sign up*/
+#signUp {
+    display: block;
+}
+
+#register {
+    display: none;
+}
+
+.signUp {
+    margin: 0px;
+}
+
+.signUp .column:first-child {
+    width: 40%;
+    position: fixed;
+    right: 0;
+}
+
+.signUp .column:not(:first-child) {
+    width: 60%;
+    color: black;
+    float: left;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signUp #bg {
+    background-image: url("./Assets/Images/bg.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.signUp nav {
+    padding: 0 40px 30px 40px;
+
+}
+
+.signUp nav a {
+    margin-right: 30px;
+    font-size: 18px;
+    padding: 10px;
+
+}
+
+.signUp nav .active {
+
+    border-bottom: 2px solid #003147;
+
+}
+
+.signUp .wrapper {
+    margin-left: 5%;
+    /* margin-top: 5%;? */
+
+}
+
+.signUp h1 {
+    color: #003147;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.signUp p {
+    color: #4F4E4E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.signUp table {
+    width: 100%;
+}
+
+.signUp td:first-child {
+    width: 10%;
+}
+
+.signUp table h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #003147;
+    font-size: 18px;
+}
+
+.signUp table td {
+    padding: 0;
+
+}
+
+.signUp table img {
+    width: 40px;
+    margin: 10px 10px 0 0;
+}
+
+.signUp table input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+
+.signUp .email,
+.signUp .password {
+    background-color: #fff;
+    width: 400px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 18px 1px #f0f6ff;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.register {
+    width: 700px;
+}
+
+.signUp .register .column {
+    padding: 5px;
+    margin: 0;
+    width: 43%;
+    height: auto;
+    position: unset;
+}
+
+.signUp .register .fname,
+.signUp .register .lname,
+.signUp .register .uname,
+.signUp .register .idNum,
+.signUp .register .email,
+.signUp .register .phNum {
+    background-color: #fff;
+    width: 300px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 18px 1px #f0f6ff;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+.signUp .tempStyle {
+    background-color: #fff;
+    width: 400px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    position: relative;
+
+    background: #FFF;
+    box-shadow: 0px 0px 18px 1px #003147;
+    border-left: 3px solid #003147;
+}
+
+
+.signUp .register table img {
+    width: 30px;
+    margin: 10px 10px 0 0;
+}
+
+
+.signUp .show {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    right: 15px;
+    top: 25px;
+}
+
+.signIn-form p {
+    cursor: pointer;
+    width: 390px;
+    text-align: right;
+    font-size: 16px;
+}
+
+.signIn-form button,
+.reg-form button {
+    width: 400px;
+    padding: 10px;
+    flex-shrink: 0;
+    background: #003147;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.signIn-form button:hover,
+.reg-form button:hover {
+    background: #4d9bc0;
+    color: #003147;
+    border: 2px solid #003147;
+}
+
+.signUp .bgLayer {
+    width: 100%;
+    border-radius: 1em;
+    background-color: #003147;
+    opacity: 0.5;
+
+    text-align: center;
+    height: 100%;
+}
+
+.signUp input[type="file"] {
+    width: 280px;
+    padding: 5px;
+    background-color: white;
+    border: none;
+    color: #555555;
+}
+
+.signUp input[type="file"]::-webkit-file-upload-button {
+    padding: 10px;
+    background-color: #003147;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/*End of sign up*/
+
+
+
+
+
+/*Media*/
+@media screen and (width <=700px) {
+
+    /*Sign In*/
+    .uSignIn,
+    .signUp {
+        margin: 0px;
+    }
+
+    .uSignIn .column:first-child,
+    .signUp .column:first-child {
+        width: 100%;
+        position: unset;
+        right: 0;
+    }
+
+    .uSignIn .column:not(:first-child),
+    .signUp .column:not(:first-child) {
+        width: 100%;
+    }
+
+    .uSignIn #bg,
+    .signUp #bg {
+        height: 20vh;
+        position: unset;
+        top: 0;
+        right: 0;
+    }
+
+    .uSignIn .wrapper,
+    .signUp .wrapper {
+        margin: 30px;
+
+    }
+
+    .uSignIn table h3,
+    .signUp table h3 {
+        font-size: 16px;
+    }
+
+    .uSignIn table img,
+    .signUp table img {
+        width: 40px;
+        margin: 10px 10px 0 0;
+    }
+
+    .uSignIn .email,
+    .signUp .email,
+    .uSignIn .password,
+    .signUp .password {
+        background-color: #fff;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .uSignIn .tempStyle,
+    .signUp .tempStyle {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .signIn-form p {
+        cursor: pointer;
+        width: 100%;
+        text-align: right;
+    }
+
+    .signIn-form button,
+    .reg-form button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+
+    .register {
+        width: 95%;
+        margin: 40px 0;
+    }
+
+    .signUp .register .column {
+        padding: 5px;
+        margin: 0;
+        width: 100%;
+        height: auto;
+        position: unset;
+    }
+
+    .signUp .register .fname,
+    .signUp .register .lname,
+    .signUp .register .uname,
+    .signUp .register .idNum,
+    .signUp .register .email,
+    .signUp .register .phNum {
+        background-color: #fff;
+        width: 100%;
+        padding: 10px;
+        position: relative;
+    }
+
+    .signUp input[type="file"] {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+
+    /*End of Sign In*/
+
+    /*Nav*/
+    .userTopNav {
+        margin: 0;
+        padding: 30px;
+    }
+
+    .userTopNav h1 {
+        font-size: 16px;
+    }
+
+    .userTopNav .profile {
+        float: right;
+    }
+
+    .userTopNav h2 {
+        font-size: 16px;
+    }
+
+    .userTopNav h3 {
+        font-size: 14px;
+    }
+
+
+    .userTopNav .profile img {
+        border: 3px solid #003147;
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+
+    .userBtmNav li {
+        padding: 0 20px;
+    }
+
+    .userBtmNav img {
+        width: 35px;
+    }
+
+
+    /*End of Nav*/
+
+    /*Landing Page*/
+    .userRooms {
+        margin: 30px;
+    }
+
+    .myUserRooms .category h3 {
+
+        font-size: 16px;
+        margin-left: -10px;
+    }
+
+    .myUserRooms .category img {
+        width: 30px;
+    }
+
+    .myUserRooms .category .align {
+        display: unset;
+        justify-content: unset;
+        width: 100%;
+        margin-left: -20px !important;
+    }
+
+    .myUserRooms .category ul {
+        margin-top: 20px;
+        margin: 20px;
+    }
+
+
+    .myUserRooms .category li {
+        float: left;
+        width: 40px;
+        padding-right: 15px;
+        font-size: 12px;
+
+    }
+
+    .userRooms .serach {
+        margin: 50px 0;
+    }
+
+    .userRooms .searchBar {
+        height: 50px;
+        padding: 5px 15px;
+    }
+
+    .userRooms .columns {
+        width: 100%;
+    }
+
+    /*End of Landing page*/
+
+    /*View Room*/
+
+    .userRoom .roomNav {
+        top: 30px;
+        left: 30px;
+    }
+
+    .userRoom #roomV {
+        margin: 0px;
+    }
+
+    .userRoom #roomV .column {
+        width: 100%;
+    }
+
+    .userRoom .content {
+        padding: 15px 20px;
+        width: 90%;
+    
+        position: relative;
+    }
+
+    .userRoom #book .column:first-child {
+        width: 95%;
+        float: left;
+    }
+    
+    
+    .userRoom #book .column:not(:first-child) {
+        width: 95%;
+        float: left;
+    }
+
+    #book #bookForm .column {
+        width: 100% !important;
+        float: left;
+    }
+    
+    #book .chIn {
+        width: 100%;
+    }
+
+    .checkoutInfo {
+        width: 100%;
+      }
+      
+      .checkoutInfo td {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    
+    /*End of view room*/
+}
+
+/*End of media*/
+/*End of User*/

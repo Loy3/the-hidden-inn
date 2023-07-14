@@ -1,50 +1,59 @@
 //getDoc 
 import { useNavigate } from "react-router-dom";
 import { db } from '../../Config/Firebase';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import AdminDashboard from "./AdminDashboard";
 import search from "../../Assets/Icons/search.png";
 import close from "../../Assets/Icons/close.png";
 import AddNewRoom from './AddNewRoom';
 
-export default function ViewRooms({ setRoomStatus }) {
+function ViewRooms({ setRoomStatus }) {
     const navigate = useNavigate()
     const [rooms, setRooms] = useState([]);
+    const [searched, setSearched] = useState('');
+    const [searchedRoom, setSearchedRoom] = useState([]);
+
+    const fetchData = useCallback(async () => {
+        const collectionRef = collection(db, 'rooms');
+        const data = await getDocs(collectionRef);
+        const documents = data.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+        });
+        setRooms(documents);
+        // console.log(documents); 
+    }, [])
 
     useEffect(() => {
-        const fetchData = async () => {
-            const collectionRef = collection(db, 'rooms');
-            const data = await getDocs(collectionRef);
-            const documents = data.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() };
-            });
-            setRooms(documents);
-            // console.log(documents);
-        };
-
         fetchData();
-    }, []);
+    }, [fetchData]);
+
+
+
+
 
     function viewRoom(event, roomID) {
-
         setRoomStatus(roomID);
         navigate("/room");
         document.getElementById("room").style.display = 'block';
     }
 
 
-    const [searched, setSearched] = useState('')
-    const [searchedRoom, setSearchedRoom] = useState([])
-    function searchRoom() {
-        rooms.forEach(rm => {
-            if (searched === rm.roomType) {
-                setSearchedRoom(rm);
+
+    function searchRoom(event) {
+        // rooms.forEach(rm => {
+        //     if (searched === rm.roomType) {
+        //         setSearchedRoom(rm);
+        //     } 
+        // });
+
+        for (let r = 0; r < rooms.length; r++) {
+            if (searched === r.roomType) {
+                setSearchedRoom(r);
             }
-        });
+        }
+        console.log(searchedRoom);
     }
-
-
 
     //Open and close popup
     function openForm() {
@@ -76,7 +85,7 @@ export default function ViewRooms({ setRoomStatus }) {
                             <div className="searchBar">
                                 <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
-                                    <img src={search} alt="searchbar" onClick={searchRoom()} />
+                                    <img src={search} alt="searchbar" onClick={searchRoom} />
                                 </button>
                             </div>
 
@@ -140,3 +149,6 @@ export default function ViewRooms({ setRoomStatus }) {
         </>
     );
 }
+
+
+export default memo(ViewRooms)

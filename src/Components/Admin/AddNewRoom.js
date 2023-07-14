@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { auth, db, storage } from '../../Config/Firebase';
-import { collection, addDoc, Timestamp, getDocs } from "firebase/firestore";
+import { db, storage } from '../../Config/Firebase';
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import cam from "../../Assets/Icons/Camera.png";
@@ -14,7 +14,6 @@ export default function AddNewRoom() {
     const [roomSubImage3, setRoomSubImage3] = useState("");
     const [roomDescript, setRoomDescipt] = useState("");
     const [roomBedsType, setRoomBedsType] = useState("");
-    const [roomAmenities, setRoomAmenities] = useState([]);
     const [roomOccupants, setRoomOccupants] = useState(0);
     const [roomQuantity, setRoomQuantity] = useState(0);
     const [roomLink, setRoomLink] = useState("");
@@ -26,7 +25,7 @@ export default function AddNewRoom() {
     const [subImg1Name, setSubImg1Name] = useState("");
     const [subImg2Name, setSubImg2Name] = useState("");
     const [subImg3Name, setSubImg3Name] = useState("");
-    const [alphabet, setalphabet] = useState("abcdefghijklmnopqrstuvwxyz");
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
     //End of Declarations
 
     //Handle Images
@@ -237,13 +236,13 @@ export default function AddNewRoom() {
                                 <option hidden={true} >
                                     Select Room Type
                                 </option>
-                                <option value={"Single Rooms "}>Single Room </option>
-                                <option value={"Twin or Double Rooms "}>Twin or Double Room </option>
-                                <option value={"Studio Rooms"}>Studio Room</option>
-                                <option value={"Deluxe Rooms"}>Deluxe Room</option>
-                                <option value={"Rooms with a View "}>Room with a View </option>
-                                <option value={"Suites"}>Suite</option>
-                                <option value={"Presidential Suites "}>Presidential Suite </option>
+                                <option value={"Single Room"}>Single Room </option>
+                                <option value={"Twin or Double Room"}>Twin or Double Room </option>
+                                <option value={"Studio Room"}>Studio Room</option>
+                                <option value={"Deluxe Room"}>Deluxe Room</option>
+                                <option value={"Room with a View"}>Room with a View </option>
+                                <option value={"Suite"}>Suite</option>
+                                <option value={"Presidential Suite"}>Presidential Suite </option>
 
                             </select>
 
@@ -271,7 +270,7 @@ export default function AddNewRoom() {
                             <br /><br />
                             <label>Room Amenities</label>
                             <br />
-                            <input type="checkbox" className='check' name="roomAmenities" value="Wi-FI" /><span>Wi-Fi</span>
+                            <input type="checkbox" className='check' name="roomAmenities" value="Wi-Fi" /><span>Wi-Fi</span>
                             <input type="checkbox" className='check' name="roomAmenities" value="Heater" /><span>Heater</span>
                             <input type="checkbox" className='check' name="roomAmenities" value="Room Service" /><span>Room Service</span>
                             <input type="checkbox" className='check' name="roomAmenities" value="In-Room Safe" /><span>In-Room Safe</span>

@@ -6,12 +6,15 @@ import password from '../../Assets/Icons/password.png';
 import show from '../../Assets/Icons/view.png';
 import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
+import User_Register from "./User_Register";
 
-export default function Sign_Up({ setUserSignUp }) {
+export default function Sign_Up() {
+    // { setUserSignUp }
     //Declarations
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [showHidePassword, setShowHidePassword] = useState(false);
+    const [passUserEmail, setPassUserEmail] = useState('');
 
     const navigate = useNavigate();
     //End of Declarations
@@ -45,7 +48,7 @@ export default function Sign_Up({ setUserSignUp }) {
             setPassStatus(true);
         }
     }
-    function handleEmail(event){
+    function handleEmail(event) {
         let new_email = event.target.value;
         setUserEmail(new_email);
 
@@ -62,41 +65,42 @@ export default function Sign_Up({ setUserSignUp }) {
 
     //Sign Up Function
     function userSignUp() {
-       
+
         if (passStatus === true && emailStatus === true) {
             createUserWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
                 alert("sign up sccessfully");
-                setUserSignUp(true);
-                localStorage.setItem("userStatusReg", JSON.stringify(true));
+                //setUserSignUp(true);
+                // localStorage.setItem("userStatusReg", JSON.stringify(true));
                 localStorage.setItem("userEmailAddress", JSON.stringify(userEmail));
-                navigate("/register")
+                // navigate("/register")
+                setPassUserEmail(userEmail);
+                document.getElementById("signUp").style.display = "none";
+                document.getElementById("register").style.display = "block";
             }).catch((error) => {
                 console.log(error.message);
             })
             console.log(userEmail + " " + userPassword);
-        }else {
+        } else {
             alert("Password or email address doesn't reach the requirements")
         }
         //End of Signing up
 
-        
+
     }
 
     function addStyle(event, type) {
+        var getEmail = document.getElementById("email");
+        var getPass = document.getElementById("password");
         if (type === 1) {
-            var getEmail = document.getElementById("email");
             getEmail.classList.remove("email");
             getEmail.classList.add("tempStyle");
 
-            var getPass = document.getElementById("password");
             getPass.classList.remove("tempStyle");
             getPass.classList.add("password");
         } else if (type === 2) {
-            var getEmail = document.getElementById("email");
             getEmail.classList.remove("tempStyle");
             getEmail.classList.add("email");
 
-            var getPass = document.getElementById("password");
             getPass.classList.remove("password");
             getPass.classList.add("tempStyle");
         }
@@ -104,21 +108,25 @@ export default function Sign_Up({ setUserSignUp }) {
 
     }
 
-    function toSignIn(){
-        navigate("/user");
+    function toSignIn() {
+        navigate("/");
     }
 
     return (
         <div className="signUp" >
             <div className="row">
+                <div className="column" id={"bg"}>
+                    <div className="bgLayer"></div>
+                </div>
+
                 <div className="column">
-                    <nav>
-                        <a className="active">Sign In</a>
-                        <a>Hotel</a>
-                    </nav>
+                    {/* <nav>
+                        <a onClick={toSignIn}>Sign In</a>
+                        <a className="active">Sign Up</a>
+                    </nav> */}
 
                     <div className="wrapper">
-                        <div className="sign">
+                        <div className="sign" id={"signUp"}>
                             <h1>Sign Up</h1>
                             <p>Welcome to The Hidden Inn!</p>
                             <br /><br />
@@ -145,7 +153,7 @@ export default function Sign_Up({ setUserSignUp }) {
                                         <tr>
                                             <td rowSpan={2}>
                                                 <img src={password} alt="Email Address" width={30} />
-                                                
+
                                             </td>
                                             <td>
                                                 <h3>Password</h3>
@@ -158,7 +166,7 @@ export default function Sign_Up({ setUserSignUp }) {
                                                     alt="Hide" width={30}
                                                 />
                                                 <div style={errorPasswordMessage !== "Password is strong!" ? { color: "red" } : { color: "green" }}> {errorPasswordMessage} </div>
-                                                
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -166,17 +174,19 @@ export default function Sign_Up({ setUserSignUp }) {
 
 
                                 <button onClick={userSignUp}>Sign Up</button>
-                                <br/>
+                                <br /><br />
                                 <p>
                                     Already have an account? Click <a onClick={toSignIn}>here to sign in</a>
                                 </p>
                             </div>
                         </div>
+
+                        <div id={"register"}>
+                            <User_Register passUserEmail={passUserEmail} />
+                        </div>
                     </div>
                 </div>
-                <div className="column" id={"bg"}>
-                    <div className="bgLayer"></div>
-                </div>
+
             </div>
 
         </div>

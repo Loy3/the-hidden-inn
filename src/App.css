@@ -183,9 +183,7 @@ body {
 }
 
 .signIn-form button:hover {
-    background: #4d9bc0;
-    color: #003147;
-    border: 2px solid #003147;
+    background: #85736b;
 }
 
 .signIn .bgLayer {

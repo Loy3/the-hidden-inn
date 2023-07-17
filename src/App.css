@@ -190,7 +190,6 @@ body {
 
 .signIn .bgLayer {
     width: 100%;
-    border-radius: 1em;
     background-color: #003147;
     opacity: 0.5;
 
@@ -518,7 +517,7 @@ body {
 }
 
 .sideNav .sign-outBtn {
-    margin: 40vh 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
     width: 90%;
     text-align: left;
     padding: 5px;
@@ -794,6 +793,197 @@ margin-top: 20px;
 
 /*End of New room*/
 
+/*Admin View Bookings*/
+.viewBooking h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.viewBooking .intro {
+    margin: 0;
+    padding: 0;
+}
+
+.viewBooking .bookings-content {
+    margin: 50px 30px;
+}
+
+/* .viewBooking .bookings-content .column {
+    width: 30%;
+    color: black;
+    float: left;
+    margin: 0 10px 0 0;
+} */
+
+.viewBooking .bookings-content .booking-card {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.viewBooking .bookings-content .mainRoom {
+    width: 55%;
+    position: relative;
+}
+
+
+.viewBooking .bookings-content .mainImg {
+    width: 100%;
+}
+
+.viewBooking .bookings-content .subImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 3px solid #adadad;
+    /* position: absolute;
+    right: 0; */
+}
+
+.viewBooking .bookings-content h3 {
+    margin: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    color: #003147;
+    width: 50%;
+}
+
+.viewBooking .bookings-content span {
+
+    color: #003147;
+    font-weight: 300;
+}
+
+.viewBooking .bookings-content .user {
+    width: 70%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.viewBooking .bookings-content p {
+    margin: 0;
+    padding: 0;
+}
+
+
+.viewBooking .bookings-content .room {
+    width: 60%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.viewBooking .bookings-content h4 {
+    margin: 0;
+    padding: 0;
+    color: #003147;
+}
+
+.viewBooking .bookings-content .totalPrice {
+    margin-top: 0px;
+    margin-left: 0px;
+    /* position: absolute;
+    right: 0;
+    bottom: 0; */
+    width: 30%;
+}
+
+.viewBooking .bookings-content .totalPrice p {
+    font-size: 30px;
+}
+
+.viewBooking .bookings-content .column {
+    padding: 20px;
+    margin: 0;
+    width: 95%;
+}
+
+.viewBooking .bookings-content .booking-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 10px 6px #575757;
+    position: relative;
+}
+
+
+@media screen and (width <=700px) {
+
+    .viewBooking .bookings-content {
+        margin: -80px 0 0 -10px;
+    }
+
+    .viewBooking .bookings-content .booking-card {
+        margin: 0;
+        padding: 10px;
+        width: 95%;
+        flex-direction: column;
+    }
+
+
+    .viewBooking .bookings-content .column {
+        padding: 20px;
+        margin: 0;
+        width: 95%;
+    }
+
+    .viewBooking .bookings-content .mainRoom {
+        width: 100%;
+    }
+
+    .viewBooking .bookings-content .mainImg {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+        margin-left: 0px;
+        margin-right: 0px;
+
+    }
+
+
+    .viewBooking .bookings-content .user {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .viewBooking .bookings-content p {
+        font-size: 14px;
+    }
+
+
+    .viewBooking .bookings-content .room {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+
+    .viewBooking .bookings-content .totalPrice {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .viewBooking .bookings-content .totalPrice p {
+        font-size: 22px;
+    }
+
+}
+
+
+/*End of Admin View Bookings*/
+
 /*Rooms and room*/
 
 
@@ -878,13 +1068,7 @@ margin-top: 20px;
     background: #fff;
     /* border-radius: 24px; */
     box-shadow: 0px 0px 10px 6px #575757;
-
-    /* width: 100%;
-    height: 400px;
-    flex-shrink: 0;
-
-    background: #FFF;
-    box-shadow: 0px 0px 10px 6px #575757; */
+    position: relative;
 }
 
 .myRooms img {
@@ -932,8 +1116,9 @@ margin-top: 20px;
     padding: 10px;
     /* border-radius: 6px; */
     /* min-width: 120px; */
-    float: right;
-
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
     /*display: inline-flex;
     gap: 10px; */
     width: 150px;
@@ -945,8 +1130,8 @@ margin-top: 20px;
     font-style: normal;
     font-weight: 400;
     padding: 10px;
-    margin: 10px;
-    margin-bottom: -50px;
+    /* margin: 10px; */
+    /* margin-bottom: -50px; */
 }
 
 .myRooms .card button:hover {
@@ -1188,11 +1373,17 @@ margin-top: 20px;
 }
 
 .room-content #roomImgs img {
-    height: 100%;
+    height: 150px;
     width: 100%;
     object-fit: cover;
     box-shadow: 5px 5px 10px 0px #7a7a7a;
 
+}
+
+.room #room .largeImg {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
 }
 
 /* .room-content #roomImgs .column:first-child {
@@ -1326,15 +1517,25 @@ margin-top: 20px;
 /*User Nav*/
 .userTopNav {
     margin: 0;
-    padding: 20px 50px;
+    padding: 10px 50px;
+    background-color: transparent;
+    z-index: 99;
+    position: absolute;
+    width: 93%;
 }
 
+.userTopNav .logo {
+    background-color: whitesmoke;
+    padding: 10px 20px;
+    border-radius: 100%;
+}
 
 .userTopNav h1 {
     padding: 0 10px;
-    margin: 0px 0 0 0;
-    color: #003147;
+    margin: 10px 0 0 0;
+    color: whitesmoke;
     font-weight: normal;
+    font-size: 28px;
 }
 
 .userTopNav .profile {
@@ -1353,11 +1554,15 @@ margin-top: 20px;
     color: #575757;
 }
 
+.userTopNav .hotel {
+    margin-top: 10px;
+    width: 35px;
+}
 
 .userTopNav .profile img {
     border: 3px solid #003147;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 100%;
 }
@@ -1418,6 +1623,13 @@ margin-top: 20px;
     width: 35px;
 }
 
+.userBtmNav .profile {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
 .userBtmNav button {
     margin: 0;
     padding: 0px;
@@ -1462,6 +1674,29 @@ margin-top: 20px;
 .users .intro {
     margin: 0;
     padding: 0;
+}
+
+.users .searchedBtn {
+
+    border: 2px solid #003147;
+    padding: 10px;
+
+    width: 150px;
+    background: #003147;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: unset;
+    padding: 10px;
+    margin: 20px 0;
+    margin-bottom: -50px;
+}
+
+.users .searchedBtn:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
 }
 
 .myUsers .column {
@@ -1589,97 +1824,6 @@ margin-top: 20px;
     }
 }
 
-/*Popup*/
-.userProfile .wrap {
-    background-color: #f8f8f8;
-    /* top: 20px; */
-    width: 350px;
-    height: auto;
-    z-index: 99;
-    padding: 50px;
-    margin: 20px;
-}
-
-.userProfile #userUpdate {
-    display: none;
-    height: 90%;
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-
-}
-
-.userProfile .myPopup {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    background-color: rgba(19, 19, 19, 0.788);
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 20px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    font-size: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.userProfile .myPopup h1 {
-    padding: 0;
-    margin: 0;
-    color: #003147;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.userProfile .myPopup p {
-    margin: 0 0 30px 0;
-    padding: 0;
-}
-
-.userProfile .myPopup .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.userProfile .wrap .close {
-    width: 20px;
-    float: right;
-}
-
-.userProfile .wrap .close:hover {
-    filter: drop-shadow(5px 5px 5px #ff0101);
-}
-
-.userProfile .wrap button {
-    border: 2px solid #003147;
-
-    background: #003147;
-    border: none;
-    color: white;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    padding: 10px;
-
-}
-
-.userProfile .wrap button:hover {
-    background: #6b818a !important;
-    border: 2px solid #003147 !important;
-    color: #003147 !important;
-}
-
-/*End of popup*/
 /*End of users*/
 
 
@@ -1688,11 +1832,73 @@ margin-top: 20px;
 
 /*landing page*/
 .userRooms {
-    margin: 0 0 0 50px;
+    margin: 0;
+}
+
+
+.userRooms header {
+    background-image: url("./Assets/Images/bg.jpg");
+    background-size: cover;
+    height: 65vh;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: left;
+    width: 100%;
+    margin: 0px;
+    top: 0;
+    position: relative;
+}
+
+.userRooms .bgLayer {
+    width: 100%;
+    background-color: #003147;
+    opacity: 0.5;
+
+    text-align: center;
+    height: 100%;
+}
+
+.userRooms .headText {
+    position: absolute;
+    background-color: white;
+    box-shadow: 3px 3px 10px 0px #4F4E4E;
+    width: 40%;
+    height: 30vh;
+    bottom: -70px;
+    right: 50px;
+    z-index: 99;
+    padding: 20px 30px;
+}
+
+.userRooms .headText h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 35px;
+    color: #003147;
+}
+
+.userRooms .headText p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: #4d4d4d;
+}
+
+.userRooms .headText button {
+    width: 150px;
+    cursor: pointer;
+    margin: 20px 0;
+    border: 2px solid #003147;
+    outline: none;
+    background-color: #003147;
+    color: #fff;
+    padding: 5px;
+    font-size: 18px;
 }
 
 .userRooms main {
     margin: 0;
+    padding: 0;
 }
 
 /* .userRooms .rows {
@@ -1716,19 +1922,19 @@ margin-top: 20px;
 
 
 .userRooms .columns {
-    width: 23%;
+    width: 32%;
     color: black;
     float: left;
-    margin: 10px;
-    background-color: white;
+    margin: 0 10px 0 0;
+    background-color: transparent;
     /* padding: 10px; */
-    box-shadow: 3px 3px 10px 0px #4F4E4E;
+
 }
 
 .userRooms .card {
     float: left;
     padding: 0;
-    margin: 0px;
+    margin: 0px 10px 80px 0;
     width: 100%;
     /* margin: 20px; */
     position: relative;
@@ -1769,6 +1975,23 @@ margin-top: 20px;
     background-color: #003147;
 }
 
+.myUserRooms {
+    margin: 70px 0px 1300px 30px;
+    padding-top: 50px;
+    padding-bottom: 150px;
+}
+
+
+.myUserRooms .cardContent {
+    position: absolute;
+    bottom: -50px;
+    left: 10px;
+    background-color: white;
+    width: 88%;
+    padding: 10px;
+    box-shadow: 3px 3px 10px 0px #4F4E4E;
+}
+
 .myUserRooms .cardContent h2 {
     padding: 0;
     margin: 4px;
@@ -1787,6 +2010,7 @@ margin-top: 20px;
 .myUserRooms .category .align {
     display: flex;
     justify-content: center;
+
 }
 
 
@@ -1807,7 +2031,10 @@ margin-top: 20px;
     width: auto;
     padding-right: 10px;
     font-size: 14px;
+
+
 }
+
 
 .myUserRooms .cardContent li img {
     width: 20px !important;
@@ -1863,11 +2090,23 @@ margin-top: 20px;
 
 .myUserRooms .category li {
     float: left;
+    width: 110px;
     width: 60px;
-    padding-right: 20px;
+    padding: 15px;
+    margin-right: 20px;
     font-size: 14px;
     text-align: center;
+    background-color: white;
+    border-radius: 1em;
+}
 
+.myUserRooms .category li:hover {
+    background-color: #003147;
+    color: white;
+}
+
+.myUserRooms .category li:focus {
+    background-color: #003147;
 }
 
 .userRooms .serach {
@@ -1875,16 +2114,20 @@ margin-top: 20px;
 }
 
 .userRooms .searchBar {
-    background: #ffffffb0;
+    background: whitesmoke;
     box-shadow: none;
     border: 4px solid white;
-    height: 50px;
+    height: 40px;
     padding: 10px 15px;
     flex-shrink: 0;
     text-align: left !important;
     float: none;
-    width: 95%;
+    width: 25%;
     border-radius: 5em;
+
+    position: absolute;
+    top: 20px;
+    right: 30px;
 }
 
 .userRooms .searchBar button,
@@ -1897,12 +2140,12 @@ margin-top: 20px;
 }
 
 .userRooms .searchBar button {
-    margin: 10px 0 0 0;
+    margin: 3px 0 0 0;
     float: right;
 }
 
 .userRooms .searchBar input {
-    width: 90%;
+    width: 80%;
     height: 100%;
     float: left;
 }
@@ -2823,8 +3066,6 @@ margin-top: 20px;
         margin: 0px;
     }
 
-
-
     .room-content .column:first-child {
         padding: 0;
         margin: 0;
@@ -2837,7 +3078,7 @@ margin-top: 20px;
         width: 90%;
     }
 
-    .room-content .mainImg {
+    .room-content .largeImg {
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -2847,6 +3088,16 @@ margin-top: 20px;
         margin: 0;
         width: 100%;
         height: 50vh;
+    }
+
+    .room-content #roomImgs {
+        margin: 0 20px;
+    }
+
+    .room-content #roomImgs img {
+        height: 100px;
+        width: 100%;
+
     }
 
     .room-content #roomImgs .column {
@@ -2953,6 +3204,30 @@ margin-top: 20px;
         font-size: 26px;
         font-weight: 700;
     }
+
+    
+.myUserRooms {
+    margin: 70px 0px 00px 30px;
+    padding-top: 50px;
+    padding-bottom: 150px;
+}
+
+
+    .myUserRooms .cardContent ul {
+        margin: 0 -5px;
+        display: unset;
+    }
+
+    .myUserRooms .cardContent ul:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+.myUserRooms .cardContent li {
+  float: left;
+width: 40%;
+}
 
     /*End of users*/
 
@@ -3137,7 +3412,6 @@ margin-top: 20px;
 
 .uSignIn .bgLayer {
     width: 100%;
-    border-radius: 1em;
     background-color: #003147;
     opacity: 0.5;
 
@@ -3357,7 +3631,6 @@ margin-top: 20px;
 
 .signUp .bgLayer {
     width: 100%;
-    border-radius: 1em;
     background-color: #003147;
     opacity: 0.5;
 
@@ -3384,6 +3657,341 @@ margin-top: 20px;
 /*End of sign up*/
 
 
+
+/*User*/
+.userProfile .user-top {
+    width: 100%;
+    height: 40vh;
+    background-color: #006c9e;
+    position: relative;
+}
+
+.userProfile .user-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.userProfile .user-top .bgLayer {
+    width: 100%;
+    background-color: #003147;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    height: 100%;
+}
+
+.userProfile .user-top .sideCard {
+    height: 73vh;
+    width: 22%;
+    margin: 20px 30px;
+    background-color: white;
+    box-shadow: 0px 0px 18px 1px #003147;
+    position: absolute;
+    top: 0vh;
+}
+
+.userProfile .user-top .sideCard img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+.userProfile .sideCard-content {
+    margin: 20px;
+}
+
+.userProfile .sideCard-content p,
+.userProfile .sideCard-content h1 {
+    margin: 5px 0;
+    padding: 0;
+
+}
+
+.userProfile .sideCard-content p {
+    font-size: 16px;
+    color: gray;
+    margin-top: -1px;
+}
+
+.userProfile .sideCard-content h1 {
+    color: #003147;
+}
+
+.userProfile .sideCard-content img {
+    width: 20px !important;
+    height: 20px !important;
+    padding-right: 5px;
+}
+
+.userProfile .user-top .sideCard button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: #003147;
+    color: white;
+    padding: 10px;
+    height: 50px;
+    width: 90%;
+    font-size: 16px;
+}
+
+.userProfile .user-top .sideCard button:hover,
+.userProfile .profile-content button:hover {
+    background-color: #4d9bc0;
+    color: #003147;
+    border: 2px solid #003147;
+    box-shadow: 0 8px 16px 0 #003147;
+}
+
+.userProfile .profile-content {
+    margin: 30px 30px 30px 28%;
+    position: relative;
+}
+
+.userProfile .profile-content img {
+    margin: 5px 10px;
+
+}
+
+.userProfile .profile-content p {
+    margin: -2px 0 0 0;
+    padding: 0;
+}
+
+.userProfile .profile-content button {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: #003147;
+    color: white;
+    padding: 10px;
+    height: 50px;
+    width: 150px;
+    font-size: 14px;
+}
+
+
+
+/*Popup*/
+.userProfile .wrap {
+    background-color: #f8f8f8;
+    /* top: 20px; */
+    width: 350px;
+    height: auto;
+    z-index: 99;
+    padding: 50px;
+    margin: 20px;
+}
+
+.userProfile #userUpdate {
+    display: none;
+    height: 90%;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.userProfile .myPopup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(19, 19, 19, 0.788);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.userProfile .myPopup h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.userProfile .myPopup p {
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
+.userProfile .myPopup .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.userProfile .wrap .close {
+    width: 20px;
+    float: right;
+}
+
+.userProfile .wrap .close:hover {
+    filter: drop-shadow(5px 5px 5px #ff0101);
+}
+
+.userProfile .wrap button {
+    border: 2px solid #003147;
+    width: 100%;
+    background: #003147;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: unset;
+    padding: 5px 10px;
+
+}
+
+.userProfile .wrap button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+.userProfile .wrap input {
+    width: 94%;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #003147;
+}
+
+/*End of popup*/
+/*End of user*/
+
+
+/*User Bookings*/
+.userBookings {
+    margin: 50px;
+}
+
+.userBookings h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.userBookings .intro {
+    margin: 0;
+    padding: 0;
+}
+
+.userBookings .bookings-content {
+    margin: 50px 30px;
+}
+
+.userBookings .bookings-content .column {
+    width: 25%;
+    color: black;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.userBookings .bookings-content .booking-card {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.userBookings .bookings-content .mainRoom {
+    width: 100%;
+    position: relative;
+}
+
+
+.userBookings .bookings-content .mainImg {
+    width: 100%;
+}
+
+.userBookings .bookings-content .subImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 3px solid #adadad;
+
+}
+
+.userBookings .bookings-content h3 {
+    margin: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    color: #003147;
+    width: 50%;
+}
+
+.userBookings .bookings-content span {
+
+    color: #003147;
+    font-weight: 300;
+}
+
+.userBookings .bookings-content .user {
+    width: 80%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.userBookings .bookings-content p {
+    margin: 0;
+    padding: 0;
+}
+
+
+.userBookings .bookings-content .room {
+    width: 90%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.userBookings .bookings-content h4 {
+    margin: 0;
+    padding: 0;
+    color: #003147;
+}
+
+.userBookings .bookings-content .totalPrice {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.userBookings .bookings-content .totalPrice p {
+    font-size: 24px;
+}
+
+/*End of User Bookings*/
 
 
 
@@ -3500,10 +4108,17 @@ margin-top: 20px;
     .userTopNav {
         margin: 0;
         padding: 30px;
+        top: 0;
+        /* width: auto; */
     }
 
+    .userTopNav .hotel {
+        width: 30px;
+    }
+
+
     .userTopNav h1 {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .userTopNav .profile {
@@ -3537,11 +4152,47 @@ margin-top: 20px;
     }
 
 
+
     /*End of Nav*/
 
     /*Landing Page*/
     .userRooms {
-        margin: 30px;
+        margin: 0px;
+    }
+
+    .userRooms header {
+
+        height: 40vh;
+
+    }
+
+    .userRooms .headText {
+        width: 80%;
+        height: 23vh;
+        bottom: -50px;
+        right: 10px;
+
+    }
+
+
+    .userRooms .headText h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 28px;
+        color: #003147;
+    }
+
+    .userRooms .headText p {
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    .userRooms .headText button {
+        width: 150px;
+        font-weight: unset;
+        padding: 5px;
+        font-size: 16px;
     }
 
     .myUserRooms .category h3 {
@@ -3563,7 +4214,14 @@ margin-top: 20px;
 
     .myUserRooms .category ul {
         margin-top: 20px;
-        margin: 20px;
+        margin: 20px 20px 20px -30px;
+
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+
+        position: absolute;
+        width: 100%;
     }
 
 
@@ -3584,8 +4242,46 @@ margin-top: 20px;
         padding: 5px 15px;
     }
 
+    /* 
     .userRooms .columns {
-        width: 100%;
+        /* width: 90% !important; *
+        float: unset;
+        margin-right: 00px;
+    }
+
+    .userRooms .card {
+        width: 400px;
+
+    } */
+
+
+
+    .userRooms .columns {
+        width: 400px;
+        color: black;
+        float: left;
+        margin: 0 5px 0 0;
+        background-color: transparent;
+        /* padding: 10px; */
+
+    }
+
+    .userRooms .card {
+        float: left;
+        padding: 0;
+        margin: 0px 5px 80px 0;
+        width: 350px;
+        /* margin: 20px; */
+        position: relative;
+
+    }
+
+    .userRooms .rows {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        z-index: 99;
     }
 
     /*End of Landing page*/
@@ -3608,7 +4304,7 @@ margin-top: 20px;
     .userRoom .content {
         padding: 15px 20px;
         width: 90%;
-    
+
         position: relative;
     }
 
@@ -3616,8 +4312,8 @@ margin-top: 20px;
         width: 95%;
         float: left;
     }
-    
-    
+
+
     .userRoom #book .column:not(:first-child) {
         width: 95%;
         float: left;
@@ -3627,23 +4323,186 @@ margin-top: 20px;
         width: 100% !important;
         float: left;
     }
-    
+
     #book .chIn {
         width: 100%;
     }
 
     .checkoutInfo {
         width: 100%;
-      }
-      
-      .checkoutInfo td {
+    }
+
+    .checkoutInfo td {
         float: left;
         width: 100%;
         box-sizing: border-box;
-      }
-    
+    }
+
     /*End of view room*/
+
+    /*Profile*/
+    .userProfile .wrap {
+        background-color: #f8f8f8;
+        /* top: 20px; */
+        width: 350px;
+        height: auto;
+        z-index: 99;
+        padding: 50px;
+        margin: 0px;
+    }
+
+    .userProfile .user-top .sideCard {
+        height: auto;
+        width: 85%;
+        margin: 20px 30px;
+        padding-bottom: 20px;
+        top: 10vh;
+        text-align: center;
+    }
+
+    .userProfile .sideCard-content {
+        margin: 0px 20px;
+    }
+
+    .userProfile .user-top .sideCard img {
+        height: 150px;
+    }
+
+
+    .userProfile .user-top .sideCard button {
+        position: unset;
+        top: 0;
+        left: 0;
+        margin: 0 20px;
+        width: 88%;
+    }
+
+    .userProfile .profile-content {
+        margin: 80px 30px 30px 30px;
+
+    }
+
+    .userProfile .profile-content button {
+        width: 100%;
+        bottom: -50px;
+
+    }
+
+    /*End of profile*/
 }
 
 /*End of media*/
 /*End of User*/
+
+
+
+
+
+/*Admin View Bookings*
+.viewBooking h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.viewBooking .intro {
+    margin: 0;
+    padding: 0;
+}
+
+.viewBooking .bookings-content {
+    margin: 50px 30px;
+}
+
+.viewBooking .bookings-content .column {
+    width: 30%;
+    color: black;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.viewBooking .bookings-content .booking-card {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.viewBooking .bookings-content .mainRoom {
+    width: 100%;
+    position: relative;
+}
+
+
+.viewBooking .bookings-content .mainImg {
+    width: 100%;
+}
+
+.viewBooking .bookings-content .subImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 3px solid #adadad;
+   
+}
+
+.viewBooking .bookings-content h3 {
+    margin: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    color: #003147;
+    width: 50%;
+}
+
+.viewBooking .bookings-content span {
+
+    color: #003147;
+    font-weight: 300;
+}
+
+.viewBooking .bookings-content .user {
+    width: 80%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.viewBooking .bookings-content p {
+    margin: 0;
+    padding: 0;
+}
+
+
+.viewBooking .bookings-content .room {
+    width: 90%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.viewBooking .bookings-content h4 {
+    margin: 0;
+    padding: 0;
+    color: #003147;
+}
+
+.viewBooking .bookings-content .totalPrice {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.viewBooking .bookings-content .totalPrice p {
+    font-size: 30px;
+}
+
+
+
+/*End of Admin View Bookings*/

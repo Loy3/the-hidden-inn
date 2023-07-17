@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import AdminDashboard from "./AdminDashboard";
 import search from "../../Assets/Icons/search.png";
 import close from "../../Assets/Icons/close.png";
+
 import AddNewRoom from './AddNewRoom';
 
 function ViewRooms({ setRoomStatus }) {
@@ -40,20 +41,20 @@ function ViewRooms({ setRoomStatus }) {
 
 
 
-    function searchRoom(event) {
-        // rooms.forEach(rm => {
-        //     if (searched === rm.roomType) {
-        //         setSearchedRoom(rm);
-        //     } 
-        // });
+    // function searchRoom(event) {
+    //     // rooms.forEach(rm => {
+    //     //     if (searched === rm.roomType) {
+    //     //         setSearchedRoom(rm);
+    //     //     } 
+    //     // });
 
-        for (let r = 0; r < rooms.length; r++) {
-            if (searched === r.roomType) {
-                setSearchedRoom(r);
-            }
-        }
-        console.log(searchedRoom);
-    }
+    //     for (let r = 0; r < rooms.length; r++) {
+    //         if (searched === r.roomType) {
+    //             setSearchedRoom(r);
+    //         }
+    //     }
+    //     console.log(searchedRoom);
+    // }
 
     //Open and close popup
     function openForm() {
@@ -82,12 +83,12 @@ function ViewRooms({ setRoomStatus }) {
                             </p>
                         </div>
                         <div className="column">
-                            <div className="searchBar">
+                            {/* <div className="searchBar">
                                 <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
                                     <img src={search} alt="searchbar" onClick={searchRoom} />
                                 </button>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>

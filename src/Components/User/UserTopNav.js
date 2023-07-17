@@ -29,36 +29,35 @@ export default function UserTopNav() {
         getUser();
     }, []);
 
-    
+
 
     return (
         <>
             <div className='userTopNav'>
-                {user.map((doc) => (
+                {/* {user.map((doc) => (
                     <div key={doc.id}>
-
-
-                        <div className='row'>
-                            <div className='column'>
-                                <table>
+                        <div className='row'> */}
+                        <table>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <img src={logo} alt="Hotel" width={40} />
+                                            <td className='logo'>
+                                                <img src={logo} alt="Hotel" className="hotel" width={40} />
                                             </td>
                                             <td>
-                                                <h1>The Hidden Inn</h1>
+                                                <h1>The Hidden-Inn</h1>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            <div className='column'>
+                                
 
                             </div>
                             <div className='column'>
-                                <table className='profile'>
+                                {/* <table className='profile'>
                                     <tbody>
                                         <tr>
-                                                                                       <td>
+                                            <td>
 
                                                 <h2>{doc.firstName + " " + doc.lastName}</h2>
                                                 <h3>{doc.emailAddress}</h3>
@@ -66,18 +65,18 @@ export default function UserTopNav() {
                                             <td>
                                                 <img src={doc.userImage} alt='profile' width={80} />
                                             </td>
-                                           
+
                                         </tr>
                                     </tbody>
-                                </table>
-                                
+                                </table> */}
+
 
                             </div>
                         </div>
 
-                    </div>
+                    {/* </div>
                 ))}
-            </div>
+            </div> */}
         </>
     )
 }

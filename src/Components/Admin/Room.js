@@ -259,10 +259,10 @@ export default function Room(props) {
 
                     {room === [] ? null : <div key={room.id}>
                         <div className='row'>
-                            <div className='column' id={'roomImgs'}>
-                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='mainImg' />
+                            <div className='column' >
+                                <img src={roomMainImage === "" ? cam : roomMainImage} alt='main' className='largeImg' />
 
-                                <div className='row'>
+                                <div className='row' id={'roomImgs'}>
                                     <div className='column'>
                                         <img src={tempImg === "" ? cam : tempImg} alt='main' id={'subimg1'} className='tempImgStyle' width={100} onClick={(event) => changeImg(event, 4)} />
                                     </div>
@@ -366,7 +366,7 @@ export default function Room(props) {
                     }
                 </div>
             </div>
-            <br /><br /><br />
+            {/* <br /><br /><br /> */}
 
             <div id={'upRoom'}>
                 <div className='room-form'>
@@ -391,13 +391,13 @@ export default function Room(props) {
                                             <option hidden={true} >
                                                 Select Room Type
                                             </option>
-                                            <option value={"Single Rooms "}>Single Room </option>
-                                            <option value={"Twin or Double Rooms "}>Twin or Double Room </option>
-                                            <option value={"Studio Rooms"}>Studio Room</option>
-                                            <option value={"Deluxe Rooms"}>Deluxe Room</option>
-                                            <option value={"Rooms with a View "}>Room with a View </option>
-                                            <option value={"Suites"}>Suite</option>
-                                            <option value={"Presidential Suites "}>Presidential Suite </option>
+                                            <option value={"Single Room"}>Single Room </option>
+                                            <option value={"Twin or Double Room"}>Twin or Double Room </option>
+                                            <option value={"Studio Room"}>Studio Room</option>
+                                            <option value={"Deluxe Room"}>Deluxe Room</option>
+                                            <option value={"Room with a View "}>Room with a View </option>
+                                            <option value={"Suite"}>Suite</option>
+                                            <option value={"Presidential Suite"}>Presidential Suite </option>
 
                                         </select>
                                         <br />

@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         switch (type) {
             case "dash":
                 // document.getElementById("dashboard").style.display = "block";
-                navigate("/dashboard")
+                navigate("/admin")
                 break;
             case "add":
                 // document.getElementById("dashboard").style.display = "none";
@@ -38,6 +38,10 @@ export default function AdminDashboard() {
             case "rooms":
                 // document.getElementById("dashboard").style.display = "none";
                 navigate("/rooms")
+                break;
+            case "book":
+                // document.getElementById("dashboard").style.display = "none";
+                navigate("/viewBookings")
                 break;
             case "users":
                 // document.getElementById("dashboard").style.display = "none";
@@ -116,7 +120,7 @@ export default function AdminDashboard() {
                                 </tbody>
                             </table>
                         </button>
-                        <button>
+                        <button onClick={(event) => changeMenu(event, "book")}>
                             <table>
                                 <tbody>
                                     <tr>

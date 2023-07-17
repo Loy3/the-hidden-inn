@@ -18,14 +18,12 @@ export default function Sign_In({ setUserSignIn }) {
     //Sign in Function
     function userSignIn() {
 
-        console.log(userEmail + " " + userPassword);
-
         signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
             alert("sign in sccessfully");
             //set status
             setUserSignIn(true);
             // localStorage.setItem('userStatus', JSON.stringify(true));
-            // localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
+            localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
             //end of set status
         }).catch((error) => {
             console.log(error.message);

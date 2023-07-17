@@ -1,6 +1,6 @@
 import { db } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import AdminDashboard from "./AdminDashboard";
 import search from "../../Assets/Icons/search.png";
 import available from "../../Assets/Icons/availablee.png";
@@ -10,37 +10,52 @@ import emailA from "../../Assets/Icons/email.png";
 import phoNum from "../../Assets/Icons/smartphone.png";
 import iDNum from "../../Assets/Icons/id.png";
 import calen from "../../Assets/Icons/calendar.png";
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 export default function ViewUsers() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const collectionRef = collection(db, 'users');
-            const data = await getDocs(collectionRef);
-            const documents = data.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() };
-            });
-            setUsers(documents);
-            console.log(documents);
-        };
 
         fetchData();
     }, []);
 
+    const fetchData = async () => {
+        const collectionRef = collection(db, 'users');
+        const data = await getDocs(collectionRef);
+        const documents = data.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+        });
+        setUsers(documents);
+        // console.log(documents);
+    };
+
     const [searched, setSearched] = useState('')
-    const [searchedUser, setSearchedUser] = useState([])
-    function searchUser() {
-        for (let u = 0; u < users.length; u++) {
-            if (searched === u.emailAddress) {
-                setSearchedUser(u);
-            }
+    const [searchBtn, setsearchBtn] = useState(0);
+    // const [searchedUser, setSearchedUser] = useState([])
+    async function searchUser() {
+        const q = query(collection(db, "users"), where("emailAddress", "==", searched));
+        const querySnapshot = await getDocs(q);
+        const docs = [];
+        querySnapshot.forEach((doc) => {
+            docs.push({ id: doc.id, ...doc.data() });
+        });
+        if (docs === []) {
+            alert("Couldn't find that user.")
+        } else {
+            setUsers(docs);
+            setsearchBtn(1);
         }
-        console.log(searchedUser);
     }
 
+    function allUsers() {
+        fetchData();
+        setsearchBtn(0);
+
+        navigate("/users")
+    }
     return (
         <>
             <AdminDashboard />
@@ -48,7 +63,7 @@ export default function ViewUsers() {
             <div className='users'>
 
                 <main>
-                    <div className="row" id={"search"}> 
+                    <div className="row" id={"search"}>
                         <div className="column">
                             <h1>Users</h1>
                             <p className='intro'>
@@ -56,12 +71,13 @@ export default function ViewUsers() {
                                 <br />
                                 <i>Green Sticker is for active users, and the red one is for users who are deactivated.</i>
                             </p>
+                            {searchBtn === 1 ? <button className='searchedBtn' onClick={allUsers}>View All Users</button> : ""}
                         </div>
                         <div className="column">
                             <div className="searchBar">
                                 <input type="text" placeholder="Search user by email" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
-                                    <img src={search} alt="searchbar" onClick={searchUser()} />
+                                    <img src={search} alt="searchbar" onClick={searchUser} />
                                 </button>
                             </div>
 

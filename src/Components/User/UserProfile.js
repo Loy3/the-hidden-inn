@@ -8,6 +8,13 @@ import { collection, query, where, getDocs, doc, updateDoc } from "firebase/fire
 // import edit from "../../Assets/Icons/editing.png";
 // import trash from "../../Assets/Icons/trash.png";
 import close from "../../Assets/Icons/close.png";
+import userN from "../../Assets/Icons/user.png";
+import emailA from "../../Assets/Icons/email.png";
+import phoNum from "../../Assets/Icons/smartphone.png";
+import iDNum from "../../Assets/Icons/id.png";
+import calen from "../../Assets/Icons/calendar.png";
+import userIcon from "../../Assets/Icons/user.png";
+import exmImg from "../../Assets/Images/bg.jpg";
 
 export default function UserProfile() {
     const email = localStorage.getItem("userEmailAddress");
@@ -118,11 +125,88 @@ export default function UserProfile() {
     return (
         <>
             <div className='userProfile'>
+
+
+
                 {user.map((doc) => (
                     <div key={doc.id}>
+                        <div className="user-top">
+                            <img src={doc.userImage} alt="BG IMg" />
+                            <div className="bgLayer" />
+
+                            <div className="sideCard">
+                                <img src={doc.userImage} alt="BG IMg" />
+                                <div className="sideCard-content">
+                                    <p>First & Last Name</p>
+                                    <h1>
+                                        {doc.firstName + " " + doc.lastName}
+                                    </h1>
+                                </div>
+                                <button onClick={update}>Update Profile</button>
+                            </div>
+                        </div>
+
+                        <div className="profile-content">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={calen} alt="" width={20} />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                Joined Monday, 10 July 2023
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src={userIcon} alt="" width={20} />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                Username: {doc.username}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src={iDNum} alt="" width={20} />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                ID Number: {doc.idNumber}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src={emailA} alt="" width={20} />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                Email Address: {doc.emailAddress}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src={phoNum} alt="" width={20} />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                Phone Number: {doc.phNum}
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <button onClick={deleteUser}>Delete Account</button>
+                        </div>
 
 
-                        <table className='profile'>
+                        {/* <table className='profile'>
                             <tbody>
                                 <tr>
                                     <td>
@@ -137,15 +221,17 @@ export default function UserProfile() {
                                         <h3>{doc.idNumber}</h3>
 
                                         <button onClick={update}>Update</button>
-                                        <button onClick={deleteUser}>Delete</button>
+                                        
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
+ */}
 
                     </div>
                 ))}
+
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
                 <div id={"userUpdate"}>
                     <div className="myPopup">
@@ -159,10 +245,6 @@ export default function UserProfile() {
                                             Update for user: {doc.firstName + " " + doc.lastName}
                                         </p>
 
-
-
-                                        <label>User</label>
-                                        <br />
                                         <input type="text" name='firstName' placeholder={`First Name: ${doc.firstName}`} onChange={handleChange} />
                                         <br />
                                         <input type="text" name='lastName' placeholder={`Last Name: ${doc.lastName}`} onChange={handleChange} />

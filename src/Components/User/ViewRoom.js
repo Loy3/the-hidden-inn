@@ -1,8 +1,9 @@
 import { db } from '../../Config/Firebase';
 // import { ref, deleteObject, listAll } from 'firebase/storage';
-import { useEffect, useState } from "react";
 import { collection, getDoc, doc, addDoc } from "firebase/firestore";
 
+import { useEffect, useState } from "react";
+import { getDocs, query, where } from "firebase/firestore";
 
 
 import cam from "../../Assets/Icons/Camera.png";
@@ -33,6 +34,7 @@ export default function ViewRoom(props) {
 
     const [chInDate, setchInDate] = useState("yyyy-mm-dd");
     const [chOutDate, setchOutDate] = useState("yyyy-mm-dd");
+    const [compBook, setCompBook] = useState([]);
     const [numOccc, setnumOccc] = useState("0");
     const [price, setPrice] = useState(0);
     const [step, setStep] = useState(0);
@@ -71,6 +73,15 @@ export default function ViewRoom(props) {
                     setAmenities(documents.roomAmenities)
                     console.log(documents)
 
+                    const q = query(collection(db, "bookings"), where("roomId", "==", documents.id));
+                    const querySnapshot = await getDocs(q);
+                    const booked = [];
+                    querySnapshot.forEach((doc) => {
+                        booked.push({ id: doc.id, ...doc.data() });
+                    });
+                    setCompBook(booked);
+                    console.log(booked[0].chInDate);
+
 
                 } catch (error) {
                     console.log(error);
@@ -78,6 +89,8 @@ export default function ViewRoom(props) {
             } else {
                 console.log("No such document!");
             }
+
+
         }
 
         fetchData();
@@ -193,7 +206,7 @@ export default function ViewRoom(props) {
             await addDoc(collection(db, "bookings"), {
 
                 roomId: room.id,
-                userId: props.roomVariables[0].userId,
+                userId: props.roomVariables[0].userEmail,
                 chInDate: chInDate,
                 chOutDate: chOutDate,
                 guests: numOccc,
@@ -223,6 +236,48 @@ export default function ViewRoom(props) {
 
 
 
+    }
+
+    function checkAvailability() {
+        const num = parseInt(room.roomQuantity)
+        console.log(num);
+
+        if (compBook.length === num) {
+            if (chInDate !== "yyyy-mm-dd" && chOutDate !== "yyyy-mm-dd") {
+                compBook.forEach(comp => {
+                    const chIndate1 = new Date(chInDate);
+                    const chOutdate1 = new Date(chOutDate);
+
+                    const chIndate2 = new Date(comp.chInDate);
+                    const chOutdate2 = new Date(comp.chOutDate);
+
+                    const datesOverlap = doDatesOverlap(chIndate1, chOutdate1, chIndate2, chOutdate2);
+
+                    if (datesOverlap) {
+                        console.log("Dates clash!");
+                        setStep(2)
+                    } else {
+                        console.log("Dates do not clash!");
+                        setStep(1)
+                    }
+
+                    // if(chIndate1.getDate() < chIndate2.getDate())
+                    // {
+                    //     // if(chOutDate.getDate() < ch)
+                    // }
+
+
+                });
+            } else {
+                alert("Enter both dates")
+            }
+            // alert("No rooms available")
+        }
+    }
+
+
+    function doDatesOverlap(start1, end1, start2, end2) {
+        return (start1 <= end2 && start2 <= end1);
     }
 
     return (
@@ -343,6 +398,7 @@ export default function ViewRoom(props) {
                                         <button onClick={bookRoom}>
                                             Book Room
                                         </button>
+
                                     </div>
 
                                 </div>
@@ -534,10 +590,18 @@ export default function ViewRoom(props) {
                                                     <h4 id={"price"}>R{room.roomPrice}.00</h4>
                                                 </td>
                                                 <td>
+                                                    <button onClick={checkAvailability}>Check Room Availability</button>
                                                     {step === 0 ?
                                                         <button onClick={roomBooking}>Book</button>
                                                         :
                                                         <button onClick={confirmPayment}>Confirm</button>
+                                                    }
+                                                    {step > 1 ?
+
+                                                        <h3>Room Is not available for booking</h3>
+                                                        :
+                                                        null
+
                                                     }
                                                 </td>
                                             </tr>

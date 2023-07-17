@@ -122,9 +122,22 @@ export default function User_Landing_Page({ setUserRoom }) {
                 querySnapshot6.forEach((doc) => {
                     docs6.push({ id: doc.id, ...doc.data() });
                 });
+                console.log(docs6);
+
                 setRooms(docs6);
                 setTitle("Suite(s) || Presidential Suite(s)")
                 console.log("suite");
+                /*  const q = query(
+    collection(db, "collection_name"),
+    where("field_name", "==", "value1"),
+    where("field_name", "==", "value2")
+  );
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });*/
                 break;
             default:
 
@@ -133,15 +146,37 @@ export default function User_Landing_Page({ setUserRoom }) {
 
     }
 
-    
+
+    function topHotel() {
+        document.getElementById('rooms').scrollIntoView({ behavior: 'smooth' });
+    }
+
     return (
         <>
             <UserTopNav />
 
-            <div className='userRooms'>
 
+            <div className='userRooms'>
+                <header>
+                    <div className='bgLayer'></div>
+                    <div className='headText'>
+                        <h2>Welcome to The Hidden Inn Hotel</h2>
+                        <p>Your home away from home, thee third option hotel to visit.</p>
+                        <button onClick={topHotel}>Browse</button>
+
+                    </div>
+                    <div className='serach'>
+                        <div className="searchBar">
+                            <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
+                            <button>
+                                <img src={search} alt="searchbar" onClick={roomType} />
+                            </button>
+                        </div>
+                    </div>
+                </header>
                 <main>
-                    <div className="myUserRooms">
+                    {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
+                    <div className="myUserRooms" id={'rooms'}>
 
                         <div className='category'>
                             <h3>Categories</h3>
@@ -185,14 +220,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                                 </ul>
                             </div>
                         </div>
-                        <div className='serach'>
-                            <div className="searchBar">
-                                <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
-                                <button>
-                                    <img src={search} alt="searchbar" onClick={roomType} />
-                                </button>
-                            </div>
-                        </div>
+
                         <br /><br />
                         <h3>{title}</h3>
                         <div className="rows">
@@ -250,7 +278,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                     </div>
 
 
-                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    {/* <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> */}
                 </main>
 
 

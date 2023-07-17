@@ -19,21 +19,28 @@ import UserProfile from './Components/User/UserProfile';
 import UserHotelView from './Components/User/UserHotelView';
 import Bookings from './Components/User/Bookings';
 import ViewRoom from './Components/User/ViewRoom';
+import ViewBookings from './Components/Admin/ViewBookings';
 
 function App() {
   //Admin Status
 
   const [isSignedIn, setSignIn] = useState(null);
   const [isUserSignedIn, setUserSignIn] = useState(null);
-  const [userId, setUserId] = useState("k1Itqj7pO1XJ5z5IZlCKAMU1sjC3");
+  const [userId, setUserId] = useState("");
+  const [userMail, setUserMail] = useState("");
 
 
   useEffect(() => {
     const checkAuth = (auth);
     const unsubscribe = checkAuth.onAuthStateChanged((user) => {
-      setSignIn(user);
-      setUserId(user.uid);
-      setUserSignIn(user);
+
+      if (user !== null) {
+        console.log(user)
+        setSignIn(user);
+        setUserId(user.uid);
+        setUserMail(user.email)
+        setUserSignIn(user);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -65,11 +72,12 @@ function App() {
   //   roomStatus = JSON.parse(roomSt);
 
   //  }
-  const [isRoom, setRoomStatus] = useState("xPxRWqXXCQ1iwt2SwACu");//Yutn6TyZTW7MUXDc1X37 xPxRWqXXCQ1iwt2SwACu
-  const [isUserRoom, setUserRoom] = useState("UGaS4Oc8VtNFvsBJPt1D");//Yutn6TyZTW7MUXDc1X37 xPxRWqXXCQ1iwt2SwACu
+  const [isRoom, setRoomStatus] = useState("");
+  const [isUserRoom, setUserRoom] = useState("");
   const roomVariables = [
     {
       userId: userId,
+      userEmail: userMail,
       isUserRoom: isUserRoom
     }
   ]
@@ -79,21 +87,22 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Admin */}
-        <Route path='/a' element={isSignedIn ? <Navigate to="dashboard" /> : <SignIn setSignIn={setSignIn} />} />
-        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/" />} />
-        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/" />} />
-        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/" />} />
+        <Route path='/admin' element={isSignedIn ? <DashboardCont /> : <SignIn setSignIn={setSignIn} />} />
+        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/admin" />} />
+        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/admin" />} />
+        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/admin" />} />
         <Route path='/room' element={isRoom !== "" ? <Room isRoom={isRoom} /> : <Navigate to="/rooms" />} />
-        <Route path='/hotel' element={isSignedIn !== "" ? <Hotel /> : <Navigate to="/" />} />
-        <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/" />} />
+        <Route path='/hotel' element={isSignedIn  ? <Hotel /> : <Navigate to="/admin" />} />
+        <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/admin" />} />
+        <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/admin" />} />
 
 
         {/* User  */}
         <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In setUserSignIn={setUserSignIn} />} />
-        <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} />
-        {/* <Route path='/signup' element={<Sign_Up setUserSignUp={setUserSignUp} />} /> */}
-        {/* <Route path='/register' element={isUserSignedUp ? <User_Register setUserSignUp={setUserSignUp} /> : <Navigate to="/signup" />} /> */}
-        <Route path='/home' element={isUserSignedIn ? <User_Landing_Page setUserRoom={setUserRoom} /> : <Sign_In setUserSignIn={setUserSignIn} />} />
+        {/* <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} /> */}
+        <Route path='/signup' element={<Sign_Up setUserSignUp={setUserSignUp} />} />
+        <Route path='/register' element={isUserSignedUp ? <User_Register setUserSignUp={setUserSignUp} /> : <Navigate to="/signup" />} />
+        <Route path='/home' element={isUserSignedIn ? <User_Landing_Page setUserRoom={setUserRoom}  /> : <Sign_In setUserSignIn={setUserSignIn} />} />
         <Route path='/profile' element={isUserSignedIn ? <UserProfile /> : <Sign_In setUserSignIn={setUserSignIn} />} />
         <Route path='/hotelLocation' element={isUserSignedIn ? <UserHotelView /> : <Sign_In setUserSignIn={setUserSignIn} />} />
         <Route path='/bookings' element={isUserSignedIn ? <Bookings /> : <Sign_In setUserSignIn={setUserSignIn} />} />

@@ -2,6 +2,9 @@ import { db } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 
+import fb from "../../Assets/Icons/facebook.png";
+import insta from "../../Assets/Icons/instagram.png";
+import twitt from "../../Assets/Icons/twitter.png";
 import AdminDashboard from './AdminDashboard';
 
 
@@ -18,6 +21,9 @@ export default function DashboardCont() {
     const monthOfYear = monthsOfYear[today.getMonth()];
     const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${monthOfYear}`;
 
+    const [numOfRooms, setnumOfRooms] = useState(0);
+    const [numOfBookings, setnumOfBookings] = useState(0);
+    const [numOfUsers, setnumOfUsers] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,13 +33,25 @@ export default function DashboardCont() {
                 return { id: doc.id, ...doc.data() };
             });
             setHotel(documents);
-            // console.log(documents); 
+            console.log(documents);
+
+            const queryUsers = await getDocs(collection(db, "users"));
+            const numUsers = queryUsers.size;
+            setnumOfUsers(numUsers);
+
+            const queryRooms = await getDocs(collection(db, "rooms"));
+            const numRooms = queryRooms.size;
+            setnumOfRooms(numRooms);
+
+            const queryBookings = await getDocs(collection(db, "bookings"));
+            const numBookings = queryBookings.size;
+            setnumOfBookings(numBookings);
         };
 
         fetchData();
     }, []);
 
-   
+
 
 
     return (
@@ -97,7 +115,7 @@ export default function DashboardCont() {
                                                 </td>
                                                 <td>
                                                     <div className='number'>
-                                                        <span>100</span>
+                                                        <span>{numOfRooms}</span>
                                                     </div>
 
                                                 </td>
@@ -117,7 +135,7 @@ export default function DashboardCont() {
                                                     <br />
                                                 </td>
                                                 <td >
-                                                    <span>100</span>
+                                                    <span>{numOfBookings}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -135,7 +153,7 @@ export default function DashboardCont() {
                                                     <br />
                                                 </td>
                                                 <td>
-                                                    <span>100</span>
+                                                    <span>{numOfUsers}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -211,6 +229,24 @@ export default function DashboardCont() {
                                 <p>{doc.hotelPolicy}</p>
                                 <br />
                                 <iframe src={doc.hotelAddress[0].hotelLocation} width="600" height="450" loading="lazy" title='map' referrerPolicy="no-referrer-when-downgrade"></iframe>
+
+                                <br />
+                                <h5>Socials</h5>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href={doc.socials.facebook} target='_blank'><img src={fb} alt='Facebook' width={30} /></a>
+                                            </td>
+                                            <td>
+                                                <a href={doc.socials.instagram} target='_blank'><img src={insta} alt='Instagram' width={30} /></a>
+                                            </td>
+                                            <td>
+                                                <a href={doc.socials.twitter} target='_blank'><img src={twitt} alt='Twitter' width={30} /></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         ))}
                     </div>
@@ -288,7 +324,7 @@ export default function DashboardCont() {
                 </div> */}
 
 
-                
+
             </main>
         </div>
     )

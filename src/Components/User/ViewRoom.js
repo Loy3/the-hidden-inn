@@ -234,7 +234,7 @@ export default function ViewRoom(props) {
                 break;
         }
 
-
+        setStep(0);
 
     }
 

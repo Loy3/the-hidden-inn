@@ -87,10 +87,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Admin */}
-        <Route path='/' element={isSignedIn ? <Navigate to="dashboard" /> : <SignIn setSignIn={setSignIn} />} />
-        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/" />} />
-        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/" />} />
-        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/" />} />
+        <Route path='/admin' element={isSignedIn ? <DashboardCont /> : <SignIn setSignIn={setSignIn} />} />
+        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/admin" />} />
+        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/admin" />} />
+        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/admin" />} />
         <Route path='/room' element={isRoom !== "" ? <Room isRoom={isRoom} /> : <Navigate to="/rooms" />} />
         <Route path='/hotel' element={isSignedIn  ? <Hotel /> : <Navigate to="/admin" />} />
         <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/admin" />} />
@@ -98,7 +98,8 @@ function App() {
 
 
         {/* User  */}
-        {/* <Route path='/user' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In setUserSignIn={setUserSignIn} />} />
+        <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In setUserSignIn={setUserSignIn} />} />
+        {/* <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} /> */}
         <Route path='/signup' element={<Sign_Up setUserSignUp={setUserSignUp} />} />
         <Route path='/register' element={isUserSignedUp ? <User_Register setUserSignUp={setUserSignUp} /> : <Navigate to="/signup" />} />
         <Route path='/home' element={isUserSignedIn ? <User_Landing_Page setUserRoom={setUserRoom}  /> : <Sign_In setUserSignIn={setUserSignIn} />} />

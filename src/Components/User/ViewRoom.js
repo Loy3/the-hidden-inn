@@ -272,6 +272,8 @@ export default function ViewRoom(props) {
                 alert("Enter both dates")
             }
             // alert("No rooms available")
+        }else{
+            alert("The room is available for booking.")
         }
     }
 

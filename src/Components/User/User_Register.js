@@ -9,17 +9,17 @@ import emailA from "../../Assets/Icons/email.png";
 import phoNum from "../../Assets/Icons/smartphone.png";
 import iDNum from "../../Assets/Icons/id.png";
 
-export default function User_Register() {
+export default function User_Register(props) {
     //Get Email Address
 
-    const email = localStorage.getItem("userEmailAddress");
-    let emailStatus = "";
-    if (email === '' || email === null) {
-        localStorage.setItem('userEmailAddress', JSON.stringify(""))
-    } else {
-        emailStatus = JSON.parse(email);
+    // const email = localStorage.getItem("userEmailAddress");
+    // let emailStatus = "";
+    // if (email === '' || email === null) {
+    //     localStorage.setItem('userEmailAddress', JSON.stringify(""))
+    // } else {
+    //     emailStatus = JSON.parse(email);
 
-    }
+    // }
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -37,7 +37,7 @@ export default function User_Register() {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [username, setusername] = useState("");
-    const [emailAddress, setemailAddress] = useState(emailStatus);
+    const [emailAddress, setemailAddress] = useState(props.userEmail);
     const [phNum, setphNum] = useState("");
     const [idNumber, setidNumber] = useState("");
     const [signUpStatus, setsignUpStatus] = useState("Active"); //Auto set
@@ -49,11 +49,12 @@ export default function User_Register() {
         setuserImage(file);
         console.log(file.name);
     }
+    // console.log(props.userEmail);
 
 
     //Register function
     function regiserUser(event) {
-console.log(emailAddress);
+        console.log(emailAddress);
         try {
             const img = `${userImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
             const userImgPath = `users/${img}`;

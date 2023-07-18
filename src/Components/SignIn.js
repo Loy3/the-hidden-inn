@@ -73,7 +73,7 @@ function SignIn({ setSignIn }) {
                     <div className="wrapper">
                         <div className="sign">
                             <h1>Sign In</h1>
-                            <p>Welcome to The Hidden Inn!</p>
+                            <p>Welcome to The Hidden Inn, Admin!</p>
                             <br /><br />
                             <div className="signIn-form">
 

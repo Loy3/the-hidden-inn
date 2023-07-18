@@ -1,6 +1,6 @@
 import { db } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, and, or } from "firebase/firestore";
 import UserBtmNav from './UserBtmNav';
 import UserTopNav from './UserTopNav';
 import { useNavigate } from 'react-router-dom';
@@ -116,28 +116,25 @@ export default function User_Landing_Page({ setUserRoom }) {
                 console.log("withview");
                 break;
             case "Suite":
-                const q6 = query(collection(db, "rooms"), where("roomType", "==", "Suite"), where("roomType", "==", "Presidential Suite"));
+                const q6 = query(collection(db, "rooms"), or(and(where("roomType", "==", "Suite")), and(where("roomType", "==", "Presidential Suite"))));
                 const querySnapshot6 = await getDocs(q6);
-                const docs6 = [];
+                var docs6 = [];
                 querySnapshot6.forEach((doc) => {
                     docs6.push({ id: doc.id, ...doc.data() });
                 });
+                // const q7 = query(collection(db, "rooms"), where("roomType", "==", "Presidential Suite"));
+                // const querySnapshot7 = await getDocs(q7);
+                // //  docs6 = [];
+                // querySnapshot7.forEach((doc) => {
+                //     docs6.push({ id: doc.id, ...doc.data() });
+                // });
+
                 console.log(docs6);
 
                 setRooms(docs6);
                 setTitle("Suite(s) || Presidential Suite(s)")
                 console.log("suite");
-                /*  const q = query(
-    collection(db, "collection_name"),
-    where("field_name", "==", "value1"),
-    where("field_name", "==", "value2")
-  );
 
-  const querySnapshot = await getDocs(q);
-
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-  });*/
                 break;
             default:
 
@@ -161,7 +158,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                     <div className='bgLayer'></div>
                     <div className='headText'>
                         <h2>Welcome to The Hidden Inn Hotel</h2>
-                        <p>Your home away from home, thee third option hotel to visit.</p>
+                        <p>Your home away from home.</p>
                         <button onClick={topHotel}>Browse</button>
 
                     </div>
@@ -179,7 +176,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                     <div className="myUserRooms" id={'rooms'}>
 
                         <div className='category'>
-                            <h3>Categories</h3>
+                            {/* <h3>Categories</h3> */}
                             <div className='align'>
                                 <ul>
                                     <li onClick={(event) => roomType(event, "All")}>

@@ -37,7 +37,7 @@ export default function ViewRoom(props) {
     const [compBook, setCompBook] = useState([]);
     const [numOccc, setnumOccc] = useState("0");
     const [price, setPrice] = useState(0);
-    const [step, setStep] = useState(0);
+    const [step, setStep] = useState(-1);
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -241,8 +241,9 @@ export default function ViewRoom(props) {
     function checkAvailability() {
         const num = parseInt(room.roomQuantity)
         console.log(num);
-
-        if (compBook.length === num) {
+        var clash = 0;
+        var noClash = 0;
+        if (compBook.length > num) {
             if (chInDate !== "yyyy-mm-dd" && chOutDate !== "yyyy-mm-dd") {
                 compBook.forEach(comp => {
                     const chIndate1 = new Date(chInDate);
@@ -255,25 +256,27 @@ export default function ViewRoom(props) {
 
                     if (datesOverlap) {
                         console.log("Dates clash!");
-                        setStep(2)
+                        clash++;
                     } else {
                         console.log("Dates do not clash!");
-                        setStep(1)
+                        noClash++;
                     }
-
-                    // if(chIndate1.getDate() < chIndate2.getDate())
-                    // {
-                    //     // if(chOutDate.getDate() < ch)
-                    // }
-
-
                 });
+                if (noClash > clash) {
+                       //
+                        alert("Dates do not clash");
+                        setStep(0);
+                } else {
+                    alert("Room not available for those dates.")
+                }
             } else {
                 alert("Enter both dates")
             }
             // alert("No rooms available")
-        }else{
+        } else {
+
             alert("The room is available for booking.")
+            setStep(0)
         }
     }
 
@@ -473,7 +476,11 @@ export default function ViewRoom(props) {
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <div className='column'>
+                                                <button onClick={checkAvailability}>Check Availability</button>
+                                            </div>
                                         </div>
+
 
                                         <br />
                                         <div className='checkout'>
@@ -592,11 +599,16 @@ export default function ViewRoom(props) {
                                                     <h4 id={"price"}>R{room.roomPrice}.00</h4>
                                                 </td>
                                                 <td>
-                                                    <button onClick={checkAvailability}>Check Room Availability</button>
+
                                                     {step === 0 ?
                                                         <button onClick={roomBooking}>Book</button>
                                                         :
+                                                        null
+                                                    }
+                                                    {step === 1 ?
                                                         <button onClick={confirmPayment}>Confirm</button>
+                                                        :
+                                                        null
                                                     }
                                                     {step > 1 ?
 

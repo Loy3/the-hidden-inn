@@ -107,12 +107,7 @@ function ViewRooms({ setRoomStatus }) {
 
                                         <div className="cardContent">
                                             <h2>{doc.roomType}</h2>
-                                            <p>
-                                                R{doc.roomPrice}.00
-                                                <br />
-                                                {doc.roomQuantity} occupants
-
-                                            </p>
+                                          
                                             <button onClick={event => viewRoom(event, doc.id)}>view</button>
                                         </div>
 

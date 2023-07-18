@@ -131,17 +131,18 @@ body {
 .signIn .email,
 .signIn .password {
     background-color: #fff;
-    width: 500px;
-    padding: 10px 20px;
+    width: 400px;
+    padding: 10px 10px;
     box-shadow: 0px 0px 18px 1px #f0f6ff;
     margin-bottom: 20px;
     position: relative;
 }
 
+
 .signIn .tempStyle {
     background-color: #fff;
-    width: 500px;
-    padding: 10px 20px;
+    width: 400px;
+    padding: 10px 10px;
     margin-bottom: 20px;
     position: relative;
 
@@ -1858,28 +1859,28 @@ margin-top: 20px;
 
 .userRooms .headText {
     position: absolute;
-    background-color: white;
-    box-shadow: 3px 3px 10px 0px #4F4E4E;
+    /* background-color: white;
+    box-shadow: 3px 3px 10px 0px #4F4E4E; */
     width: 40%;
-    height: 30vh;
-    bottom: -70px;
-    right: 50px;
+    /* height: 30vh; */
+    bottom: 30px;
+    left: 60px;
     z-index: 99;
-    padding: 20px 30px;
+    /* padding: 20px 30px; */
 }
 
 .userRooms .headText h2 {
     margin: 0;
     padding: 0;
     font-size: 35px;
-    color: #003147;
+    color: white;
 }
 
 .userRooms .headText p {
     margin: 0;
     padding: 0;
     font-size: 20px;
-    color: #4d4d4d;
+    color: #dff6ff;
 }
 
 .userRooms .headText button {
@@ -1974,7 +1975,7 @@ margin-top: 20px;
 }
 
 .myUserRooms {
-    margin: 70px 0px 1300px 30px;
+    margin: 20px 0px 1300px 30px;
     padding-top: 50px;
     padding-bottom: 150px;
 }
@@ -2067,10 +2068,12 @@ margin-top: 20px;
     margin: 0;
     padding: 0;
     font-weight: normal;
+    font-size: 14px;
+    color: #003147;
 }
 
 .myUserRooms .category img {
-    width: 40px;
+    width: 30px;
 }
 
 
@@ -2088,14 +2091,16 @@ margin-top: 20px;
 
 .myUserRooms .category li {
     float: left;
-    width: 110px;
+    /* width: 100px; */
+    height: 60px;
     width: 60px;
     padding: 15px;
     margin-right: 20px;
     font-size: 14px;
     text-align: center;
     background-color: white;
-    border-radius: 1em;
+    border-radius: 100%;
+    border: 3px solid #003147;
 }
 
 .myUserRooms .category li:hover {
@@ -2817,7 +2822,8 @@ margin-top: 20px;
     }
 
     .searchBar img {
-        width: 25px;
+        /* width: 25px; */
+        margin-top: 5px;
     }
 
     #search h1 {
@@ -3203,12 +3209,12 @@ margin-top: 20px;
         font-weight: 700;
     }
 
-    
-.myUserRooms {
-    margin: 70px 0px 00px 30px;
-    padding-top: 50px;
-    padding-bottom: 150px;
-}
+
+    .myUserRooms {
+        margin: 00px 0px 00px 30px;
+        padding-top: 50px;
+        padding-bottom: 150px;
+    }
 
 
     .myUserRooms .cardContent ul {
@@ -3221,11 +3227,11 @@ margin-top: 20px;
         display: table;
         clear: both;
     }
-    
-.myUserRooms .cardContent li {
-  float: left;
-width: 40%;
-}
+
+    .myUserRooms .cardContent li {
+        float: left;
+        width: 40%;
+    }
 
     /*End of users*/
 
@@ -4107,17 +4113,26 @@ width: 40%;
         margin: 0;
         padding: 30px;
         top: 0;
-        /* width: auto; */
+        /* max-width: 100%; */
+        width: auto;
     }
 
     .userTopNav .hotel {
-        width: 30px;
+        margin-top: 5;
+        width: 25px;
+
+    }
+
+    .userTopNav .logo {
+        padding: 8px 15px;
+        border-radius: 100%;
     }
 
 
-    .userTopNav h1 {
-        font-size: 20px;
-    }
+    /* .userTopNav h1 {
+        /* font-size: 20px; *
+        /* display: none; *
+    } */
 
     .userTopNav .profile {
         float: right;
@@ -4129,7 +4144,7 @@ width: 40%;
 
     .userTopNav h3 {
         font-size: 14px;
-    }
+            }
 
 
     .userTopNav .profile img {
@@ -4150,7 +4165,6 @@ width: 40%;
     }
 
 
-
     /*End of Nav*/
 
     /*Landing Page*/
@@ -4166,10 +4180,9 @@ width: 40%;
 
     .userRooms .headText {
         width: 80%;
-        height: 23vh;
-        bottom: -50px;
-        right: 10px;
-
+        /* height: 23vh; */
+        bottom: 90px;
+        left: 30px;
     }
 
 
@@ -4177,7 +4190,6 @@ width: 40%;
         margin: 0;
         padding: 0;
         font-size: 28px;
-        color: #003147;
     }
 
     .userRooms .headText p {
@@ -4191,6 +4203,7 @@ width: 40%;
         font-weight: unset;
         padding: 5px;
         font-size: 16px;
+        display: none;
     }
 
     .myUserRooms .category h3 {
@@ -4211,24 +4224,46 @@ width: 40%;
     }
 
     .myUserRooms .category ul {
-        margin-top: 20px;
-        margin: 20px 20px 20px -30px;
-
+        /* margin-top: 20px; */
+        /* margin: ; */
+        /* display: unset; */
+        /* 
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
 
-        position: absolute;
+        position: absolute;*/
         width: 100%;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
+
+    /* .myUserRooms .category ul {
+        margin: 0 -5px;
+    } */
+
+    .myUserRooms .category ul:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
 
 
     .myUserRooms .category li {
         float: left;
-        width: 40px;
+        width: 10%;
+        height: 35px;
         padding-right: 15px;
         font-size: 12px;
+        margin: 10px 10px 10px 0;
+    }
 
+    .myUserRooms .category h4 {
+        display: none;
     }
 
     .userRooms .serach {
@@ -4236,8 +4271,12 @@ width: 40%;
     }
 
     .userRooms .searchBar {
-        height: 50px;
+        height: 55px;
+        width: 83%;
         padding: 5px 15px;
+        
+        top: 36vh;
+        right: 10px;
     }
 
     /* 
@@ -4255,7 +4294,7 @@ width: 40%;
 
 
     .userRooms .columns {
-        width: 400px;
+        width: 350px;
         color: black;
         float: left;
         margin: 0 5px 0 0;
@@ -4280,6 +4319,7 @@ width: 40%;
         overflow-x: auto;
         scrollbar-width: none;
         z-index: 99;
+        max-width: 100%;
     }
 
     /*End of Landing page*/

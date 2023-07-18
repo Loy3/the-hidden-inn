@@ -71,7 +71,7 @@ export default function Sign_Up() {
                 alert("sign up sccessfully");
                 //setUserSignUp(true);
                 // localStorage.setItem("userStatusReg", JSON.stringify(true));
-                localStorage.setItem("userEmailAddress", JSON.stringify(userEmail));
+                //localStorage.setItem("userEmailAddress", JSON.stringify(userEmail));
                 // navigate("/register")
                 setPassUserEmail(userEmail);
                 document.getElementById("signUp").style.display = "none";
@@ -79,7 +79,7 @@ export default function Sign_Up() {
             }).catch((error) => {
                 console.log(error.message);
             })
-            console.log(userEmail + " " + userPassword);
+            // console.log(userEmail + " " + userPassword);
         } else {
             alert("Password or email address doesn't reach the requirements")
         }
@@ -182,7 +182,7 @@ export default function Sign_Up() {
                         </div>
 
                         <div id={"register"}>
-                            <User_Register passUserEmail={passUserEmail} />
+                            <User_Register userEmail={userEmail} />
                         </div>
                     </div>
                 </div>

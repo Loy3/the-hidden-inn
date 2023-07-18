@@ -7,6 +7,9 @@ import show from '../../Assets/Icons/view.png';
 import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
 
+import { db } from '../../Config/Firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
+
 export default function Sign_In({ setUserSignIn }) {
     //Declarations
     const [userEmail, setUserEmail] = useState('');
@@ -16,19 +19,31 @@ export default function Sign_In({ setUserSignIn }) {
     //End of Declarations
 
     //Sign in Function
-    function userSignIn() {
+    async function userSignIn() {
 
-        signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
-            alert("sign in sccessfully");
-            //set status
-            setUserSignIn(true);
-            // localStorage.setItem('userStatus', JSON.stringify(true));
-            localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
-            //end of set status
-        }).catch((error) => {
-            console.log(error.message);
-            alert("Incorrect Email or Password");
-        })
+        if (userEmail !== "" && userPassword !== "") {
+            const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.docs[0]?.exists) {
+                signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
+                    alert("sign in sccessfully");
+                    //set status
+                    setUserSignIn(true);
+                    // localStorage.setItem('userStatus', JSON.stringify(true));
+                    localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
+                    //end of set status
+                }).catch((error) => {
+                    // console.log(error.message);
+                    alert("Incorrect Email or Password");
+                })
+            } else {
+                console.log("Not exists");
+            }
+        } else {
+            alert("Require both email address and password.");
+        }
+
+
     }
 
     function addStyle(event, type) {
@@ -111,9 +126,9 @@ export default function Sign_In({ setUserSignIn }) {
                                         </tbody>
                                     </table>
 
-                                    <p>
+                                    {/* <p>
                                         <a>Reset Password</a>
-                                    </p>
+                                    </p> */}
                                     <button onClick={userSignIn}>Sign In</button>
                                     <br /><br />
                                     <p>Don't have an account? <a onClick={toSignUp}>Sign Up</a></p>
@@ -121,7 +136,7 @@ export default function Sign_In({ setUserSignIn }) {
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@ export default function AddNewRoom() {
         try {
             await addDoc(collection(db, "rooms"), {
                 roomType: roomType,
-                roomPrice: roomPrice,
+                roomPrice: parseInt(roomPrice),
                 roomImages: [{
                     roomMainImage: { imageName: mainImgName, imageUrl: url }
                 },
@@ -96,6 +96,7 @@ export default function AddNewRoom() {
                 date: Timestamp.fromDate(new Date()),
                 roomImageLink: roomLink,
                 roomLike: 0,
+                ratings: [0]
                 // roomDisLike: 0
             });
             alert("Successful.");

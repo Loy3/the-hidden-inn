@@ -1,9 +1,9 @@
 import { db } from '../../Config/Firebase';
 // import { ref, deleteObject, listAll } from 'firebase/storage';
-import { collection, getDoc, doc, addDoc } from "firebase/firestore";
+import { collection, getDoc, doc, addDoc, arrayUnion } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
-import { getDocs, query, where } from "firebase/firestore";
+import { getDocs, query, where, updateDoc } from "firebase/firestore";
 
 
 import cam from "../../Assets/Icons/Camera.png";
@@ -38,6 +38,8 @@ export default function ViewRoom(props) {
     const [numOccc, setnumOccc] = useState("0");
     const [price, setPrice] = useState(0);
     const [step, setStep] = useState(-1);
+    const [rating, setRating] = useState(0);
+    const [status, setStatus] = useState(0);
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -90,7 +92,6 @@ export default function ViewRoom(props) {
                 console.log("No such document!");
             }
 
-
         }
 
         fetchData();
@@ -142,18 +143,24 @@ export default function ViewRoom(props) {
         document.getElementById("book").style.display = "block";
     }
 
+    const handleRatingClick = (value, roomId) => {
+        addRatingToDoc(roomId, value);
+
+        setRating(value);
+
+    };
+
+    const addRatingToDoc = async (docId, valueToAdd) => {
+        const docRef = doc(db, "rooms", docId);
+        await updateDoc(docRef, {
+            ["ratings"]: arrayUnion(valueToAdd)
+        });
+        setStatus(1);
+    };
+
 
 
     async function roomBooking(event) {
-
-        // const store = {
-        //     roomId: room.id,
-        //     userId: props.roomVariables[0].userId,
-        //     chInDate: chInDate,
-        //     chOutDate: chOutDate,
-        //     guests: numOccc,
-        //     bookedDate: formattedDate
-        // }
         event.preventDefault();
 
         // console.log(hotelAddress, hotelCity, hotelZip, hotelLocation, hotelPhNum, hotelEmail, hotelChIn, hotelChOut, hotelPolicy);
@@ -232,6 +239,7 @@ export default function ViewRoom(props) {
             case 3:
                 setnumOccc(event.target.value)
                 break;
+            default:
         }
 
         setStep(0);
@@ -263,9 +271,9 @@ export default function ViewRoom(props) {
                     }
                 });
                 if (noClash > clash) {
-                       //
-                        alert("Dates do not clash");
-                        setStep(0);
+                    //
+                    alert("Dates do not clash");
+                    setStep(0);
                 } else {
                     alert("Room not available for those dates.")
                 }
@@ -398,7 +406,21 @@ export default function ViewRoom(props) {
                                         ))}
                                     </ul>
                                     <br />
-
+                                    <div>
+                                        <p>Please rate this item:</p>
+                                        {status === 0 ?
+                                            [1, 2, 3, 4, 5].map((value) => (
+                                                <span
+                                                    key={value}
+                                                    onClick={() => handleRatingClick(value, room.id)}
+                                                    style={{ cursor: 'pointer', color: value <= rating ? 'gold' : 'grey' }}
+                                                >
+                                                    ★
+                                                </span>
+                                            ))
+                                            : <h5>Thank you for rating!</h5>}
+                                    </div>
+                                    <br />
                                     <div className='bookRoom'>
                                         <button onClick={bookRoom}>
                                             Book Room
@@ -454,7 +476,7 @@ export default function ViewRoom(props) {
                                                             <td>
                                                                 <h3>Check Out Date</h3>
                                                                 <input type="date" className="small" placeholder="dd-mm-yyyy"
-                                                                    min={`${minDate}`} max="2030-12-31" onChange={(event) => handleChange(event, 2)} />
+                                                                    min={chInDate === "yyyy-mm-dd" ?`${minDate}` : chInDate} max="2030-12-31" onChange={(event) => handleChange(event, 2)} />
                                                             </td>
                                                         </tr>
                                                     </tbody>

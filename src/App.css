@@ -1521,12 +1521,15 @@ margin-top: 20px;
     z-index: 99;
     position: absolute;
     width: 93%;
+    top: 0;
+    /* background-color: whitesmoke; */
 }
 
 .userTopNav .logo {
     background-color: whitesmoke;
     padding: 10px 20px;
     border-radius: 100%;
+
 }
 
 .userTopNav h1 {
@@ -1539,18 +1542,22 @@ margin-top: 20px;
 
 .userTopNav .profile {
     float: right;
+    margin-top: 10px;
 }
 
 .userTopNav h2 {
     padding: 0 10px;
     margin: -10px 0 0 0;
     color: #003147;
+    font-weight: unset;
+    text-align: right;
 }
 
 .userTopNav h3 {
     padding: 0 10px;
     margin: -10px 0 0 0;
-    color: #575757;
+    color: #adadad;
+    font-weight: unset;
 }
 
 .userTopNav .hotel {
@@ -1834,18 +1841,20 @@ margin-top: 20px;
     margin: 0;
 }
 
-
 .userRooms header {
-    background-image: url("./Assets/Images/bg.jpg");
-    background-size: cover;
-    height: 65vh;
-    background-position: center;
-    background-attachment: fixed;
+    /* height: 100vh; */
     text-align: left;
-    width: 100%;
+    max-width: 100%;
     margin: 0px;
     top: 0;
     position: relative;
+    z-index: 99;
+    background-image: url("./Assets/Images/bg.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    background-attachment: fixed;
+
 }
 
 .userRooms .bgLayer {
@@ -1855,15 +1864,18 @@ margin-top: 20px;
 
     text-align: center;
     height: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 0;
 }
 
 .userRooms .headText {
     position: absolute;
     /* background-color: white;
     box-shadow: 3px 3px 10px 0px #4F4E4E; */
-    width: 40%;
+    width: 60%;
     /* height: 30vh; */
-    bottom: 30px;
+    top: 30vh;
     left: 60px;
     z-index: 99;
     /* padding: 20px 30px; */
@@ -1872,15 +1884,16 @@ margin-top: 20px;
 .userRooms .headText h2 {
     margin: 0;
     padding: 0;
-    font-size: 35px;
+    font-size: 50px;
     color: white;
 }
 
 .userRooms .headText p {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    color: #dff6ff;
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: lighter;
 }
 
 .userRooms .headText button {
@@ -1893,6 +1906,96 @@ margin-top: 20px;
     color: #fff;
     padding: 5px;
     font-size: 18px;
+}
+
+.userRooms .hotelDetails {
+    width: 50%;
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
+    background-color: whitesmoke;
+    padding: 15px 5px 15px 20px;
+    box-shadow: 3px 3px 10px 0px #003147;
+    z-index: 1;
+}
+
+.userRooms .hotelDetails .column {
+    width: 28%;
+    color: black;
+    float: left;
+    margin: 0 0px 0 0;
+}
+
+.userRooms .hotelDetails .column:last-child {
+    width: 15% !important;
+    height: inherit;
+}
+
+.userRooms .hotelDetails h5 {
+    padding: 0 15px 5px 0;
+    margin: 0;
+    font-size: 18px;
+    color: #003147;
+}
+
+.userRooms .hotelDetails p {
+    padding: 0;
+    margin: 0;
+}
+
+.userRooms .hotelDetails button {
+    width: 100%;
+    height: 140px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: #003147;
+}
+
+.userRooms .popular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+
+}
+
+.userRooms .popular .size {
+    width: 1100px;
+}
+
+.userRooms .popular .column {
+    width: 30%;
+    color: black;
+    float: left;
+    padding: 0 10px;
+}
+
+.userRooms .popular .card {
+    position: relative;
+}
+
+.userRooms .popular .cardContent {
+    background-color: whitesmoke;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    width: 80%;
+    padding: 10px;
+}
+
+.userRooms .popular .cardContent h2 {
+    margin: 0;
+    padding: 0;
+    color: #003147;
+    font-weight: unset;
+}
+
+.userRooms .popular .cardContent span {
+    font-size: 16px;
+    color: #616060;
+    margin: 0;
+    padding: 0;
 }
 
 .userRooms main {
@@ -1978,6 +2081,7 @@ margin-top: 20px;
     margin: 20px 0px 1300px 30px;
     padding-top: 50px;
     padding-bottom: 150px;
+    padding-left: 18%;
 }
 
 
@@ -2006,11 +2110,6 @@ margin-top: 20px;
     color: gray;
 }
 
-.myUserRooms .category .align {
-    display: flex;
-    justify-content: center;
-
-}
 
 
 
@@ -2057,14 +2156,91 @@ margin-top: 20px;
     padding: 0;
 } */
 
-.myUserRooms .category h3 {
+.userRooms .category #close-menu {
+    width: 15px !important;
+    float: right;
+    display: none;
+}
+
+.userRooms .category {
+    width: 15%;
+    background-color: white;
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    padding: 20px;
+}
+
+
+.userRooms .category h1 {
+    padding: 0;
+    margin: 0;
+    color: #003147;
+    font-weight: normal;
+    font-size: 28px;
+}
+
+.userRooms .category table {
+    width: 100%;
+    border-bottom: 3px solid #00304781;
+}
+
+/* 
+.userRooms .category .align {
+    display: flex;
+    justify-content: center;
+
+} */
+
+.userRooms .category .filters table {
+    border: none;
+    text-align: left !important;
+}
+
+.userRooms .category .filters td:first-child {
+    width: 20%;
+}
+
+.userRooms .category .filters img {
+    width: 35px;
+}
+
+.userRooms .category .filters h4 {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+
+}
+
+.userRooms .category .filters button {
+    width: 100%;
+    text-align: left;
+    padding: 3px 10px;
+    margin: 5px 0;
+    background-color: whitesmoke;
+    border: none;
+
+}
+
+.userRooms .category .filters button:hover {
+    box-shadow: 3px 3px 10px 0px #4F4E4E;
+}
+
+.userRooms .category .filters button:focus {
+    border-right: 3px solid #003147;
+}
+
+
+.userRooms .category h3 {
     margin: 0;
     padding: 0;
     font-weight: normal;
     font-size: 20px;
 }
 
-.myUserRooms .category h4 {
+.userRooms .category h4 {
     margin: 0;
     padding: 0;
     font-weight: normal;
@@ -2072,26 +2248,44 @@ margin-top: 20px;
     color: #003147;
 }
 
-.myUserRooms .category img {
+.userRooms .category img {
     width: 30px;
 }
 
+/* 
 
-.myUserRooms .category li {
+.userRooms .category li {
     display: inline;
     cursor: pointer;
 }
+  var docs7 = [];
+                var num = 0;
+                rooms.forEach(r => {
+                    if (parseInt(r.roomPrice) >= 500 && parseInt(r.roomPrice) < 1000) {
+                        docs7.push(r);
+                        
+                    }
+                });
+                // const q7 = query(collection(db, "rooms"), (where("roomPrice", "<=", 1000)));
+                // const querySnapshot7 = await getDocs(q7);
+                // var docs7 = [];
+                // querySnapshot7.forEach((doc) => {
+                //     docs7.push({ id: doc.id, ...doc.data() });
+                // });
+                console.log(docs7);
+                setDisplayRpoms(docs7);
+                setTitle("Room(s)")
 
-.myUserRooms .category ul {
+.userRooms .category ul {
     display: flex;
     list-style: none;
     padding: 0;
-    /* to remove default bullets */
+    to remove default bullets
 }
 
-.myUserRooms .category li {
+.userRooms .category li {
     float: left;
-    /* width: 100px; */
+    width: 100px;
     height: 60px;
     width: 60px;
     padding: 15px;
@@ -2103,21 +2297,33 @@ margin-top: 20px;
     border: 3px solid #003147;
 }
 
-.myUserRooms .category li:hover {
+.userRooms .category li:hover {
     background-color: #003147;
     color: white;
+} */
+/* 
+.userRooms .category li:focus {
+    background-color: #003147;
+} */
+
+.userRooms nav {
+    margin-left: 18%;
+    position: relative;
 }
 
-.myUserRooms .category li:focus {
-    background-color: #003147;
+.userRooms nav .column {
+    width: 50%;
+    float: left;
+
 }
+
 
 .userRooms .serach {
-    margin: 50px 0;
+    margin: 0;
 }
 
 .userRooms .searchBar {
-    background: whitesmoke;
+    background: white;
     box-shadow: none;
     border: 4px solid white;
     height: 40px;
@@ -2126,11 +2332,11 @@ margin-top: 20px;
     text-align: left !important;
     float: none;
     width: 25%;
-    border-radius: 5em;
+    /* border-radius: 5em; */
 
     position: absolute;
     top: 20px;
-    right: 30px;
+    left: 10px;
 }
 
 .userRooms .searchBar button,
@@ -2144,13 +2350,13 @@ margin-top: 20px;
 
 .userRooms .searchBar button {
     margin: 3px 0 0 0;
-    float: right;
+    float: left;
 }
 
 .userRooms .searchBar input {
-    width: 80%;
+    width: 85%;
     height: 100%;
-    float: left;
+    float: right;
 }
 
 /*end of landing page*/
@@ -3214,6 +3420,7 @@ margin-top: 20px;
         margin: 00px 0px 00px 30px;
         padding-top: 50px;
         padding-bottom: 150px;
+        padding-left: 0;
     }
 
 
@@ -4111,8 +4318,9 @@ margin-top: 20px;
     /*Nav*/
     .userTopNav {
         margin: 0;
-        padding: 30px;
+        padding: 0px;
         top: 0;
+        right: 10px;
         /* max-width: 100%; */
         width: auto;
     }
@@ -4134,17 +4342,16 @@ margin-top: 20px;
         /* display: none; *
     } */
 
-    .userTopNav .profile {
-        float: right;
-    }
-
+   
     .userTopNav h2 {
         font-size: 16px;
+        display: none;
     }
 
     .userTopNav h3 {
         font-size: 14px;
-            }
+        display: none;
+    }
 
 
     .userTopNav .profile img {
@@ -4206,24 +4413,70 @@ margin-top: 20px;
         display: none;
     }
 
-    .myUserRooms .category h3 {
+    .userRooms nav .column {
+        /* width: 95%; */
+        float: left;
+
+    }
+
+    .userRooms #menu {
+        display: block;
+        margin: -20px 0;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        background-color: white;
+        padding: 20px 10px 10px 10px;
+    }
+
+    .userRooms #category {
+
+        display: none;
+    }
+
+    .userRooms .category {
+        width: 95%;
+        background-color: white;
+        position: fixed;
+        left: 0;
+        height: 100vh;
+        z-index: 1;
+        top: 0;
+        padding: 20px;
+    }
+
+    .userRooms .category #close-menu {
+
+        display: block;
+    }
+
+
+    .userRooms .category .filters h4 {
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        display: block;
+    }
+
+
+    .userRooms .category h3 {
 
         font-size: 16px;
         margin-left: -10px;
     }
 
-    .myUserRooms .category img {
+    .userRooms .category img {
         width: 30px;
     }
 
-    .myUserRooms .category .align {
+    .userRooms .category .align {
         display: unset;
         justify-content: unset;
         width: 100%;
         margin-left: -20px !important;
     }
 
-    .myUserRooms .category ul {
+    .userRooms .category ul {
         /* margin-top: 20px; */
         /* margin: ; */
         /* display: unset; */
@@ -4245,7 +4498,7 @@ margin-top: 20px;
         margin: 0 -5px;
     } */
 
-    .myUserRooms .category ul:after {
+    .userRooms .category ul:after {
         content: "";
         display: table;
         clear: both;
@@ -4253,7 +4506,7 @@ margin-top: 20px;
 
 
 
-    .myUserRooms .category li {
+    .userRooms .category li {
         float: left;
         width: 10%;
         height: 35px;
@@ -4262,7 +4515,7 @@ margin-top: 20px;
         margin: 10px 10px 10px 0;
     }
 
-    .myUserRooms .category h4 {
+    .userRooms .category h4 {
         display: none;
     }
 
@@ -4272,12 +4525,28 @@ margin-top: 20px;
 
     .userRooms .searchBar {
         height: 55px;
-        width: 83%;
-        padding: 5px 15px;
-        
-        top: 36vh;
-        right: 10px;
+        width: 70%;
+        padding: 6px 10px;
+        border: none;
+        top: 0px;
+        left: -8px;
     }
+
+    .userRooms .searchBar img {
+        width: 30px;
+    }
+
+    .userRooms .searchBar button {
+        margin: 2px 0 0 0;
+        float: left;
+    }
+
+    .userRooms .searchBar input {
+        width: 85%;
+        height: 90%;
+        float: right;
+    }
+
 
     /* 
     .userRooms .columns {

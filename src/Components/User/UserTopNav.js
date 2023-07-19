@@ -34,10 +34,12 @@ export default function UserTopNav() {
     return (
         <>
             <div className='userTopNav'>
-                {/* {user.map((doc) => (
+                {user.map((doc) => (
                     <div key={doc.id}>
-                        <div className='row'> */}
-                        <table>
+                        {/* <div className='row'>
+                       
+                            <div className='column'>
+                            <table>
                                     <tbody>
                                         <tr>
                                             <td className='logo'>
@@ -49,12 +51,10 @@ export default function UserTopNav() {
                                         </tr>
                                     </tbody>
                                 </table>
-                            <div className='column'>
-                                
 
                             </div>
-                            <div className='column'>
-                                {/* <table className='profile'>
+                            <div className='column'> */}
+                                <table className='profile'>
                                     <tbody>
                                         <tr>
                                             <td>
@@ -68,15 +68,15 @@ export default function UserTopNav() {
 
                                         </tr>
                                     </tbody>
-                                </table> */}
+                                </table>
 
 
-                            </div>
-                        </div>
+                            {/* </div> */}
+                        {/* </div> */}
 
-                    {/* </div>
+                    </div>
                 ))}
-            </div> */}
+            </div>
         </>
     )
 }

@@ -18,6 +18,7 @@ export default function AdminDashboard() {
             // Sign-out successful.
             alert("Sign-out successful.");
             localStorage.setItem('adminStatus', JSON.stringify(false));
+            
         }).catch((error) => {
             console.log(error.message);
         });

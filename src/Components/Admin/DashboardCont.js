@@ -46,6 +46,8 @@ export default function DashboardCont() {
             const queryBookings = await getDocs(collection(db, "bookings"));
             const numBookings = queryBookings.size;
             setnumOfBookings(numBookings);
+
+            localStorage.setItem("userEmailAddress", JSON.stringify(""))
         };
 
         fetchData();

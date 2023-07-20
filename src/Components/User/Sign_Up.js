@@ -8,7 +8,7 @@ import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
 import User_Register from "./User_Register";
 
-export default function Sign_Up() {
+export default function Sign_Up({ setUserSignUp }) {
     // { setUserSignUp }
     //Declarations
     const [userEmail, setUserEmail] = useState('');
@@ -69,10 +69,10 @@ export default function Sign_Up() {
         if (passStatus === true && emailStatus === true) {
             createUserWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
                 alert("sign up sccessfully");
-                //setUserSignUp(true);
+                setUserSignUp(true);
                 // localStorage.setItem("userStatusReg", JSON.stringify(true));
-                //localStorage.setItem("userEmailAddress", JSON.stringify(userEmail));
-                // navigate("/register")
+                localStorage.setItem("userEmailAddress", JSON.stringify(userEmail));
+                navigate("/register")
                 setPassUserEmail(userEmail);
                 document.getElementById("signUp").style.display = "none";
                 document.getElementById("register").style.display = "block";
@@ -181,9 +181,9 @@ export default function Sign_Up() {
                             </div>
                         </div>
 
-                        <div id={"register"}>
+                        {/* <div id={"register"}>
                             <User_Register userEmail={userEmail} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

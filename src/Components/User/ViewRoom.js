@@ -221,7 +221,8 @@ export default function ViewRoom(props) {
                 totalPrice: price
             });
             alert("Successful.");
-            window.location.reload();
+            // window.location.reload();
+            navigate("/bookings")
         } catch (error) {
 
         }
@@ -251,8 +252,9 @@ export default function ViewRoom(props) {
         console.log(num);
         var clash = 0;
         var noClash = 0;
-        if (compBook.length > num) {
-            if (chInDate !== "yyyy-mm-dd" && chOutDate !== "yyyy-mm-dd") {
+        if (chInDate !== "yyyy-mm-dd" && chOutDate !== "yyyy-mm-dd") {
+            if (compBook.length > num) {
+
                 compBook.forEach(comp => {
                     const chIndate1 = new Date(chInDate);
                     const chOutdate1 = new Date(chOutDate);
@@ -278,13 +280,12 @@ export default function ViewRoom(props) {
                     alert("Room not available for those dates.")
                 }
             } else {
-                alert("Enter both dates")
+                alert("The room is available for booking.")
+                setStep(0)
             }
             // alert("No rooms available")
         } else {
-
-            alert("The room is available for booking.")
-            setStep(0)
+            alert("Enter both dates")
         }
     }
 
@@ -418,7 +419,7 @@ export default function ViewRoom(props) {
                                                     ★
                                                 </span>
                                             ))
-                                            : <h5>Thank you for rating!</h5>}
+                                            : <h5 style={{ cursor: 'pointer', color: '#003147', fontSize: "20px", margin: "0", padding: "0" }}>Thank you for rating!</h5>}
                                     </div>
                                     <br />
                                     <div className='bookRoom'>
@@ -476,7 +477,7 @@ export default function ViewRoom(props) {
                                                             <td>
                                                                 <h3>Check Out Date</h3>
                                                                 <input type="date" className="small" placeholder="dd-mm-yyyy"
-                                                                    min={chInDate === "yyyy-mm-dd" ?`${minDate}` : chInDate} max="2030-12-31" onChange={(event) => handleChange(event, 2)} />
+                                                                    min={chInDate === "yyyy-mm-dd" ? `${minDate}` : chInDate} max="2030-12-31" onChange={(event) => handleChange(event, 2)} />
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -498,7 +499,7 @@ export default function ViewRoom(props) {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div className='column'>
+                                            <div className='column' id={"avail"}>
                                                 <button onClick={checkAvailability}>Check Availability</button>
                                             </div>
                                         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db, storage } from '../../Config/Firebase';
+import { db, storage, auth } from '../../Config/Firebase';
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from "react-router-dom";
@@ -9,17 +9,17 @@ import emailA from "../../Assets/Icons/email.png";
 import phoNum from "../../Assets/Icons/smartphone.png";
 import iDNum from "../../Assets/Icons/id.png";
 
-export default function User_Register(props) {
+export default function User_Register({ setUserSignUp }) {
     //Get Email Address
 
-    // const email = localStorage.getItem("userEmailAddress");
-    // let emailStatus = "";
-    // if (email === '' || email === null) {
-    //     localStorage.setItem('userEmailAddress', JSON.stringify(""))
-    // } else {
-    //     emailStatus = JSON.parse(email);
-
-    // }
+    const email = localStorage.getItem("userEmailAddress");
+    let emailStatus = "";
+    if (email === '' || email === null) {
+        localStorage.setItem('userEmailAddress', JSON.stringify(""))
+    } else {
+        emailStatus = JSON.parse(email);
+    }
+    // console.log(props.userEmail);
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -37,11 +37,11 @@ export default function User_Register(props) {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [username, setusername] = useState("");
-    const [emailAddress, setemailAddress] = useState(props.userEmail);
+    const emailAddress = emailStatus;
     const [phNum, setphNum] = useState("");
     const [idNumber, setidNumber] = useState("");
-    const [signUpStatus, setsignUpStatus] = useState("Active"); //Auto set
-    //Declarations
+    const signUpStatus = "Active"; //Auto set
+    //Declarations 
 
     //Handle Images
     function handleImage(event) {
@@ -63,7 +63,8 @@ export default function User_Register(props) {
 
             const storageRef = ref(storage, userImgPath);
             // const fileRef = storageRef.child(file.name);
-            const uploadeUserImg = uploadBytes(storageRef, userImage).then(() => {
+            // const uploadeUserImg = uploadBytes(storageRef, userImage).then(() => {
+            uploadBytes(storageRef, userImage).then(() => {
                 // Get download URL
                 getDownloadURL(storageRef)
                     .then(async (url) => {
@@ -80,15 +81,26 @@ export default function User_Register(props) {
                             userImgeName: img,
                             joinedDate: formattedDate
                         });
-                        alert("You have completed the sign up process.");
-                        // localStorage.setItem('userEmailAddress', JSON.stringify(""))
+                        alert("You have completed the sign up process, please sign in to verify.");
+                        localStorage.setItem('userEmailAddress', JSON.stringify(""))
                         // localStorage.setItem("userStatusReg", JSON.stringify(false));
                         // localStorage.setItem('userStatus', JSON.stringify(true))
+                        setUserSignUp(false);
                         navigate("/")
                     })
                     .catch((error) => {
                         console.error(error);
-                    });
+                    }).then(async () => {
+                        auth.signOut().then(() => {
+                            // Sign-out successful.
+                            // alert("Sign-out successful.");
+                            // localStorage.setItem('userStatus', JSON.stringify(false));
+                            localStorage.setItem('userEmailAddress', JSON.stringify(""));
+                            window.location.reload();
+                        }).catch((error) => {
+                            console.log(error.message);
+                        });
+                    })
             });
 
         } catch (error) {
@@ -99,122 +111,132 @@ export default function User_Register(props) {
     }
 
     return (
-        <div className="register">
-            <h1>Profile</h1>
-            <p>Let's set up your profile.</p>
-            <br /><br />
-            <div className="reg-form">
-                <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleImage(event)} accept="image/*" />
-
-                <div className="row">
-                    <div className="column">
-                        <table className="fname" id={"fname"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={userN} alt="First Name" width={30} />
-                                    </td>
-                                    <td>
-                                        <h3>First Name</h3>
-                                        <input type="text" placeholder="Enter First Name" onChange={(event) => setfirstName(event.target.value)} />
-                                        <br />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="column">
-                        <table className="lname" id={"lname"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={userN} alt="Email Address" width={30} />
-
-                                    </td>
-                                    <td>
-                                        <h3>Last Name</h3>
-                                        <input type="text" placeholder="Enter Last Name" onChange={(event) => setlastName(event.target.value)} />
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className="column">
-                        <table className="uname" id={"uname"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={userN} alt="First Name" width={30} />
-                                    </td>
-                                    <td>
-                                        <h3>Username</h3>
-                                        <input type="text" placeholder="Enter Username" onChange={(event) => setusername(event.target.value)} />
-                                        <br />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className="column">
-                        <table className="idNum" id={"idNum"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={iDNum} alt="Email Address" width={30} />
-
-                                    </td>
-                                    <td>
-                                        <h3>ID Number</h3>
-                                        <input type="number" placeholder="Enter ID Number" onChange={(event) => setidNumber(event.target.value)} />
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className="column">
-                        <table className="email" id={"email"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={emailA} alt="First Name" width={30} />
-                                    </td>
-                                    <td>
-                                        <h3>Email Address</h3>
-                                        <input type="email" placeholder={`Email Address: ${emailAddress}`} disabled={true} />
-                                        <br />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="column">
-                        <table className="phNum" id={"phNum"}>
-                            <tbody>
-                                <tr>
-                                    <td rowSpan={2}>
-                                        <img src={phoNum} alt="Email Address" width={30} />
-
-                                    </td>
-                                    <td>
-                                        <h3>Phone Number</h3>
-                                        <input type="number" placeholder="Enter Phone Number" onChange={(event) => setphNum(event.target.value)} />
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
+        <div className="signUp">
+            <div className="row">
+                <div className="column" id={"bg"}>
+                    <div className="bgLayer"></div>
                 </div>
 
-                <br />
-                <button onClick={regiserUser}>Register</button>
+                <div className="column">
+                    <div className="wrapper">
+                        <div className="register">
+                            <h1>Profile</h1>
+                            <p>Let's set up your profile.</p>
+                            <br /><br />
+                            <div className="reg-form">
+                                <input type="file" className='input-images' placeholder="Enter The Type of Room" onChange={event => handleImage(event)} accept="image/*" />
+
+                                <div className="row">
+                                    <div className="column">
+                                        <table className="fname" id={"fname"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={userN} alt="First Name" width={30} />
+                                                    </td>
+                                                    <td>
+                                                        <h3>First Name</h3>
+                                                        <input type="text" placeholder="Enter First Name" onChange={(event) => setfirstName(event.target.value)} />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="column">
+                                        <table className="lname" id={"lname"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={userN} alt="Email Address" width={30} />
+
+                                                    </td>
+                                                    <td>
+                                                        <h3>Last Name</h3>
+                                                        <input type="text" placeholder="Enter Last Name" onChange={(event) => setlastName(event.target.value)} />
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="column">
+                                        <table className="uname" id={"uname"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={userN} alt="First Name" width={30} />
+                                                    </td>
+                                                    <td>
+                                                        <h3>Username</h3>
+                                                        <input type="text" placeholder="Enter Username" onChange={(event) => setusername(event.target.value)} />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="column">
+                                        <table className="idNum" id={"idNum"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={iDNum} alt="Email Address" width={30} />
+
+                                                    </td>
+                                                    <td>
+                                                        <h3>ID Number</h3>
+                                                        <input type="number" placeholder="Enter ID Number" onChange={(event) => setidNumber(event.target.value)} />
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="column">
+                                        <table className="email" id={"email"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={emailA} alt="First Name" width={30} />
+                                                    </td>
+                                                    <td>
+                                                        <h3>Email Address</h3>
+                                                        <input type="email" placeholder={`Email Address: ${emailAddress}`} disabled={true} />
+                                                        <br />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="column">
+                                        <table className="phNum" id={"phNum"}>
+                                            <tbody>
+                                                <tr>
+                                                    <td rowSpan={2}>
+                                                        <img src={phoNum} alt="Email Address" width={30} />
+
+                                                    </td>
+                                                    <td>
+                                                        <h3>Phone Number</h3>
+                                                        <input type="number" placeholder="Enter Phone Number" onChange={(event) => setphNum(event.target.value)} />
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button className="reg-formBtn" onClick={regiserUser}>Register</button>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>
     )

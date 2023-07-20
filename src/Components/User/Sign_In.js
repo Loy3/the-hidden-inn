@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from '../../Config/Firebase';
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-export default function Sign_In({ setUserSignIn }) {
+export default function Sign_In({setSignInStatus}) {
     //Declarations
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
@@ -22,23 +22,23 @@ export default function Sign_In({ setUserSignIn }) {
     async function userSignIn() {
 
         if (userEmail !== "" && userPassword !== "") {
-            const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.docs[0]?.exists) {
+            // const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
+            // const querySnapshot = await getDocs(q);
+            // if (querySnapshot.docs[0]?.exists) {
                 signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
                     alert("sign in sccessfully");
                     //set status
-                    setUserSignIn(true);
+                    setSignInStatus(true);
                     // localStorage.setItem('userStatus', JSON.stringify(true));
-                    localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
+                    // localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
                     //end of set status
                 }).catch((error) => {
                     // console.log(error.message);
                     alert("Incorrect Email or Password");
                 })
-            } else {
-                console.log("Not exists");
-            }
+            // } else {
+            //     console.log("Not exists");
+            // }
         } else {
             alert("Require both email address and password.");
         }

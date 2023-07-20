@@ -1,7 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { auth } from './Config/Firebase';
+import { auth, db } from './Config/Firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import SignIn from './Components/SignIn';
 import AdminDashboard from './Components/Admin/AdminDashboard';
@@ -24,27 +25,44 @@ import ViewBookings from './Components/Admin/ViewBookings';
 function App() {
   //Admin Status
 
-  const [isSignedIn, setSignIn] = useState(null);
-  const [isUserSignedIn, setUserSignIn] = useState(null);
+  const [isSignedIn, setSignIn] = useState(false);
+  const [isUserSignedIn, setUserSignIn] = useState(false);
   const [userId, setUserId] = useState("");
   const [userMail, setUserMail] = useState("");
+  const [mypath, setPath] = useState("");
+  const [signInStatus, setSignInStatus] = useState(false);
+
 
 
   useEffect(() => {
     const checkAuth = (auth);
+    console.log(auth);
     const unsubscribe = checkAuth.onAuthStateChanged((user) => {
-
       if (user !== null) {
         console.log(user)
-        setSignIn(user);
         setUserId(user.uid);
         setUserMail(user.email)
-        setUserSignIn(user);
+        setUserPath(user.email)
       }
     });
     return () => unsubscribe();
   }, []);
 
+  async function setUserPath(userMail) {
+    const q = query(collection(db, "users"), where("emailAddress", "==", userMail));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      setUserSignIn(true);
+      setSignInStatus(true);
+      setPath("/home")
+      localStorage.setItem("userEmailAddress", JSON.stringify(userMail))
+    }
+    else {
+      setSignIn(true);
+      setPath("/dashboard")
+      setSignInStatus(true);
+    }
+  }
 
 
   //User Status
@@ -56,7 +74,7 @@ function App() {
     userStatusReg = JSON.parse(uSignedUp);
 
   }
-  const [isUserSignedUp, setUserSignUp] = useState(userStatusReg);
+  const [isUserSignedUp, setUserSignUp] = useState(false);
 
 
   // const [isSignedIn, setSignIn] = useState({auth });
@@ -87,32 +105,26 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Admin */}
-        <Route path='/admin' element={isSignedIn ? <DashboardCont /> : <SignIn setSignIn={setSignIn} />} />
-        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/admin" />} />
-        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/admin" />} />
-        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/admin" />} />
+        <Route path='/' element={signInStatus ? <Navigate to={`${mypath}`} /> : <Sign_In setSignInStatus={setSignInStatus} />} />
+        <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/" />} />
+        <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/" />} />
+        <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/" />} />
         <Route path='/room' element={isRoom !== "" ? <Room isRoom={isRoom} /> : <Navigate to="/rooms" />} />
-        <Route path='/hotel' element={isSignedIn  ? <Hotel /> : <Navigate to="/admin" />} />
-        <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/admin" />} />
-        <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/admin" />} />
+        <Route path='/hotel' element={isSignedIn ? <Hotel /> : <Navigate to="/" />} />
+        <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/" />} />
+        <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/" />} />
 
 
         {/* User  */}
-        <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In setUserSignIn={setUserSignIn} />} />
+        {/* <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In  />} /> */}
         {/* <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} /> */}
         <Route path='/signup' element={<Sign_Up setUserSignUp={setUserSignUp} />} />
         <Route path='/register' element={isUserSignedUp ? <User_Register setUserSignUp={setUserSignUp} /> : <Navigate to="/signup" />} />
-        <Route path='/home' element={isUserSignedIn ? <User_Landing_Page setUserRoom={setUserRoom}  /> : <Sign_In setUserSignIn={setUserSignIn} />} />
-        <Route path='/profile' element={isUserSignedIn ? <UserProfile /> : <Sign_In setUserSignIn={setUserSignIn} />} />
-        <Route path='/hotelLocation' element={isUserSignedIn ? <UserHotelView /> : <Sign_In setUserSignIn={setUserSignIn} />} />
-        <Route path='/bookings' element={isUserSignedIn ? <Bookings /> : <Sign_In setUserSignIn={setUserSignIn} />} />
+        <Route path='/home' element={isUserSignedIn ? <User_Landing_Page setUserRoom={setUserRoom} /> : <Navigate to="/" />} />
+        <Route path='/profile' element={isUserSignedIn ? <UserProfile /> : <Navigate to="/" />} />
+        <Route path='/hotelLocation' element={isUserSignedIn ? <UserHotelView /> : <Navigate to="/" />} />
+        <Route path='/bookings' element={isUserSignedIn ? <Bookings /> : <Navigate to="/" />} />
         <Route path='/viewroom' element={isUserRoom !== "" ? <ViewRoom roomVariables={roomVariables} /> : <Navigate to="/" />} />
-
-        {/* <Route path='/signup' element={<SignUp setSignIn={setSignIn} />} /> */}
-        {/* <Route path='/home' element={isSignedIn ? <HomePage addNewList={list} /> : <Navigate to="/" />} /> */}
-        {/* <Route path='/home' element={<HomePage addNewList={list}/>} /> */}
-        {/* <Route path='/update' element={isSignedIn ? <UpdateTask /> : <Navigate to="/" />} /> */}
-        {/* <Route path='/view' element={isSignedIn ? <ViewByType /> : <Navigate to="/" />} /> */}
 
       </Routes>
     </BrowserRouter>

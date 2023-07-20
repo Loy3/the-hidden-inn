@@ -24,7 +24,7 @@ export default function Bookings() {
         const documents = data.docs.map((doc) => {
             return { id: doc.id, ...doc.data() };
         });
-               const q = query(collection(db, "bookings"), where("userId", "==", userEmail));
+        const q = query(collection(db, "bookings"), where("userId", "==", userEmail));
         const querySnapshot = await getDocs(q);
         const booked = [];
         querySnapshot.forEach((doc) => {
@@ -71,15 +71,15 @@ export default function Bookings() {
                         </p>
                         {/* <button onClick={viewrooms}>View</button> */}
                     </div>
-                    <div className="column">
-                        {/* <div className="searchBar">
+                    {/* <div className="column">
+                        <div className="searchBar">
                                 <input type="text" placeholder="Search for a room by type" onChange={(event) => setSearched(event.target.value)} />
                                 <button>
                                     <img src={search} alt="searchbar" onClick={searchRoom} />
                                 </button>
-                            </div> */}
+                            </div>
 
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="bookings-content">
@@ -152,7 +152,7 @@ export default function Bookings() {
                         ))}
                     </div>
                 </div>
-
+                <div className="space"> </div>
             </div>
             <UserBtmNav />
         </>

@@ -13,6 +13,8 @@ import deluxR from "../../Assets/Icons/delux.png";
 import rwavR from "../../Assets/Icons/room with a view.png";
 import suiteR from "../../Assets/Icons/suit (1).png";
 import logo from "../../Assets/Icons/logo.png";
+import star from "../../Assets/Icons/star.png";
+import occ from "../../Assets/Icons/occu.png";
 
 import search from "../../Assets/Icons/search.png";
 import slide1 from "../../Assets/Images/bed.jpg";
@@ -273,6 +275,7 @@ export default function User_Landing_Page({ setUserRoom }) {
             default:
 
         }
+        // closeMenu();
 
     }
 
@@ -301,6 +304,11 @@ export default function User_Landing_Page({ setUserRoom }) {
     function openMenu() {
         document.getElementById("category").style.display = "block";
         document.getElementById("menu").style.display = "none";
+    }
+
+    function closeMenu() {
+        document.getElementById("category").style.display = "none";
+        document.getElementById("menu").style.display = "block";
     }
 
     return (
@@ -435,7 +443,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 <div className='category' id={'category'}>
 
                     <div className='hotelLogo' >
-                        <img src={closeCat} alt="Hotel" className="hotel" width={20} id={'close-menu'} />
+                        <img src={closeCat} alt="Hotel" className="hotel" width={20} id={'close-menu'} onClick={closeMenu}/>
                         <table>
                             <tbody>
                                 <tr>
@@ -486,55 +494,93 @@ export default function User_Landing_Page({ setUserRoom }) {
 
 
                         <br /><br />
-                        <h3>{title}</h3>
+                        <h3 className='title'>{title}</h3>
+                        <p className='subText'>To see more about the room, click on the image.</p>
                         <div className="rows">
 
                             {displayRooms.map((doc) => (
                                 <div className="columns" key={doc.id}>
+
                                     <div className="card">
+                                        <div className='row'>
+                                            <div className='column'>
+                                                <img src={doc.roomImages[0].roomMainImage.imageUrl} alt='main' onClick={(event) => roomFullView(event, doc.id)} />
+                                                <div className='ratings'>
 
-                                        <img src={doc.roomImages[0].roomMainImage.imageUrl} alt='main' onClick={(event) => roomFullView(event, doc.id)} />
-                                        <div className='ratings'>
-                                            <div className='price'>
-                                                <h2><span>Start From:</span> R{doc.roomPrice}.00</h2>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={star} alt='star' className='star' width={10} />
+                                                                </td>
+                                                                <td>
+                                                                    <p>
+                                                                        {Math.max(...doc.ratings)}
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+                                                <div className='price'>
+                                                    <h2><span>Start From:</span> R{doc.roomPrice}.00</h2>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="cardContent">
-                                            <h2>{doc.roomType}
-                                                <br /><span>The Hidden Inn</span></h2>
+                                            <div className='column'>
+                                                <div className="cardContent">
+                                                    <h2>{doc.roomType}
+                                                        <br /><span>The Hidden Inn</span></h2>
 
-                                            <ul>
-                                                {doc.roomAmenities.map((doc, index) => (
-                                                    <li key={index}>
-                                                        <table>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
-                                                                        {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
-                                                                        {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
-                                                                        {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
+                                                    <table className='hide'>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <img src={occ} alt='WiFi' width={35} />
+                                                                </td>
+                                                                <td>
+                                                                    {doc.roomOccupants}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
 
-                                                                    </td>
-                                                                    <td>
-                                                                        {doc}
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                    <ul className='hide'>
+                                                        {doc.roomAmenities.map((doc, index) => (
+                                                            <li key={index}>
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                {doc === "Wi-Fi" ? <img src={wifi} alt='WiFi' width={35} /> : null}
+                                                                                {doc === "Heater" ? <img src={heater} alt='WiFi' width={35} /> : null}
+                                                                                {doc === "Room Service" ? <img src={room_serv} alt='WiFi' width={35} /> : null}
+                                                                                {doc === "In-Room Safe" ? <img src={safe} alt='WiFi' width={35} /> : null}
 
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                            {/* <p>
+                                                                            </td>
+                                                                            <td>
+                                                                                {doc}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+
+                                                    {/* <p>
                                                 <span>Start From</span><br />
                                                 R{doc.roomPrice}.00
 
-                                            </p> */}
-                                            {/* <button onClick={event => viewRoom(event, doc.id)}>view</button> */}
-                                        </div>
+                                                    </p> */}
+                                                    {/* <button onClick={event => viewRoom(event, doc.id)}>view</button> */}
+                                                </div>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
                             ))}

@@ -6,7 +6,7 @@ import password from '../../Assets/Icons/password.png';
 import show from '../../Assets/Icons/view.png';
 import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
-import User_Register from "./User_Register";
+// import User_Register from "./User_Register";
 
 export default function Sign_Up({ setUserSignUp }) {
     // { setUserSignUp }
@@ -176,7 +176,7 @@ export default function Sign_Up({ setUserSignUp }) {
                                 <button onClick={userSignUp}>Sign Up</button>
                                 <br /><br />
                                 <p>
-                                    Already have an account? Click <a onClick={toSignIn}>here to sign in</a>
+                                    Already have an account? Click <a href="#" onClick={toSignIn}>here to sign in</a>
                                 </p>
                             </div>
                         </div>

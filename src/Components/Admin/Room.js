@@ -234,6 +234,51 @@ export default function Room(props) {
         navigate("/rooms")
     }
 
+    function toUpdateImages() {
+        document.getElementById("roomUpDetails").style.display = "none";
+        document.getElementById("imagesUp").style.display = "block";
+        document.getElementById("roomUpImgs").style.display = "block";
+    }
+
+    const [updateImg, setUdateImg]=useState([]);
+    const [updateRoomLink, setUdateRoomLink]=useState("");
+    function imageToUpdate(event, imageType) {
+        // setRoomMainImage(documents.roomImages[0].roomMainImage.imageUrl)
+        // setRoomSubImage1(documents.roomImages[1].roomSubImage1.imageUrl)
+        // setRoomSubImage2(documents.roomImages[2].roomSubImage2.imageUrl)
+        // setRoomSubImage3(documents.roomImages[3].roomSubImage3.imageUrl)
+        // setTempImg(documents.roomImages[0].roomMainImage.imageUrl)
+
+        document.getElementById("imageDetails").style.display = "block";
+        document.getElementById("roomUpImgs").style.display = "none";
+        if (imageType === "main") {
+            console.log("main");
+            console.log(room.roomImages[0].roomMainImage);
+            setUdateImg(room.roomImages[0].roomMainImage)
+            setUdateRoomLink(room.roomImageLink)
+        } else
+            if (imageType === "sub1") {
+                console.log("sub1");
+            } else
+                if (imageType === "sub2") {
+                    console.log("sub2");
+                } else
+                    if (imageType === "sub3") {
+                        console.log("sub3");
+                    }
+    }
+
+    function updateTheImage(){
+        /*
+        get the room link
+        get the image to update
+        delete the image 
+        add a new image
+        update the image name and url in firestore
+
+        
+        */
+    }
 
 
     return (
@@ -382,51 +427,76 @@ export default function Room(props) {
                                             A room update for room {room.roomType}.
                                         </p>
 
-
+                                        <button className='imagesBtn' onClick={toUpdateImages}>Update Images</button>
                                         {/* <input type="text" name='roomType' placeholder="Enter Room Type" onChange={handleChange} /> */}
+                                        <div id={'roomUpDetails'}>
+                                            <label>Room</label>
+                                            <br />
+                                            <select className='long' name='roomType' onChange={handleChange}>
+                                                <option hidden={true} >
+                                                    Select Room Type
+                                                </option>
+                                                <option value={"Single Room"}>Single Room </option>
+                                                <option value={"Twin or Double Room"}>Twin or Double Room </option>
+                                                <option value={"Studio Room"}>Studio Room</option>
+                                                <option value={"Deluxe Room"}>Deluxe Room</option>
+                                                <option value={"Room with a View "}>Room with a View </option>
+                                                <option value={"Suite"}>Suite</option>
+                                                <option value={"Presidential Suite"}>Presidential Suite </option>
 
-                                        <label>Room</label>
-                                        <br />
-                                        <select className='long' name='roomType' onChange={handleChange}>
-                                            <option hidden={true} >
-                                                Select Room Type
-                                            </option>
-                                            <option value={"Single Room"}>Single Room </option>
-                                            <option value={"Twin or Double Room"}>Twin or Double Room </option>
-                                            <option value={"Studio Room"}>Studio Room</option>
-                                            <option value={"Deluxe Room"}>Deluxe Room</option>
-                                            <option value={"Room with a View "}>Room with a View </option>
-                                            <option value={"Suite"}>Suite</option>
-                                            <option value={"Presidential Suite"}>Presidential Suite </option>
+                                            </select>
+                                            <br />
+                                            <select className="long" name='roomBedsType' onChange={handleChange}>
+                                                <option hidden={true} >
+                                                    Select Bed Type
+                                                </option>
+                                                <option value={"1 Single Bed"}>1 Single Bed</option>
+                                                <option value={"2 Single Beds"}>2 Single Beds</option>
+                                                <option value={"4 Single Beds"}>4 Single Beds</option>
+                                                <option value={"1 Queen Bed"}>1 Queen Bed</option>
+                                                <option value={"2 Queen Beds"}>2 Queen Beds</option>
+                                                <option value={"1 King Bed"}>1 King Bed</option>
+                                                <option value={"2 King Beds"}>2 King Beds</option>
+                                                <option value={"1 Water Bed"}>1 Water Bed</option>
+                                            </select>
+                                            <br />
+                                            <input type="number" className="small" name='roomPrice' placeholder="Enter Room Price" onChange={handleChange} />
 
-                                        </select>
-                                        <br />
-                                        <select className="long" name='roomBedsType' onChange={handleChange}>
-                                            <option hidden={true} >
-                                                Select Bed Type
-                                            </option>
-                                            <option value={"1 Single Bed"}>1 Single Bed</option>
-                                            <option value={"2 Single Beds"}>2 Single Beds</option>
-                                            <option value={"4 Single Beds"}>4 Single Beds</option>
-                                            <option value={"1 Queen Bed"}>1 Queen Bed</option>
-                                            <option value={"2 Queen Beds"}>2 Queen Beds</option>
-                                            <option value={"1 King Bed"}>1 King Bed</option>
-                                            <option value={"2 King Beds"}>2 King Beds</option>
-                                            <option value={"1 Water Bed"}>1 Water Bed</option>
-                                        </select>
-                                        <br />
-                                        <input type="number" className="small" name='roomPrice' placeholder="Enter Room Price" onChange={handleChange} />
+                                            <input type="number" className="small" name='roomOccupants' placeholder="Enter of Room Occupants" onChange={handleChange} />
 
-                                        <input type="number" className="small" name='roomOccupants' placeholder="Enter of Room Occupants" onChange={handleChange} />
+                                            <input type="number" className="small" name='roomQuantity' placeholder="Enter The Number Rooms" onChange={handleChange} />
+                                            <br />
+                                            <br />
+                                            <label>Room Description</label>
+                                            <br />
+                                            <textarea type="text" name='roomDescript' className="long" placeholder="Task description" rows="4" cols="50" onChange={handleChange} />
+                                            <br />
+                                            <button onClick={event => updateRoom(event)}>Submit</button>
+                                        </div>
 
-                                        <input type="number" className="small" name='roomQuantity' placeholder="Enter The Number Rooms" onChange={handleChange} />
-                                        <br />
-                                        <br />
-                                        <label>Room Description</label>
-                                        <br />
-                                        <textarea type="text" name='roomDescript' className="long" placeholder="Task description" rows="4" cols="50" onChange={handleChange} />
-                                        <br />
-                                        <button onClick={event => updateRoom(event)}>Submit</button>
+                                        <div id={'imagesUp'}>
+                                            <h4>Which image would you line to update?</h4>
+                                            <div className='row' id={'roomUpImgs'}>
+                                                <div className='column'>
+                                                    <img src={tempImg === "" ? cam : tempImg} alt='main' id={'subimg1'} className='tempImgStyle' width={100} onClick={(event) => imageToUpdate(event, "main")} />
+                                                </div>
+                                                <div className='column'>
+                                                    <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' id={'subimg2'} className='imgStyle' width={100} onClick={(event) => imageToUpdate(event, "sub1")} />
+                                                </div>
+                                                <div className='column'>
+                                                    <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' id={'subimg3'} className='imgStyle' width={100} onClick={(event) => imageToUpdate(event, "sub2")} />
+                                                </div>
+                                                <div className='column'>
+                                                    <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' id={'subimg4'} className='imgStyle' width={100} onClick={(event) => imageToUpdate(event, "sub3")} />
+                                                    {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
+                                                </div>
+
+                                            </div>
+                                            <div id={'imageDetails'}>
+                                                <input type="file" className='input-images' placeholder="Enter The Type of Room" accept="image/*" />
+                                                <button style={{width:"200px"}}>Update Image</button>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>

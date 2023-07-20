@@ -17,10 +17,6 @@ import star from "../../Assets/Icons/star.png";
 import occ from "../../Assets/Icons/occu.png";
 
 import search from "../../Assets/Icons/search.png";
-import slide1 from "../../Assets/Images/bed.jpg";
-import slide2 from "../../Assets/Images/bg.jpg";
-import slide3 from "../../Assets/Images/hotel.jpg";
-
 import wifi from "../../Assets/Icons/wifi.png";
 import heater from "../../Assets/Icons/heater.png";
 import safe from "../../Assets/Icons/safe.png";
@@ -28,7 +24,6 @@ import room_serv from "../../Assets/Icons/room-service.png";
 
 import closeCat from "../../Assets/Icons/close.png";
 import catMenu from "../../Assets/Icons/list.png";
-import { list } from 'firebase/storage';
 
 export default function User_Landing_Page({ setUserRoom }) {
     const navigate = useNavigate();
@@ -138,6 +133,7 @@ export default function User_Landing_Page({ setUserRoom }) {
     }
 
     async function roomType(event, type) {
+        // var num = 0;
 
         switch (type || searched) {
             case "All":
@@ -219,7 +215,6 @@ export default function User_Landing_Page({ setUserRoom }) {
                 break;
             case "R500.00 - R1 000.00":
                 var docs7 = [];
-                var num = 0;
                 rooms.forEach(r => {
                     if (parseInt(r.roomPrice) >= 500 && parseInt(r.roomPrice) < 1000) {
                         docs7.push(r);
@@ -238,7 +233,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 break;
             case "R1 000.00 - R1 500.00":
                 var docs8 = [];
-                var num = 0;
+
                 rooms.forEach(r => {
                     if (parseInt(r.roomPrice) >= 1000 && parseInt(r.roomPrice) < 1500) {
                         docs8.push(r);
@@ -284,21 +279,7 @@ export default function User_Landing_Page({ setUserRoom }) {
         document.getElementById('rooms').scrollIntoView({ behavior: 'smooth' });
     }
 
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setIndex((index) => (index + 1) % totalSlides);
-        }, 3000);
-        return () => clearInterval(timer);
-    }, []);
-
-    const totalSlides = 3;
-    const slides = [
-        { id: 1, imgUrl: slide1 },
-        { id: 2, imgUrl: slide2 },
-        { id: 3, imgUrl: slide3 },
-    ];
+  
 
 
     function openMenu() {
@@ -443,7 +424,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 <div className='category' id={'category'}>
 
                     <div className='hotelLogo' >
-                        <img src={closeCat} alt="Hotel" className="hotel" width={20} id={'close-menu'} onClick={closeMenu}/>
+                        <img src={closeCat} alt="Hotel" className="hotel" width={20} id={'close-menu'} onClick={closeMenu} />
                         <table>
                             <tbody>
                                 <tr>

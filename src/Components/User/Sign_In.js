@@ -7,9 +7,6 @@ import show from '../../Assets/Icons/view.png';
 import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
 
-import { db } from '../../Config/Firebase';
-import { collection, getDocs, query, where } from "firebase/firestore";
-
 export default function Sign_In({setSignInStatus}) {
     //Declarations
     const [userEmail, setUserEmail] = useState('');
@@ -129,9 +126,9 @@ export default function Sign_In({setSignInStatus}) {
                                     {/* <p>
                                         <a>Reset Password</a>
                                     </p> */}
-                                    <button onClick={userSignIn}>Sign In</button>
+                                    <button  onClick={userSignIn}>Sign In</button>
                                     <br /><br />
-                                    <p>Don't have an account? <a onClick={toSignUp}>Sign Up</a></p>
+                                    <p>Don't have an account? <a href="#" onClick={toSignUp}>Sign Up</a></p>
                                 </div>
                             </div>
                         </div>

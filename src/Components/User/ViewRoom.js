@@ -110,7 +110,7 @@ export default function ViewRoom(props) {
         setMinDate(formattedDate);
 
 
-    }, []);
+    }, [props]);
 
     const [viewImg, setViewImg] = useState(0);
     function changeImg(event, type) {

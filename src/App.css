@@ -1437,7 +1437,7 @@ margin-top: 20px;
 }
 
 .room #roomPopup {
-    display: none;
+    display: block;
     height: 90%;
 
     /* display: flex;
@@ -1445,6 +1445,18 @@ margin-top: 20px;
     align-items: center; */
 
 }
+
+.room #roomUpDetails{
+    display: block;
+}
+
+.room #imagesUp{
+    display: none;
+}
+.room #imageDetails{
+    display: none;
+}
+
 
 .room .mypopup {
     width: 100%;
@@ -3159,6 +3171,9 @@ margin-top: 20px;
         font-weight: 100;
         margin: 10px;
         margin-bottom: 0px;
+
+        bottom: 55px;
+        right: 5px;
     }
 
     /*New room*/

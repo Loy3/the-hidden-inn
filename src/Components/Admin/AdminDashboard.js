@@ -30,7 +30,7 @@ export default function AdminDashboard() {
         switch (type) {
             case "dash":
                 // document.getElementById("dashboard").style.display = "block";
-                navigate("/admin")
+                navigate("/")
                 break;
             case "add":
                 // document.getElementById("dashboard").style.display = "none";

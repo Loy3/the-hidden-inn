@@ -1,7 +1,7 @@
 import { db, storage } from '../../Config/Firebase';
-import { ref, deleteObject } from 'firebase/storage';
+import { ref, deleteObject, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useEffect, useState } from "react";
-import { collection, getDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, getDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 import cam from "../../Assets/Icons/Camera.png";
 import backToRooms from "../../Assets/Icons/prev.png";
@@ -26,6 +26,11 @@ export default function Room(props) {
     const [roomSubImage1, setRoomSubImage1] = useState("");
     const [roomSubImage2, setRoomSubImage2] = useState("");
     const [roomSubImage3, setRoomSubImage3] = useState("");
+
+    const [roomMainImageName, setRoomMainImageName] = useState("");
+    const [roomSubImage1Name, setRoomSubImage1Name] = useState("");
+    const [roomSubImage2Name, setRoomSubImage2Name] = useState("");
+    const [roomSubImage3Name, setRoomSubImage3Name] = useState("");
     const [tempImg, setTempImg] = useState("");
     const [amenities, setAmenities] = useState([]);
 
@@ -53,6 +58,7 @@ export default function Room(props) {
                     const documents = {
                         id: docSnap.id, ...docSnap.data()
                     }
+                    console.log(documents);
                     setRoom(documents);
                     //.roomImages[0].roomMainImage.imageUrl
                     setRoomMainImage(documents.roomImages[0].roomMainImage.imageUrl)
@@ -60,6 +66,11 @@ export default function Room(props) {
                     setRoomSubImage2(documents.roomImages[2].roomSubImage2.imageUrl)
                     setRoomSubImage3(documents.roomImages[3].roomSubImage3.imageUrl)
                     setTempImg(documents.roomImages[0].roomMainImage.imageUrl)
+                    setRoomMainImageName(documents.roomImages[0].roomMainImage.imageName)
+                    setRoomSubImage1Name(documents.roomImages[1].roomSubImage1.imageName)
+                    setRoomSubImage2Name(documents.roomImages[2].roomSubImage2.imageName)
+                    setRoomSubImage3Name(documents.roomImages[3].roomSubImage3.imageName)
+
                     setAmenities(documents.roomAmenities)
                     // console.log(documents)
 
@@ -142,7 +153,7 @@ export default function Room(props) {
 
     async function deleteImages(imgsRef, arr) {
 
-        const storageRef = ref(storage, "rooms/room4");
+        const storageRef = ref(storage, `rooms/${room.roomImageLink}`);
 
         const bucketName = storageRef.bucket;
         console.log(`Bucket name: ${bucketName}`);
@@ -240,8 +251,10 @@ export default function Room(props) {
         document.getElementById("roomUpImgs").style.display = "block";
     }
 
-    const [updateImg, setUdateImg]=useState([]);
-    const [updateRoomLink, setUdateRoomLink]=useState("");
+    const [deleteImg, setDeleteImg] = useState([]);
+    const [updateRoomLink, setUdateRoomLink] = useState("");
+    const [imgToUpdate, setImgToUpdate] = useState("");
+    const [pathStatus, setPathStatus] = useState("");
     function imageToUpdate(event, imageType) {
         // setRoomMainImage(documents.roomImages[0].roomMainImage.imageUrl)
         // setRoomSubImage1(documents.roomImages[1].roomSubImage1.imageUrl)
@@ -254,31 +267,215 @@ export default function Room(props) {
         if (imageType === "main") {
             console.log("main");
             console.log(room.roomImages[0].roomMainImage);
-            setUdateImg(room.roomImages[0].roomMainImage)
-            setUdateRoomLink(room.roomImageLink)
+            setDeleteImg(room.roomImages[0].roomMainImage)
+
+            setPathStatus("main")
         } else
             if (imageType === "sub1") {
                 console.log("sub1");
+                setDeleteImg(room.roomImages[1].roomSubImage1)
+
+                setPathStatus("sub1")
             } else
                 if (imageType === "sub2") {
                     console.log("sub2");
+                    setDeleteImg(room.roomImages[2].roomSubImage2)
+
+                    setPathStatus("sub2")
                 } else
                     if (imageType === "sub3") {
                         console.log("sub3");
+                        setDeleteImg(room.roomImages[3].roomSubImage3)
+
+                        setPathStatus("sub3")
                     }
+
+        setUdateRoomLink(room.roomImageLink);
     }
 
-    function updateTheImage(){
-        /*
-        get the room link
-        get the image to update
-        delete the image 
-        add a new image
-        update the image name and url in firestore
+    async function updateTheImage() {
 
-        
-        */
+        const roomPath = `rooms/${room.roomImageLink}`;
+        const imagePath = `${imgToUpdate.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+        const imgPath = `${roomPath}/${imagePath}`;
+
+        const storageRef = ref(storage, imgPath);
+        const uploadeImg = uploadBytes(storageRef, imgToUpdate);
+
+        const docRef = doc(db, "rooms", room.id);
+        var mainRoom = {};
+        var sub1Det = {};
+        var sub2Det = {};
+        var sub3Det = {};
+
+        document.getElementById("test").style.display = "block";
+        switch (pathStatus) {
+            case "main":
+                try {
+                    var desertRef = ref(storage, `rooms/${room.roomImageLink}/${roomMainImageName}`);
+                    deleteObject(desertRef).then(async () => {
+                        console.log(room.roomImages);
+                        await uploadeImg.then(() => {
+                            getDownloadURL(storageRef).then(async (url) => {
+                                mainRoom = { imageName: imagePath, imageUrl: url }
+
+                                sub1Det = { imageName: roomSubImage1Name, imageUrl: roomSubImage1 }
+                                sub2Det = { imageName: roomSubImage2Name, imageUrl: roomSubImage2 }
+                                sub3Det = { imageName: roomSubImage3Name, imageUrl: roomSubImage3 }
+
+                                var imagesRoom = [
+                                    { roomMainImage: mainRoom },
+                                    { roomSubImage1: sub1Det },
+                                    { roomSubImage2: sub2Det },
+                                    { roomSubImage3: sub3Det }
+                                ];
+
+                                // console.log(imagesRoom);
+
+                                await updateDoc(docRef, { roomImages: imagesRoom });
+                            })
+
+                        }).then(() => {
+                            document.getElementById("test").style.display = "none";
+                            alert("Image Updated")
+                            navigate("/rooms")
+                        })
+
+
+                    })
+
+                } catch (error) {
+                    console.log(error);
+                }
+                // console.log("main Room");
+                break;
+
+            case "sub1":
+                try {
+                    var desertRef = ref(storage, `rooms/${room.roomImageLink}/${roomSubImage1Name}`);
+                    deleteObject(desertRef).then(async () => {
+                        // console.log(room.roomImages);
+                        await uploadeImg.then(() => {
+                            getDownloadURL(storageRef).then(async (url) => {
+                                mainRoom = { imageName: roomMainImageName, imageUrl: roomMainImage }
+
+                                sub1Det = { imageName: imagePath, imageUrl: url }
+                                sub2Det = { imageName: roomSubImage2Name, imageUrl: roomSubImage2 }
+                                sub3Det = { imageName: roomSubImage3Name, imageUrl: roomSubImage3 }
+
+                                var imagesRoom = [
+                                    { roomMainImage: mainRoom },
+                                    { roomSubImage1: sub1Det },
+                                    { roomSubImage2: sub2Det },
+                                    { roomSubImage3: sub3Det }
+                                ];
+
+                                // console.log(imagesRoom);
+
+                                await updateDoc(docRef, { roomImages: imagesRoom });
+                            })
+
+                        }).then(() => {
+                            document.getElementById("test").style.display = "none";
+                            alert("Image Updated")
+                            navigate("/rooms")
+                        })
+
+
+                    })
+
+                } catch (error) {
+                    console.log(error);
+                }
+                break;
+            case "sub2":
+                try {
+                    var desertRef = ref(storage, `rooms/${room.roomImageLink}/${roomSubImage2Name}`);
+                    deleteObject(desertRef).then(async () => {
+                        console.log(room.roomImages);
+                        await uploadeImg.then(() => {
+                            getDownloadURL(storageRef).then(async (url) => {
+                                mainRoom = { imageName: roomMainImageName, imageUrl: roomMainImage }
+
+                                sub1Det = { imageName: roomSubImage1Name, imageUrl: roomSubImage1 }
+                                sub2Det = { imageName: imagePath, imageUrl: url }
+                                sub3Det = { imageName: roomSubImage3Name, imageUrl: roomSubImage3 }
+
+                                var imagesRoom = [
+                                    { roomMainImage: mainRoom },
+                                    { roomSubImage1: sub1Det },
+                                    { roomSubImage2: sub2Det },
+                                    { roomSubImage3: sub3Det }
+                                ];
+
+                                // console.log(imagesRoom);
+
+                                await updateDoc(docRef, { roomImages: imagesRoom });
+                            })
+
+                        }).then(() => {
+                            document.getElementById("test").style.display = "none";
+                            alert("Image Updated")
+                            navigate("/rooms")
+                        })
+
+
+                    })
+
+                } catch (error) {
+                    console.log(error);
+                }
+                break;
+            case "sub3":
+                try {
+                    var desertRef = ref(storage, `rooms/${room.roomImageLink}/${roomSubImage3Name}`);
+                    deleteObject(desertRef).then(async () => {
+                        console.log(room.roomImages);
+                        await uploadeImg.then(() => {
+                            getDownloadURL(storageRef).then(async (url) => {
+                                mainRoom = { imageName: roomMainImageName, imageUrl: roomMainImage }
+
+                                sub1Det = { imageName: roomSubImage1Name, imageUrl: roomSubImage1 }
+                                sub2Det = { imageName: roomSubImage2Name, imageUrl: roomSubImage2 }
+                                sub3Det = { imageName: imagePath, imageUrl: url }
+
+                                var imagesRoom = [
+                                    { roomMainImage: mainRoom },
+                                    { roomSubImage1: sub1Det },
+                                    { roomSubImage2: sub2Det },
+                                    { roomSubImage3: sub3Det }
+                                ];
+
+                                // console.log(imagesRoom);
+
+                                await updateDoc(docRef, { roomImages: imagesRoom });
+                            })
+
+                        }).then(() => {
+                            document.getElementById("test").style.display = "none";
+                            alert("Image Updated")
+                            navigate("/rooms")
+                        })
+
+
+                    })
+
+                } catch (error) {
+                    console.log(error);
+                }
+                break;
+        }
+
+
     }
+
+
+    function handleUpdateImage(event) {
+        const file = event.target.files[0];
+        setImgToUpdate(file);
+        // console.log(file.name);
+    }
+
 
 
     return (
@@ -493,8 +690,8 @@ export default function Room(props) {
 
                                             </div>
                                             <div id={'imageDetails'}>
-                                                <input type="file" className='input-images' placeholder="Enter The Type of Room" accept="image/*" />
-                                                <button style={{width:"200px"}}>Update Image</button>
+                                                <input type="file" className='input-images' placeholder="Enter The Type of Room" accept="image/*" onChange={event => handleUpdateImage(event)} />
+                                                <button onClick={updateTheImage} style={{ width: "200px" }}>Update Image</button>
                                             </div>
                                         </div>
                                     </div>
@@ -506,7 +703,12 @@ export default function Room(props) {
 
                 </div>
             </div>
+            <div id={"test"}>
+                <div className="testing">
 
+                    <div className="loader"></div>
+                </div>
+            </div>
         </div >
     );
 

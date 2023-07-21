@@ -107,7 +107,38 @@ function ViewRooms({ setRoomStatus }) {
 
                                         <div className="cardContent">
                                             <h2>{doc.roomType}</h2>
-                                          
+
+                                            <button onClick={event => viewRoom(event, doc.id)}>view</button>
+                                        </div>
+
+
+                                        <div className="room">
+                                            <div className="row">
+                                                <div className="types">
+
+                                                    <h4>Occupants:</h4>
+                                                    <p>
+                                                        {doc.roomOccupants} occupants
+                                                    </p>
+                                                </div>
+                                                <div className="types">
+                                                    <h4>Number of Rooms:</h4>
+                                                    <p>
+                                                        {doc.roomQuantity} rooms
+                                                    </p>
+                                                </div>
+                                                <div className="types">
+                                                    <h4>Number of Rooms:</h4>
+                                                    <p>
+                                                        {doc.roomBedsType} rooms
+                                                    </p>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="totalPrice">
                                             <button onClick={event => viewRoom(event, doc.id)}>view</button>
                                         </div>
 

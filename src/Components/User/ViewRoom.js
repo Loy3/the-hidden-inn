@@ -243,7 +243,7 @@ export default function ViewRoom(props) {
             default:
         }
 
-        setStep(0);
+        // setStep(0);
 
     }
 

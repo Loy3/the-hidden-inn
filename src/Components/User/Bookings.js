@@ -2,6 +2,7 @@ import UserBtmNav from "./UserBtmNav";
 import { db } from '../../Config/Firebase';
 import { useEffect, useState, useCallback, memo } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import UserTopNav from "./UserTopNav";
 
 
 export default function Bookings() {
@@ -62,8 +63,10 @@ export default function Bookings() {
     return (
         <>
             <div className="userBookings">
-
-                <div className="row" id={"search"}>
+                <nav>
+                    <UserTopNav />
+                </nav>
+                <div className="row" >
                     <div className="column">
                         <h1>Bookings</h1>
                         <p className='intro'>

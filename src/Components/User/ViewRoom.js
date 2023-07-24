@@ -111,26 +111,103 @@ export default function ViewRoom(props) {
 
 
     }, [props]);
-
     const [viewImg, setViewImg] = useState(0);
+
+
     function changeImg(event, type) {
+        var getImg2 = document.getElementById("subimg2");
+        var getImg1 = document.getElementById("subimg1");
+        var getImg3 = document.getElementById("subimg3");
+        var getImg4 = document.getElementById("subimg4");
         if (type === 1) {
 
             setRoomMainImage(room.roomImages[1].roomSubImage1.imageUrl)
             setViewImg(1);
+
+            getImg2.classList.remove("imgStyle");
+            getImg2.classList.add("tempImgStyle");
+
+            getImg1.classList.remove("tempImgStyle");
+            getImg1.classList.add("imgStyle");
+
+            getImg3.classList.remove("tempImgStyle");
+            getImg3.classList.add("imgStyle");
+
+            getImg4.classList.remove("tempImgStyle");
+            getImg4.classList.add("imgStyle");
+
         } else
             if (type === 2) {
                 setRoomMainImage(room.roomImages[2].roomSubImage2.imageUrl)
-                setViewImg(1);
+
+                getImg2.classList.remove("tempImgStyle");
+                getImg2.classList.add("imgStyle");
+
+                getImg1.classList.remove("tempImgStyle");
+                getImg1.classList.add("imgStyle");
+
+                getImg3.classList.remove("imgStyle");
+                getImg3.classList.add("tempImgStyle");
+
+                getImg4.classList.remove("tempImgStyle");
+                getImg4.classList.add("imgStyle");
             } else
                 if (type === 3) {
                     setRoomMainImage(room.roomImages[3].roomSubImage3.imageUrl)
                     setViewImg(1);
+
+                    getImg2.classList.remove("tempImgStyle");
+                    getImg2.classList.add("imgStyle");
+
+                    getImg1.classList.remove("tempImgStyle");
+                    getImg1.classList.add("imgStyle");
+
+                    getImg3.classList.remove("tempImgStyle");
+                    getImg3.classList.add("imgStyle");
+
+
+                    getImg4.classList.remove("imgStyle");
+                    getImg4.classList.add("tempImgStyle");
                 } else {
                     setRoomMainImage(room.roomImages[0].roomMainImage.imageUrl)
                     setViewImg(0);
+
+                    getImg2.classList.remove("tempImgStyle");
+                    getImg2.classList.add("imgStyle");
+
+                    getImg1.classList.remove("imgStyle");
+                    getImg1.classList.add("tempImgStyle");
+
+
+                    getImg3.classList.remove("tempImgStyle");
+                    getImg3.classList.add("imgStyle");
+
+                    getImg4.classList.remove("tempImgStyle");
+                    getImg4.classList.add("imgStyle");
                 }
     }
+
+
+
+    
+    // function changeImg(event, type) {
+    //     if (type === 1) {
+
+    //         setRoomMainImage(room.roomImages[1].roomSubImage1.imageUrl)
+    //         setViewImg(1);
+    //     } else
+    //         if (type === 2) {
+    //             setRoomMainImage(room.roomImages[2].roomSubImage2.imageUrl)
+    //             setViewImg(1);
+    //         } else
+    //             if (type === 3) {
+    //                 setRoomMainImage(room.roomImages[3].roomSubImage3.imageUrl)
+    //                 setViewImg(1);
+    //             } else {
+    //                 setRoomMainImage(room.roomImages[0].roomMainImage.imageUrl)
+    //                 setViewImg(0);
+    //             }
+    // }
 
 
 
@@ -313,6 +390,16 @@ export default function ViewRoom(props) {
                     <div className='roomNav'>
                         <img src={backToRooms} alt='return to rooms' onClick={toRooms} />
                     </div>
+                    <header>
+                        <div className='bgLayer'></div>
+                        <div className='hdText'>
+                            <h1>Room</h1>
+                            <p className='intro'>
+                                A full view for room {room.roomType}.
+                            </p>
+                        </div>
+                    </header>
+
 
                     <div id={'vRoom'}>
                         <div className='row' id='roomV'>
@@ -326,16 +413,16 @@ export default function ViewRoom(props) {
                                             <tbody>
                                                 <tr className='mySubImgs'>
                                                     <td >
-                                                        <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />
+                                                        <img src={tempImg === "" ? cam : tempImg} alt='main' id={'subimg1'} width={100} className='tempImgStyle' onClick={(event) => changeImg(event, 4)} />
                                                     </td>
                                                     <td>
-                                                        <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' width={100} onClick={(event) => changeImg(event, 1)} />
+                                                        <img src={roomSubImage1 === "" ? cam : roomSubImage1} alt='main' id={'subimg2'} width={100} className='imgStyle' onClick={(event) => changeImg(event, 1)} />
                                                     </td>
                                                     <td>
-                                                        <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' width={100} onClick={(event) => changeImg(event, 2)} />
+                                                        <img src={roomSubImage2 === "" ? cam : roomSubImage2} alt='main' id={'subimg3'} width={100} className='imgStyle' onClick={(event) => changeImg(event, 2)} />
                                                     </td>
                                                     <td >
-                                                        <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' width={100} onClick={(event) => changeImg(event, 3)} />
+                                                        <img src={roomSubImage3 === "" ? cam : roomSubImage3} alt='main' id={'subimg4'} width={100} className='imgStyle' onClick={(event) => changeImg(event, 3)} />
                                                         {/* {viewImg !== 1 ? null : <img src={tempImg === "" ? cam : tempImg} alt='main' width={100} onClick={(event) => changeImg(event, 4)} />} */}
                                                     </td>
 
@@ -662,7 +749,7 @@ export default function ViewRoom(props) {
                 }
 
             </div>
-            <br /><br /><br />
+            {/* <br /><br /><br /> */}
 
             {/* <div id={'upRoom'}>
                 <div className='room-form'>

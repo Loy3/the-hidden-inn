@@ -111,7 +111,7 @@ export default function Room(props) {
             // console.log('good');
 
             document.getElementById("roomPopup").style.display = "none";
-            window.location.reload();
+            // window.location.reload();
 
         } catch (error) {
             console.log('bad');
@@ -164,7 +164,7 @@ export default function Room(props) {
         deleteObject(desertRef).then(() => {
             // File deleted successfully
             console.log("success");
-            window.location.reload();
+            // window.location.reload();
         }).catch((error) => {
             // Uh-oh, an error occurred!
             console.log("failed")
@@ -338,7 +338,7 @@ export default function Room(props) {
                         }).then(() => {
                             document.getElementById("test").style.display = "none";
                             alert("Image Updated")
-                            navigate("/rooms")
+                            // navigate("/rooms")
                         })
 
 

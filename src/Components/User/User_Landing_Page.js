@@ -279,7 +279,7 @@ export default function User_Landing_Page({ setUserRoom }) {
         document.getElementById('rooms').scrollIntoView({ behavior: 'smooth' });
     }
 
-  
+
 
 
     function openMenu() {
@@ -318,7 +318,13 @@ export default function User_Landing_Page({ setUserRoom }) {
                     </div>
                 </nav>
 
-
+                <header>
+                    <div className='bgLayer'></div>
+                    <div className='hdText'>
+                        <h3 className='title'>{title}</h3>
+                        <p className='subText'>To see more about the room, click on the image.</p>
+                    </div>
+                </header>
                 {/* <header>
                     <div className='bg-img'></div>
                     <UserTopNav />
@@ -475,8 +481,7 @@ export default function User_Landing_Page({ setUserRoom }) {
 
 
                         <br /><br />
-                        <h3 className='title'>{title}</h3>
-                        <p className='subText'>To see more about the room, click on the image.</p>
+
                         <div className="rows">
 
                             {displayRooms.map((doc) => (

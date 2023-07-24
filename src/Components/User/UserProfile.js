@@ -206,32 +206,9 @@ export default function UserProfile() {
                         </div>
 
 
-                        {/* <table className='profile'>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img src={doc.userImage} alt='profile' width={80} />
-                                    </td>
-                                    <td>
-
-                                        <h2>{doc.firstName + " " + doc.lastName}</h2>
-                                        <h3>{doc.username}</h3>
-                                        <h3>{doc.emailAddress}</h3>
-                                        <h3>{doc.phNum}</h3>
-                                        <h3>{doc.idNumber}</h3>
-
-                                        <button onClick={update}>Update</button>
-                                        
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
- */}
-
                     </div>
                 ))}
 
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
                 <div id={"userUpdate"}>
                     <div className="myPopup">

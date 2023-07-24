@@ -21,6 +21,7 @@ import UserHotelView from './Components/User/UserHotelView';
 import Bookings from './Components/User/Bookings';
 import ViewRoom from './Components/User/ViewRoom';
 import ViewBookings from './Components/Admin/ViewBookings';
+import Hotel_Landing from './Components/Hotel_Landing';
 
 function App() {
   //Admin Status
@@ -104,6 +105,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route path='/hotelL' element={<Hotel_Landing />} />
         {/* Admin */}
         <Route path='/' element={signInStatus ? <Navigate to={`${mypath}`} /> : <Sign_In setSignInStatus={setSignInStatus} />} />
         <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/" />} />

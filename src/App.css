@@ -37,6 +37,12 @@ body {
     height: 100vh;
 }
 
+.adminHotel .hotelLanding iframe {
+    margin-top: -25px;
+    margin-left: 20%;
+    width: 80%;
+    height: 100vh;
+}
 
 .hotelLanding .hotelContent {
     height: auto;
@@ -47,6 +53,17 @@ body {
     background-color: whitesmoke;
     z-index: 1;
 }
+
+.adminHotel .hotelLanding .hotelContent {
+    height: auto;
+    width: 50%;
+    position: absolute;
+    right: 10px;
+    top: 5%;
+    background-color: whitesmoke;
+    z-index: 1;
+}
+
 
 .hotelLanding .hotelContent .socials {
     margin: 10px 20px;
@@ -191,6 +208,82 @@ body {
 }
 
 
+.adminHotel .hotelLanding .upBtn {
+    width: 150px;
+    height: 50px;
+
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    z-index: 99;
+    cursor: pointer;
+    margin: 20px 0;
+    border: 2px solid #003147;
+    outline: none;
+    background-color: #003147;
+
+    color: #fff;
+    padding: 5px;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminHotel #hotel-details {
+    display: block;
+}
+
+.adminHotel #hotel-update-form {
+    display: none;
+    margin-left: 22%;
+    width: 50%;
+}
+
+.adminHotel .hotel-up .long {
+    width: 415px;
+
+}
+
+.adminHotel .hotel-up input,
+.adminHotel .hotel-up textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #003147;
+    background-color: whitesmoke;
+}
+
+.adminHotel .hotel-up .small {
+    width: 190px;
+    margin-right: 10px;
+}
+
+
+.adminHotel .hotel-up button {
+    width: 250px;
+    background: #003147;
+
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.adminHotel .hotel-up button:hover {
+    background: #6b818a !important;
+    border: 2px solid #003147 !important;
+    color: #003147 !important;
+}
+
+.adminHotel .hotel-up  h1 {
+    font-size: 40px;
+    color: #003147;
+    margin: 30px 0 0 0;
+}
+
 @media screen and (width <=700px) {
 
     /* .hotelLanding {
@@ -267,6 +360,29 @@ body {
         margin: 15px;
     }
 
+    .adminHotel #hotel-update-form {
+        width: 65%;
+    }
+
+
+    .adminHotel .hotel-up .long {
+        width: 100%;
+
+    }
+
+    .adminHotel .hotel-up .small {
+        width: 100%;
+        margin-right: 0px;
+    }
+
+
+    .adminHotel .hotel-up button {
+        width: 100%;
+    }
+
+    .adminHotel .hotel-up  h1 {
+        font-size: 28px;
+    }
 }
 
 /*About*/

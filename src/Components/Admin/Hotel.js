@@ -9,7 +9,7 @@ import fb from "../../Assets/Icons/facebook.png";
 import insta from "../../Assets/Icons/instagram.png";
 import twitt from "../../Assets/Icons/twitter.png";
 
-import logo from "../../Assets/Icons/logo.png";
+import hLD from "../../Assets/Hotel-Update Location.pdf";
 import next from "../../Assets/Icons/next.png";
 import AdminDashboard from "./AdminDashboard";
 
@@ -306,21 +306,23 @@ export default function Hotel() {
 
             <div className='hotel-up' id={"hotel-update-form"}>
 
-                <h1>Update Hotel Details</h1>
+                <a href={hLD} download><button>Download Location</button></a>
 
+                <h1>Update Hotel Details</h1>
+                <p><i>Click on the above button to download a document on how to get the map location link.</i></p>
                 <br />
                 <label>Physical Address</label>
                 <br />
-                <input type="text" className="long" name="hotelAddress" placeholder="Enter Address" onChange={handleChange} />
+                <input type="text" className="long" name="hotelAddress" placeholder={`Current Address: ${upHotel.hotelAddress}`} onChange={handleChange} />
                 <br />
-                <input type="text" className="small" name="hotelCity" placeholder="Enter City" onChange={handleChange} />
-                <input type="text" className="small" name="hotelZip" placeholder="Enter zip code" onChange={handleChange} />
+                <input type="text" className="small" name="hotelCity" placeholder={`Current City: ${upHotel.hotelCity}`} onChange={handleChange} />
+                <input type="text" className="small" name="hotelZip" placeholder={`Current Zip: ${upHotel.hotelZip}`} onChange={handleChange} />
                 <br />
                 <br />
                 <label>Contact Details</label>
                 <br />
-                <input type="email" className="small" name="hotelEmail" placeholder="Enter Hotel Email Address" onChange={handleChange} />
-                <input type="number" className="small" name="hotelPhNum" placeholder="Enter Hotel contact number" onChange={handleChange} />
+                <input type="email" className="small" name="hotelEmail" placeholder={`Current Email Address: ${upHotel.hotelEmail}`} onChange={handleChange} />
+                <input type="number" className="small" name="hotelPhNum" placeholder={`Current Contact Number: ${upHotel.hotelPhNum}`} onChange={handleChange} />
                 <br />
                 <br />
                 <label>Map Location</label>

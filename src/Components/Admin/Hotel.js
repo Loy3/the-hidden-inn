@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from '../../Config/Firebase';
-import { collection, updateDoc, getDocs, doc, addDoc } from "firebase/firestore";
+import { collection, updateDoc, getDocs, doc } from "firebase/firestore";
 
 import slide1 from "../../Assets/Images/Slides/1.png";
 import slide2 from "../../Assets/Images/Slides/2.png";
@@ -15,16 +15,16 @@ import AdminDashboard from "./AdminDashboard";
 
 export default function Hotel() {
     //Declarations
-    const [hotelAddress, setHotelAddress] = useState("");
-    const [hotelCity, setHotelCity] = useState("");
-    const [hotelZip, setHotelZip] = useState("");
-    const [hotelLocation, setHotelLocation] = useState("");
-    const [hotelPhNum, setHotelPhNum] = useState("");
-    const [hotelEmail, setHotelEmail] = useState("");
-    //const [hotelFacilities, setHotelFacilities] = useState([]);
-    const [hotelPolicy, setHotelPolicy] = useState("");
-    const [hotelChIn, setHotelChIn] = useState("");
-    const [hotelChOut, setHotelChOut] = useState("");
+    // const [hotelAddress, setHotelAddress] = useState("");
+    // const [hotelCity, setHotelCity] = useState("");
+    // const [hotelZip, setHotelZip] = useState("");
+    // const [hotelLocation, setHotelLocation] = useState("");
+    // const [hotelPhNum, setHotelPhNum] = useState("");
+    // const [hotelEmail, setHotelEmail] = useState("");
+    // //const [hotelFacilities, setHotelFacilities] = useState([]);
+    // const [hotelPolicy, setHotelPolicy] = useState("");
+    // const [hotelChIn, setHotelChIn] = useState("");
+    // const [hotelChOut, setHotelChOut] = useState("");
     const [hotelId, setHotelId] = useState("");
 
     //End of Declarations
@@ -209,7 +209,7 @@ export default function Hotel() {
                 {hotel.map((doc, index) => (
 
                     <div key={index}>
-                        <iframe src={doc.hotelAddress[0].hotelLocation} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src={doc.hotelAddress[0].hotelLocation} title="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
 
                         <div className='hotelContent'>
                             <div className='row'>
@@ -284,13 +284,13 @@ export default function Hotel() {
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <a href={doc.socials.facebook} target='_blank'><img src={fb} alt='Facebook' width={30} /></a>
+                                            <a href={doc.socials.facebook} target='_blank' rel="noreferrer"><img src={fb} alt='Facebook' width={30} /></a>
                                         </td>
                                         <td>
-                                            <a href={doc.socials.instagram} target='_blank'><img src={insta} alt='Instagram' width={30} /></a>
+                                            <a href={doc.socials.instagram} target='_blank' rel="noreferrer"><img src={insta} alt='Instagram' width={30} /></a>
                                         </td>
                                         <td>
-                                            <a href={doc.socials.twitter} target='_blank'><img src={twitt} alt='Twitter' width={30} /></a>
+                                            <a href={doc.socials.twitter} target='_blank' rel="noreferrer"><img src={twitt} alt='Twitter' width={30} /></a>
                                         </td>
                                     </tr>
                                 </tbody>

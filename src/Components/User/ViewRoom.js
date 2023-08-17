@@ -111,7 +111,7 @@ export default function ViewRoom(props) {
 
 
     }, [props]);
-    const [viewImg, setViewImg] = useState(0);
+    // const [viewImg, setViewImg] = useState(0);
 
 
     function changeImg(event, type) {
@@ -122,7 +122,7 @@ export default function ViewRoom(props) {
         if (type === 1) {
 
             setRoomMainImage(room.roomImages[1].roomSubImage1.imageUrl)
-            setViewImg(1);
+            // setViewImg(1);
 
             getImg2.classList.remove("imgStyle");
             getImg2.classList.add("tempImgStyle");
@@ -154,7 +154,7 @@ export default function ViewRoom(props) {
             } else
                 if (type === 3) {
                     setRoomMainImage(room.roomImages[3].roomSubImage3.imageUrl)
-                    setViewImg(1);
+                    // setViewImg(1);
 
                     getImg2.classList.remove("tempImgStyle");
                     getImg2.classList.add("imgStyle");
@@ -170,7 +170,7 @@ export default function ViewRoom(props) {
                     getImg4.classList.add("tempImgStyle");
                 } else {
                     setRoomMainImage(room.roomImages[0].roomMainImage.imageUrl)
-                    setViewImg(0);
+                    // setViewImg(0);
 
                     getImg2.classList.remove("tempImgStyle");
                     getImg2.classList.add("imgStyle");

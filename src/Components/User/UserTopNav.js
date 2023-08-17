@@ -2,7 +2,7 @@ import { db, auth } from '../../Config/Firebase';
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import logo from "../../Assets/Icons/logo.png";
+// import logo from "../../Assets/Icons/logo.png";
 
 export default function UserTopNav() {
     const email = localStorage.getItem("userEmailAddress");

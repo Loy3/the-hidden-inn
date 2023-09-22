@@ -119,7 +119,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 return { id: doc.id, ...doc.data() };
             });
             setHotel(hotelDoc);
-            console.log(hotelDoc);
+            // console.log(hotelDoc);
             //End of Get Hotel details
         };
 
@@ -127,7 +127,7 @@ export default function User_Landing_Page({ setUserRoom }) {
     }, []);
 
     function roomFullView(event, room) {
-        console.log(room);
+        // console.log(room);
         setUserRoom(room);
         navigate("/viewroom");
     }
@@ -144,7 +144,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 });
                 setDisplayRpoms(documents);
                 setTitle("All Rooms")
-                console.log('hee');
+                // console.log('hee');
                 break;
             case "Single Room":
                 const q = query(collection(db, "rooms"), where("roomType", "==", "Single Room"));
@@ -227,7 +227,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 // querySnapshot7.forEach((doc) => {
                 //     docs7.push({ id: doc.id, ...doc.data() });
                 // });
-                console.log(docs7);
+                // console.log(docs7);
                 setDisplayRpoms(docs7);
                 setTitle("Room(s)")
                 break;
@@ -246,7 +246,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                 // querySnapshot7.forEach((doc) => {
                 //     docs7.push({ id: doc.id, ...doc.data() });
                 // });
-                console.log(docs8);
+                // console.log(docs8);
                 setDisplayRpoms(docs8);
                 setTitle("Room(s)")
                 break;
@@ -290,6 +290,32 @@ export default function User_Landing_Page({ setUserRoom }) {
     function closeMenu() {
         document.getElementById("category").style.display = "none";
         document.getElementById("menu").style.display = "block";
+    }
+
+    function calcRatings(rates) {
+
+        var totalRates = 0;
+        var count = 0
+        for (let r = 0; r < rates.length; r++) {
+            if (parseInt(rates[r]) !== 0) {
+                totalRates += parseInt(rates[r]);
+                count++;
+            } else {
+                totalRates = totalRates;
+                count = count;
+            }
+        }
+        // console.log(rates, totalRates, count);
+        var average = 0
+        if (totalRates === 0 && count === 0) {
+            average = 0;
+        } else {
+            average = Math.ceil(totalRates / count);
+        }
+
+
+        // console.log(average);
+        return average
     }
 
     return (
@@ -501,7 +527,8 @@ export default function User_Landing_Page({ setUserRoom }) {
                                                                 </td>
                                                                 <td>
                                                                     <p>
-                                                                        {Math.max(...doc.ratings)}
+                                                                        {/* {Math.max(...doc.ratings)} */}
+                                                                        {calcRatings(doc.ratings)}
                                                                     </p>
                                                                 </td>
                                                             </tr>

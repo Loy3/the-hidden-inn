@@ -94,7 +94,7 @@ export default function ViewBookings() {
                                 <div className="column" key={index}>
                                     <div className="booking-card">
                                         <div className="mainRoom">
-                                            <img src={doc.roomImg} alt="Main Image" className="mainImg" width={200} />
+                                            <img src={doc.roomImg} alt="Main Image" className="mainImg" />
                                             <h3>{doc.roomType}</h3>
                                         </div>
                                        

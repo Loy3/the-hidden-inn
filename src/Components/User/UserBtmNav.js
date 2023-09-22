@@ -30,7 +30,7 @@ export default function UserBtmNav() {
                 docs.push({ id: doc.id, ...doc.data() });
             });
             setUser(docs);
-            console.log(docs);
+            // console.log(docs);
         };
 
         getUser();

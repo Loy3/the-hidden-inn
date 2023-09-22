@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { auth, db } from './Config/Firebase';
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-import SignIn from './Components/SignIn';
-import AdminDashboard from './Components/Admin/AdminDashboard';
+// import SignIn from './Components/SignIn';
+// import AdminDashboard from './Components/Admin/AdminDashboard';
 import AddNewRoom from './Components/Admin/AddNewRoom';
 import ViewRooms from './Components/Admin/ViewRooms';
 import Room from './Components/Admin/Room';
@@ -37,10 +37,10 @@ function App() {
 
   useEffect(() => {
     const checkAuth = (auth);
-    console.log(auth);
+    // console.log(auth);
     const unsubscribe = checkAuth.onAuthStateChanged((user) => {
       if (user !== null) {
-        console.log(user)
+        // console.log(user)
         setUserId(user.uid);
         setUserMail(user.email)
         setUserPath(user.email)

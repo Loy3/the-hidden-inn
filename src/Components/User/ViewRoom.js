@@ -352,7 +352,7 @@ export default function ViewRoom(props) {
                         // console.log(noClash);
                     }
                 });
-                if (clash > 5) {
+                if (clash > 3) {
                     alert("Room not available for those dates.");
                     setStep(2);
                 } else {

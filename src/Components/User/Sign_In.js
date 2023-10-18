@@ -1,13 +1,14 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../Config/Firebase';
+import { auth, db } from '../../Config/Firebase';
 import { useState } from "react";
 import email from '../../Assets/Icons/email.png';
 import password from '../../Assets/Icons/password.png';
 import show from '../../Assets/Icons/view.png';
 import hide from '../../Assets/Icons/hide.png';
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-export default function Sign_In({setSignInStatus}) {
+export default function Sign_In({ setSignInStatus }) {
     //Declarations
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
@@ -19,20 +20,38 @@ export default function Sign_In({setSignInStatus}) {
     async function userSignIn() {
 
         if (userEmail !== "" && userPassword !== "") {
+
+            const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
+            const querySnapshot = await getDocs(q);
+            const docs = [];
+            querySnapshot.forEach((doc) => {
+                docs.push({ id: doc.id, ...doc.data() });
+            });
+
+
+
+            if (querySnapshot.docs[0]?.exists) {
+                console.log();
+                // if (docs[0].signUpStatus === "Active") {
+                    signInWithEmailAndPassword(auth, userEmail, userPassword).then(async () => {
+                        alert("sign in sccessfully");
+
+                        setSignInStatus(true);
+
+                    }).catch((error) => {
+                        // console.log(error.message);
+                        alert("Incorrect Email or Password");
+                    })
+                // }
+
+            } else {
+                alert("Incorrect Email or Password");
+            }
+
             // const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
             // const querySnapshot = await getDocs(q);
             // if (querySnapshot.docs[0]?.exists) {
-                signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
-                    alert("sign in sccessfully");
-                    //set status
-                    setSignInStatus(true);
-                    // localStorage.setItem('userStatus', JSON.stringify(true));
-                    // localStorage.setItem("userEmailAddress", JSON.stringify(userEmail))
-                    //end of set status
-                }).catch((error) => {
-                    // console.log(error.message);
-                    alert("Incorrect Email or Password");
-                })
+
             // } else {
             //     console.log("Not exists");
             // }
@@ -126,7 +145,7 @@ export default function Sign_In({setSignInStatus}) {
                                     {/* <p>
                                         <a>Reset Password</a>
                                     </p> */}
-                                    <button  onClick={userSignIn}>Sign In</button>
+                                    <button onClick={userSignIn}>Sign In</button>
                                     <br /><br />
                                     <p>Don't have an account? <a href="#" onClick={toSignUp}>Sign Up</a></p>
                                 </div>

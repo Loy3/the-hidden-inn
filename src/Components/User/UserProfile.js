@@ -202,7 +202,7 @@ export default function UserProfile() {
 
                                 </tbody>
                             </table>
-                            <button onClick={deleteUser}>Delete Account</button>
+                            {/* <button onClick={deleteUser}>Delete Account</button> */}
                         </div>
 
 

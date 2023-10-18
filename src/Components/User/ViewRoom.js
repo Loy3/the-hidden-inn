@@ -189,7 +189,7 @@ export default function ViewRoom(props) {
 
 
 
-    
+
     // function changeImg(event, type) {
     //     if (type === 1) {
 
@@ -344,17 +344,21 @@ export default function ViewRoom(props) {
                     if (datesOverlap) {
                         console.log("Dates clash!");
                         clash++;
+                        // console.log(clash);
+
                     } else {
                         console.log("Dates do not clash!");
                         noClash++;
+                        // console.log(noClash);
                     }
                 });
-                if (noClash > clash) {
-                    //
-                    alert("Dates do not clash");
-                    setStep(0);
+                if (clash > 5) {
+                    alert("Room not available for those dates.");
+                    setStep(2);
                 } else {
-                    alert("Room not available for those dates.")
+                    // console.log("clash", clash, "no clash", noClash);
+                    alert("The room is available for booking.");
+                    setStep(0);
                 }
             } else {
                 alert("The room is available for booking.")
@@ -386,7 +390,8 @@ export default function ViewRoom(props) {
             </header> */}
 
             <div>
-                {room === [] ? null : <div key={room.id}>
+                {/* {room === [] ? null : */}
+                <div key={room.id}>
                     <div className='roomNav'>
                         <img src={backToRooms} alt='return to rooms' onClick={toRooms} />
                     </div>
@@ -746,7 +751,7 @@ export default function ViewRoom(props) {
 
                 </div>
 
-                }
+                {/* } */}
 
             </div>
             {/* <br /><br /><br /> */}

@@ -1,6 +1,16 @@
+/*Imports*/
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&display=swap');
+/*Imports*/
+
 /*For everyone*/
 body {
     background-color: whitesmoke;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+* {
+    font-family: 'Kumbh Sans', sans-serif;
 }
 
 .row {
@@ -72,26 +82,32 @@ body {
 .hotelLanding nav {
     padding: 15px 50px;
     margin: 0;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     z-index: 99;
     position: absolute;
     top: 0;
     width: 95%;
+    /* position: fixed;
+    box-shadow: 0px 0px 18px 1px #003147; */
 }
 
+
 .hotelLanding nav h1 {
-    color: #003147;
+    color: whitesmoke;
     margin-left: 20px;
     margin-top: -5px;
     font-size: 30px;
 }
 
-/* .hotelLanding nav .logo {
-    padding: 0px 10px;
-    background-color: whitesmoke;
-    border-radius: 100%;
-    border: 3px solid gray;
-} */
+.hotelLanding nav .signInBtn {
+    background-color: #0030474f;
+    border: 2px solid whitesmoke;
+    width: 120px;
+    height: 40px;
+    outline: none;
+    color: whitesmoke;
+    font-weight: bold;
+}
 
 .hotelLanding .column {
     float: left;
@@ -103,7 +119,8 @@ body {
     width: 40px;
 }
 
-.hotelLanding .slide {
+
+.hotelLanding header {
     /* height: 100vh; */
 
     max-width: 100%;
@@ -115,11 +132,53 @@ body {
     /* background-image: url("./Assets/Images/bg.jpg"); */
     background-size: cover;
     background-repeat: no-repeat;
-    height: 60vh;
+    height: 80vh;
     background-position: center;
     background-attachment: fixed;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
+
+.hotelLanding header .headBg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 49, 71, 0.5);
+}
+
+.hotelLanding .headertext {
+    position: absolute;
+    width: 90%;
+    text-align: center;
+}
+
+.hotelLanding .headertext p {
+    color: whitesmoke;
+    font-size: 22px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+}
+
+.hotelLanding .headertext h1 {
+    color: whitesmoke;
+    padding: 0;
+    margin: 10px;
+    font-size: 80px;
+}
+
+.hotelLanding .headerBox {
+    width: 80%;
+    height: 20vh;
+    background-color: whitesmoke;
+    position: absolute;
+    bottom: -10vh;
+    z-index: 50;
+    box-shadow: 0px 0px 18px 1px #003147; 
+}
+
 
 .hotelLanding .slide img {
     width: 100%;
@@ -278,7 +337,7 @@ body {
     color: #003147 !important;
 }
 
-.adminHotel .hotel-up  h1 {
+.adminHotel .hotel-up h1 {
     font-size: 40px;
     color: #003147;
     margin: 30px 0 0 0;
@@ -333,11 +392,22 @@ body {
         width: 30px;
     }
 
-    .hotelLanding .slide {
+    /* .hotelLanding header {
 
 
         height: 50vh;
 
+    } */
+
+    .hotelLanding .headertext p {
+        color: whitesmoke;
+        font-size: 14px;
+        font-weight: bold;
+
+    }
+
+    .hotelLanding .headertext h1 {
+        font-size: 28px;
     }
 
     .hotelLanding .slide img {
@@ -380,7 +450,7 @@ body {
         width: 100%;
     }
 
-    .adminHotel .hotel-up  h1 {
+    .adminHotel .hotel-up h1 {
         font-size: 28px;
     }
 }
@@ -415,6 +485,7 @@ body {
 
 .hotelLanding .about .container {
     width: 70%;
+    margin-top: 80px;
 }
 
 .hotelLanding .about .container2 {
@@ -2902,7 +2973,7 @@ margin-top: 20px;
     width: 85%;
     height: 100%;
     float: right;
-    
+
 }
 
 
@@ -4984,7 +5055,7 @@ margin-top: 20px;
         float: unset;
         margin-top: 0px;
     }
-    
+
 
     .userTopNav .profile img {
         border: 3px solid #003147;
@@ -4996,7 +5067,7 @@ margin-top: 20px;
         margin-top: 5px;
     }
 
-    .userBookings .userTopNav .profile img{
+    .userBookings .userTopNav .profile img {
         margin-top: 40px;
     }
 

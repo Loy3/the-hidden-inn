@@ -8,12 +8,14 @@ import slide3 from "../Assets/Images/Slides/3.png";
 
 import logo from "../Assets/Icons/logo.png";
 import next from "../Assets/Icons/next.png";
+import userIc from "../Assets/Icons/user2.png";
 
 import popular1 from "../Assets/Images/Pop/1.png";
 import popular2 from "../Assets/Images/Pop/2.png";
 import popular3 from "../Assets/Images/Pop/3.png";
 
 import aboutHotel from "../Assets/Images/Abut.png";
+import headerBG from "../Assets/Images/myhotel.jpg";
 
 export default function Hotel_Landing() {
     const [popuRooms, setPopuRooms] = useState([]);
@@ -132,10 +134,29 @@ export default function Hotel_Landing() {
                             </tr>
                         </tbody>
                     </table>
+                    <div style={{ position: "absolute", top: 25, right: 50, display: "flex", flexDirection: "row" }}>
+                        <button className='signInBtn'>Sign In</button>
+                        <button style={{ backgroundColor: "transparent", borderWidth: 0, borderColor: "none", width: 40, height: 40, marginLeft: 10 }}><img src={userIc} width={"100%"} height={"100%"} /></button>
+                    </div>
                 </nav>
-                <header style={{ backgroundImage: `url(${slide})` }}>
+                <header style={{ backgroundImage: `url(${headerBG})` }}>
+
+                    <div className='headBg' />
+
+                    <div className='headertext'>
+                        <p>
+                            Get luxury & comfort
+                        </p>
+                        <h1>
+                            Welcome to The Hidden Inn Hotel
+                        </h1>
+                        <p>Your third option sleep hotel.</p>
+                    </div>
+
+                    <div className='headerBox'></div>
+
                     {/* <img src={slide.img} alt='slide' /> */}
-                    <div className='hotel-top'>
+                    {/* <div className='hotel-top'>
                         <h2>The Hidden Inn Hotel</h2>
                         <p>
                             Your Home Away from Home
@@ -148,15 +169,44 @@ export default function Hotel_Landing() {
                     <div className='two-color'>
                         <div className='color-one'></div>
                         <div className='color-two'></div>
-                    </div>
+                    </div> */}
 
 
 
 
                 </header>
 
-                
 
+
+
+
+                <div className='about'>
+                    <div className='row'>
+                        <div className='column'>
+                            {/* <div className='container2'> */}
+                            <img src={aboutHotel} alt='about' width={200} />
+                            {/* <div className='time-card'>
+                                ds
+                            </div> */}
+                            {/* </div> */}
+                        </div>
+                        <div className='column'>
+                            <div className='container'>
+                                <br />
+                                <h1>About Us</h1>
+                                <p>
+                                    When it comes to finding the perfect hotel for your next vacation, look no further than The Hidden Inn Hotel. Our luxurious accommodations and top-notch amenities are sure to make your stay
+                                    a memorable one. Each of our rooms is designed with your comfort in mind, boasting plush bedding, stylish decor, and breathtaking views.
+                                    <br /><br />
+                                    Whether you're traveling for business
+                                    or leisure, we have everything you need to make the most of your stay. So book your stay at The Hidden Inn Hotel today and experience a level of luxury
+                                    that you won't soon forget.
+                                </p>
+                                <button>Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className='popular-rooms'>
 
                     <div className="left-half"></div>
@@ -165,7 +215,7 @@ export default function Hotel_Landing() {
                     <div className='popular-content'>
                         <div className='popRooms'>
                             <h1>Popular Rooms</h1>
-                            <p>The hotel's most popular rooms based on ratings.</p>
+                            <p>Rooms based on ratings.</p>
                             <div className='row'>
                                 {popularRooms.map((data, index) => (
                                     <div className='column' key={index}>
@@ -195,34 +245,6 @@ export default function Hotel_Landing() {
                                         </div>
                                     </div>
                                 ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='about'>
-                    <div className='row'>
-                        <div className='column'>
-                            {/* <div className='container2'> */}
-                                <img src={aboutHotel} alt='about' width={200} />
-                                <div className='time-card'>
-                                    ds
-                                </div>
-                            {/* </div> */}
-                        </div>
-                        <div className='column'>
-                            <div className='container'>
-                                <br/>
-                                <h1>About Us</h1>
-                                <p>
-                                    When it comes to finding the perfect hotel for your next vacation, look no further than The Hidden Inn Hotel. Our luxurious accommodations and top-notch amenities are sure to make your stay
-                                    a memorable one. Each of our rooms is designed with your comfort in mind, boasting plush bedding, stylish decor, and breathtaking views.
-                                    <br /><br />
-                                    Whether you're traveling for business
-                                    or leisure, we have everything you need to make the most of your stay. So book your stay at The Hidden Inn Hotel today and experience a level of luxury
-                                    that you won't soon forget.
-                                </p>
-                                <button>Sign In</button>
                             </div>
                         </div>
                     </div>

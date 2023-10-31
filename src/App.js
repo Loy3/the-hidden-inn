@@ -116,7 +116,7 @@ function App() {
         <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/" />} />
         <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/" />} />
 
-
+        <Route path='/land' element={<Hotel_Landing />} />
         {/* User  */}
         {/* <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In  />} /> */}
         {/* <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} /> */}

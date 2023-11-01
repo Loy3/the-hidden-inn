@@ -2539,7 +2539,7 @@ margin-top: 20px;
 
 .userTopNav h2 {
     padding: 0 10px;
-    margin: -10px 0 0 0;
+    margin: 0;
     color: #003147;
     font-weight: unset;
     text-align: right;
@@ -2547,7 +2547,7 @@ margin-top: 20px;
 
 .userTopNav h3 {
     padding: 0 10px;
-    margin: -10px 0 0 0;
+    margin:  0;
     color: #adadad;
     font-weight: unset;
 }

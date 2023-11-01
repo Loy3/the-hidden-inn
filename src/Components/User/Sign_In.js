@@ -20,33 +20,34 @@ export default function Sign_In({ setSignInStatus }) {
     async function userSignIn() {
 
         if (userEmail !== "" && userPassword !== "") {
+            signInWithEmailAndPassword(auth, userEmail, userPassword).then(async () => {
+                alert("sign in sccessfully");
+                const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
+                const querySnapshot = await getDocs(q);
+                const docs = [];
+                querySnapshot.forEach((doc) => {
+                    docs.push({ id: doc.id, ...doc.data() });
+                });
 
-            const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
-            const querySnapshot = await getDocs(q);
-            const docs = [];
-            querySnapshot.forEach((doc) => {
-                docs.push({ id: doc.id, ...doc.data() });
-            });
 
 
+                // if (querySnapshot.docs[0]?.exists) {
+                //     console.log();
+                    // if (docs[0].signUpStatus === "Active") {
 
-            if (querySnapshot.docs[0]?.exists) {
-                console.log();
-                // if (docs[0].signUpStatus === "Active") {
-                    signInWithEmailAndPassword(auth, userEmail, userPassword).then(async () => {
-                        alert("sign in sccessfully");
 
-                        setSignInStatus(true);
+                    setSignInStatus(true);
 
-                    }).catch((error) => {
-                        // console.log(error.message);
-                        alert("Incorrect Email or Password");
-                    })
+
+                    // }
+
+                // } else {
+                //     alert("Incorrect Email or Password");
                 // }
-
-            } else {
+            }).catch((error) => {
+                // console.log(error.message);
                 alert("Incorrect Email or Password");
-            }
+            })
 
             // const q = query(collection(db, "users"), where("emailAddress", "==", userEmail));
             // const querySnapshot = await getDocs(q);

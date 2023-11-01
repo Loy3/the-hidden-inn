@@ -109,7 +109,7 @@ export default function Sign_Up({ setUserSignUp }) {
     }
 
     function toSignIn() {
-        navigate("/");
+        navigate("/signIn");
     }
 
     return (

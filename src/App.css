@@ -86,7 +86,7 @@ body {
     z-index: 99;
     position: absolute;
     top: 0;
-    width: 95%;
+    width: 90%;
     /* position: fixed;
     box-shadow: 0px 0px 18px 1px #003147; */
 }
@@ -108,6 +108,15 @@ body {
     color: whitesmoke;
     font-weight: bold;
 }
+
+.hotelLanding nav .signInBtnCont {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
 
 .hotelLanding .column {
     float: left;
@@ -170,15 +179,17 @@ body {
 }
 
 .hotelLanding .headerBox {
-    width: 80%;
-    height: 20vh;
+    width: 60%;
+    height: 25vh;
     background-color: whitesmoke;
     position: absolute;
     bottom: -10vh;
     z-index: 50;
-    box-shadow: 0px 0px 18px 1px #003147; 
+    box-shadow: 0px 0px 18px 1px #003147;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
-
 
 .hotelLanding .slide img {
     width: 100%;
@@ -375,8 +386,8 @@ body {
     }
 
     .hotelLanding nav h1 {
-        color: #003147;
-        margin-left: 20px;
+        /* color: #003147; */
+        margin-left: 10px;
         margin-top: -5px;
         font-size: 20px;
     }
@@ -392,16 +403,32 @@ body {
         width: 30px;
     }
 
-    /* .hotelLanding header {
+
+    .hotelLanding nav .signInBtn {
+
+        width: 120px;
+        height: 40px;
+        outline: none;
+        color: whitesmoke;
+        font-weight: bold;
+    }
+
+    .hotelLanding nav .signInBtnCont {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        display: flex;
+        flex-direction: row;
+    }
 
 
-        height: 50vh;
-
-    } */
+    .hotelLanding header {
+        height: 60vh;
+    }
 
     .hotelLanding .headertext p {
         color: whitesmoke;
-        font-size: 14px;
+        font-size: 18px;
         font-weight: bold;
 
     }
@@ -471,7 +498,7 @@ body {
 }
 
 .hotelLanding .about .column:first-child img {
-    width: 100%;
+    width: 99.5%;
     height: 50%;
     object-fit: cover;
 }
@@ -486,6 +513,29 @@ body {
 .hotelLanding .about .container {
     width: 70%;
     margin-top: 80px;
+}
+
+.hotelLanding .about .container p {
+    margin-left: -3px;
+}
+
+.hotelLanding .headerBox .headerBoxCont {
+    width: 100%;
+    height: 100%;
+    /* background-color: #000; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hotelLanding .headerBox .row {
+    width: 90%;
+}
+
+.hotelLanding .headerBox .column {
+    width: 30%;
+    margin: 0 10px;
 }
 
 .hotelLanding .about .container2 {
@@ -525,6 +575,79 @@ body {
     height: 100px;
     background-color: white;
     box-shadow: 0px 0px 18px 1px #003147;
+}
+
+@media screen and (width <=700px) {
+    .hotelLanding .headerBox {
+        width: 95%;
+        height: 41vh;
+        background-color: whitesmoke;
+        position: absolute;
+        bottom: -25vh;
+        z-index: 50;
+        box-shadow: 0px 0px 18px 1px #003147;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+    }
+
+    .hotelLanding .headerBox .headerBoxCont {
+        width: 100%;
+        height: 100%;
+        /* background-color: #000; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hotelLanding .headerBox .column {
+        width: 95%;
+        margin: 0;
+    }
+
+    .hotelLanding .headertext {
+        margin-top: -40px;
+    }
+
+    .hotelLanding .headerBox h5 {
+        font-size: 16px;
+    }
+
+    .hotelLanding .about .column {
+        padding-top: 15vh;
+        width: 100%;
+    }
+    .hotelLanding .about .row {
+        width: 97%;
+        margin: 0;
+    }
+
+    .hotelLanding .about #aboutBg {
+        display: none;
+    }
+
+    .hotelLanding .about .container {
+        width: 80%;
+        margin-top: 80px;
+        padding-bottom: 50px;
+    }
+}
+
+@media screen and (width <=1400px) {
+    .hotelLanding .about .container {
+        width: 70%;
+        margin-top: 40px;
+    }
+
+    .hotelLanding .about .column {
+       height: 80vh;
+    }
+    .hotelLanding .about .column:first-child img {
+        width: 99.2%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 }
 
 /*End of About*/
@@ -595,7 +718,246 @@ body {
 }
 
 
+@media screen and (width <=700px) {
+
+    .popular-rooms {
+        /* margin-top: 50px; */
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: auto;
+    }
+
+    .popular-rooms .left-half,
+    .popular-rooms .right-half {
+        width: 100%;
+        height: 65vh;
+    }
+
+    .popRooms .row {
+        margin: 0;
+    }
+
+    .popular-rooms .popRooms .column {
+        width: 100%;
+        float: unset;
+        margin: 25px 0;
+    }
+
+    .popular-rooms .popRooms table {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 700px) and (max-width: 1400px) {
+    .popular-rooms .popRooms .column {
+        width: 30%;
+        float: left;
+        margin: 20px 15px;
+    }
+}
+
 /*End of popular-rooms*/
+
+
+/*Something nice*/
+.hotelLanding .somethingNice {
+    background-image: url("./Assets/Images/myhotel.jpg");
+    background-size: cover;
+    height: 350px;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;
+}
+
+.hotelLanding .somethingNice .headBg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 49, 71, 0.5);
+}
+
+.hotelLanding .somethingNice .textCont {
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    top: 30px;
+}
+
+.hotelLanding .somethingNice .textCont h1 {
+    color: whitesmoke;
+    padding: 0;
+    margin: 10px;
+    /* font-size: 80px; */
+}
+
+.hotelLanding .somethingNice .textCont p {
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+}
+
+.hotelLanding .somethingNice .message {
+    margin-top: 10px;
+    /* height: 200px; */
+    width: 90%;
+    position: absolute;
+    width: 90%;
+    text-align: center;
+    margin-top: 30px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; */
+}
+
+.hotelLanding .somethingNice .message p {
+    color: whitesmoke;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+}
+
+.hotelLanding .somethingNice .message h3 {
+    color: whitesmoke;
+    padding: 0;
+    margin: 5px;
+    font-size: 24px;
+    /* font-size: 80px; */
+}
+
+
+.hotelLanding .somethingNice .btnCont {
+    display: flex;
+    /* justify-content: ; */
+    align-items: center;
+}
+
+.hotelLanding .somethingNice button {
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.hotelLanding .somethingNice .btn1 img {
+    width: 25px;
+    height: 25px;
+    margin-right: -3px;
+}
+
+.hotelLanding .somethingNice .btn1 {
+    position: absolute;
+    right: 30px;
+}
+
+.hotelLanding .somethingNice .btn2 img {
+    width: 25px;
+    height: 25px;
+    rotate: 180deg;
+    margin-left: -3px;
+}
+
+.hotelLanding .somethingNice .btn2 {
+    position: absolute;
+    left: 30px;
+}
+
+@media screen and (width <=700px) {
+    .hotelLanding .somethingNice .textCont h1 {
+       
+        font-size: 28px;
+    }
+    
+    .hotelLanding .somethingNice .textCont p {
+        color: whitesmoke;
+        font-size: 18px;
+        font-weight: 100;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .hotelLanding .somethingNice .message {
+        margin-top: 10px;
+        /* height: 200px; */
+        width: 90%;
+        position: absolute;
+        width: 70%;
+        text-align: center;
+        margin-top: 30px;
+        /* display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000; */
+    }
+    
+    .hotelLanding .somethingNice .message p {
+        color: whitesmoke;
+        font-size: 18px;
+        font-weight: 100;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .hotelLanding .somethingNice .message h3 {
+        color: whitesmoke;
+        padding: 0;
+        margin: 5px;
+        font-size: 20px;
+        /* font-size: 80px; */
+    }
+    
+    
+    .hotelLanding .somethingNice .btnCont {
+        display: flex;
+        /* justify-content: ; */
+        align-items: center;
+    }
+    
+    .hotelLanding .somethingNice button {
+   
+        width: 30px;
+        height: 30px;
+    }
+    
+    .hotelLanding .somethingNice .btn1 img {
+        width: 15px;
+        height: 15px;
+        margin-right: -3px;
+    }
+    
+    .hotelLanding .somethingNice .btn1 {
+        position: absolute;
+        right: 10px;
+    }
+    
+    .hotelLanding .somethingNice .btn2 img {
+        width: 15px;
+        height: 15px;
+        rotate: 180deg;
+        margin-left: -3px;
+    }
+    
+    .hotelLanding .somethingNice .btn2 {
+        position: absolute;
+        left: 20px;
+    }
+    }
+
+/*Something nice*/
 
 /*end of Hotel Proper landing page*/
 
@@ -5145,7 +5507,7 @@ margin-top: 20px;
         top: 10px;
         left: 0;
         background-color: transparent;
-        padding: 20px 10px 10px 10px;
+        padding: 25px 10px 10px 10px;
         height: 50px;
     }
 
@@ -5255,11 +5617,11 @@ margin-top: 20px;
     }
 
     .userRooms .searchBar img {
-        width: 30px;
+        width: 25px;
     }
 
     .userRooms .searchBar button {
-        margin: 5px 0 0 0;
+        margin: 10px 0 0 10px;
         float: unset;
     }
 

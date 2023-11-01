@@ -107,7 +107,7 @@ function App() {
       <Routes>
       <Route path='/hotelL' element={<Hotel_Landing />} />
         {/* Admin */}
-        <Route path='/' element={signInStatus ? <Navigate to={`${mypath}`} /> : <Sign_In setSignInStatus={setSignInStatus} />} />
+        <Route path='/signIn' element={signInStatus ? <Navigate to={`${mypath}`} /> : <Sign_In setSignInStatus={setSignInStatus} />} />
         <Route path='/dashboard' element={isSignedIn ? <DashboardCont /> : <Navigate to="/" />} />
         <Route path='/newroom' element={isSignedIn ? <AddNewRoom /> : <Navigate to="/" />} />
         <Route path='/rooms' element={isSignedIn ? <ViewRooms setRoomStatus={setRoomStatus} /> : <Navigate to="/" />} />
@@ -116,7 +116,7 @@ function App() {
         <Route path='/viewBookings' element={isSignedIn ? <ViewBookings /> : <Navigate to="/" />} />
         <Route path='/users' element={isSignedIn ? <ViewUsers /> : <Navigate to="/" />} />
 
-        <Route path='/land' element={<Hotel_Landing />} />
+        <Route path='/' element={signInStatus ? <Navigate to={`${mypath}`} /> : <Hotel_Landing />} />
         {/* User  */}
         {/* <Route path='/' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_In  />} /> */}
         {/* <Route path='/signup' element={isUserSignedIn ? <Navigate to="home" /> : <Sign_Up />} /> */}

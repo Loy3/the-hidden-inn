@@ -1,14 +1,13 @@
 import { db } from '../Config/Firebase';
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where, and, or } from "firebase/firestore";
-
+import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 import slide1 from "../Assets/Images/Slides/1.png";
 import slide2 from "../Assets/Images/Slides/2.png";
 import slide3 from "../Assets/Images/Slides/3.png";
 
 import logo from "../Assets/Icons/logo.png";
 import next from "../Assets/Icons/next.png";
-import userIc from "../Assets/Icons/user2.png";
 
 import popular1 from "../Assets/Images/Pop/1.png";
 import popular2 from "../Assets/Images/Pop/2.png";
@@ -18,8 +17,45 @@ import aboutHotel from "../Assets/Images/Abut.png";
 import headerBG from "../Assets/Images/myhotel.jpg";
 
 export default function Hotel_Landing() {
+    const navigate = useNavigate();
     const [popuRooms, setPopuRooms] = useState([]);
     const [hotel, setHotel] = useState([]);
+
+    const hotelAmenities = [
+        {
+            title: "Welcome Gifts",
+            message: "We offer welcome gifts to guests upon arrival, such as a welcome drink, a bottle of water, or a small gift bag filled with treats."
+        },
+        {
+            title: "Bathrobes and slippers",
+            message: "We provide bathrobes and slippers for guests to use during their stay, adding a touch of comfort and relaxation."
+        },
+        {
+            title: "Entertainment options",
+            message: "We offer various entertainment options for guests, such as a library of books, movies, or games."
+        },
+        {
+            title: "Minibar",
+            message: "We provide a minibar that is open for everyone, stocked with a selection of beverages and snacks for purchase."
+        },
+        {
+            title: "Swimming pool",
+            message: "We have swimming pools available, where guests can relax and enjoy a swim."
+        },
+        {
+            title: "Meeting and event spaces",
+            message: "We provide meeting rooms or event spaces available for guests to host conferences, seminars, weddings, or other special occasions."
+        },
+        {
+            title: "Restaurant and room service",
+            message: "The hotel provides an on-site restaurants where guests can dine, as well as room service options for in-room dining."
+        },
+    ];
+
+    const [displMessage, setDisplMessage] = useState({
+        title: hotelAmenities[0].title,
+        message: hotelAmenities[0].message,
+    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -117,6 +153,61 @@ export default function Hotel_Landing() {
         }
     }
 
+    function nextAmenity(type) {
+        var index = getIndex(displMessage.title);
+
+        switch (type) {
+            case "next":
+                // console.log("next");
+                index++
+                if (index >= hotelAmenities.length) {
+                    setDisplMessage({
+                        title: hotelAmenities[0].title,
+                        message: hotelAmenities[0].message
+                    })
+                } else {
+                    setDisplMessage({
+                        title: hotelAmenities[index].title,
+                        message: hotelAmenities[index].message
+                    })
+                }
+                break;
+            case "prev":
+                // console.log("prev");
+                index--
+                if (index < 0) {
+                    setDisplMessage({
+                        title: hotelAmenities[hotelAmenities.length - 1].title,
+                        message: hotelAmenities[hotelAmenities.length - 1].message
+                    })
+                } else {
+                    setDisplMessage({
+                        title: hotelAmenities[index].title,
+                        message: hotelAmenities[index].message
+                    })
+                }
+                break;
+            default:
+                console.log("what");
+        }
+
+    }
+
+    function getIndex(title) {
+        var count = 0;
+        for (let h = 0; h < hotelAmenities.length; h++) {
+            if (hotelAmenities[h].title === title) {
+                count = h;
+            }
+        }
+        return count;
+    }
+
+    function navigateToSignIn(){
+        navigate("/signIn");
+    }
+
+
 
     return (
         <>
@@ -134,9 +225,9 @@ export default function Hotel_Landing() {
                             </tr>
                         </tbody>
                     </table>
-                    <div style={{ position: "absolute", top: 25, right: 50, display: "flex", flexDirection: "row" }}>
-                        <button className='signInBtn'>Sign In</button>
-                        <button style={{ backgroundColor: "transparent", borderWidth: 0, borderColor: "none", width: 40, height: 40, marginLeft: 10 }}><img src={userIc} width={"100%"} height={"100%"} /></button>
+                    <div className='signInBtnCont'>
+                        <button className='signInBtn' onClick={navigateToSignIn}>Sign In</button>
+                        {/* <button style={{ backgroundColor: "transparent", borderWidth: 0, borderColor: "none", width: 40, height: 40, marginLeft: 10 }}><img src={userIc} width={"100%"} height={"100%"} /></button> */}
                     </div>
                 </nav>
                 <header style={{ backgroundImage: `url(${headerBG})` }}>
@@ -153,7 +244,61 @@ export default function Hotel_Landing() {
                         <p>Your third option sleep hotel.</p>
                     </div>
 
-                    <div className='headerBox'></div>
+                    <div className='headerBox'>
+                        <div className='headerBoxCont'>
+                            {hotel.map((doc, index) => (
+                                <div className='row' key={index}>
+                                    <div className="column">
+                                        <div className='columnCont'>
+                                            <h5>Contact Details</h5>
+                                            <p>
+                                                <span>Email Address:</span><br />
+                                                {doc.hotelContact[0].hotelEmail}
+                                                <br />
+                                                <span>Contact Number:</span><br />
+                                                {doc.hotelContact[0].hotelPhNum}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="column">
+                                        <div className='columnCont'>
+                                            <h5>Physical Address</h5>
+                                            <p>
+                                                {doc.hotelAddress[0].hotelAddress}
+                                                <br />
+                                                {doc.hotelAddress[0].hotelCity}
+                                                <br />
+                                                {doc.hotelAddress[0].hotelZip}
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="column">
+                                        <div className='columnCont'>
+                                            <h5>Check In & Check Out Time</h5>
+                                            <table style={{ marginTop: -20 }}>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <h5>Check In</h5>
+                                                            <p>{doc.hotelTimes[0].hotelChIn}</p>
+                                                        </td>
+                                                        <td>
+                                                            <h5>Check Out</h5>
+                                                            <p>{doc.hotelTimes[0].hotelChOut}</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* <img src={slide.img} alt='slide' /> */}
                     {/* <div className='hotel-top'>
@@ -182,7 +327,7 @@ export default function Hotel_Landing() {
 
                 <div className='about'>
                     <div className='row'>
-                        <div className='column'>
+                        <div className='column' id='aboutBg'>
                             {/* <div className='container2'> */}
                             <img src={aboutHotel} alt='about' width={200} />
                             {/* <div className='time-card'>
@@ -202,7 +347,7 @@ export default function Hotel_Landing() {
                                     or leisure, we have everything you need to make the most of your stay. So book your stay at The Hidden Inn Hotel today and experience a level of luxury
                                     that you won't soon forget.
                                 </p>
-                                <button>Sign In</button>
+                                <button onClick={navigateToSignIn}>Sign In</button>
                             </div>
                         </div>
                     </div>
@@ -214,8 +359,8 @@ export default function Hotel_Landing() {
 
                     <div className='popular-content'>
                         <div className='popRooms'>
-                            <h1>Popular Rooms</h1>
-                            <p>Rooms based on ratings.</p>
+                            <h1>Favourites</h1>
+                            <p>Rooms to look-out for after signing in.</p>
                             <div className='row'>
                                 {popularRooms.map((data, index) => (
                                     <div className='column' key={index}>
@@ -250,7 +395,27 @@ export default function Hotel_Landing() {
                     </div>
                 </div>
 
-                <footer>
+                <div className='somethingNice'>
+                    <div className='headBg' />
+                    <div className='btnCont'>
+                        <div>
+                            <button className='btn1' onClick={() => nextAmenity("next")}><img src={next} /></button>
+                            <button className='btn2' onClick={() => nextAmenity("prev")}><img src={next} /></button>
+                        </div>
+                    </div>
+                    <div className='textCont'>
+                        <h1>Hotel Amenities</h1>
+                        <p>A few amenities offered by our hotel.</p>
+                    </div>
+                    <div className='message'>
+                        <div>
+                            <h3>{displMessage.title}</h3>
+                            <p>{displMessage.message}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* <footer>
                     <div className='foot'>
 
                         {hotel.map((doc, index) => (
@@ -300,7 +465,7 @@ export default function Hotel_Landing() {
                             </div>
                         ))}
                     </div>
-                </footer>
+                </footer> */}
             </div>
         </>
     )

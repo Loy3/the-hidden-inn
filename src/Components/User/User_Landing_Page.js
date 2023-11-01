@@ -452,7 +452,7 @@ export default function User_Landing_Page({ setUserRoom }) {
                     ))}
                 </div> */}
 
-                <div id={'menu'} onClick={openMenu}><img src={catMenu} alt="Hotel" className="hotel" width={40} /></div>
+                <div id={'menu'} onClick={openMenu}><img src={catMenu} alt="Hotel" className="hotel" width={30} /></div>
                 <div className='category' id={'category'}>
 
                     <div className='hotelLogo' >
